@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Profile from '../Profile/Profile';
 
 import './App.css';
 
@@ -32,6 +33,8 @@ function App() {
   }, [dispatch]);
 
   return (
+    <div>
+    <Profile />
     <Router>
       <div>
         <Nav />
@@ -118,6 +121,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </div>
   );
 }
 

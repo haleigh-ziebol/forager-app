@@ -1,29 +1,31 @@
 import GoogleMapReact from 'google-map-react';
 import React, {useState, useEffect} from "react";
-import axios from 'axios';
+import styled from 'styled-components';
 
-import Markers from '../Markers/Markers';
+import Marker from '../Marker/Marker';
+const Wrapper = styled.main`
+  width: 100%;
+  height: 100%;
+`;
 
 function Map() {
-    let[markerData, setMarkerData] = useState([]);
-    const AnyReactComponent = ({ text }) => <div>{text}</div>;
+    const [places, setPlaces] = useState([]);
 
-    //fetch marker data
-    const fetchData = () => {
-    axios.get('http://localhost:3000/mapping/')
-    .then((response) =>{
-      console.log(response.data);
-      setMarkerData(response.data);
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-     }
-
-    //runs fetchData
+    const fetchData = async () => {
+      fetch('http://localhost:3000/mapping/')
+        .then((response) => {
+          console.log(response.data)
+        })
+    };
+  
     useEffect(() => {
-        fetchData(); //run when page loads
-      }, [])
+      fetchData(); // run when page loads
+    }, []);
+  
+    if (!places || places.length === 0) {
+      return null;
+    }
+
 
     const defaultProps = {
         center: {
@@ -34,18 +36,21 @@ function Map() {
       };
 
     return (
-        <div style={{ height: '50vh', width: '50%' }}>
-                <GoogleMapReact
-                bootstrapURLKeys={{ key: "HIDDEN" }}
-                defaultCenter={defaultProps.center}
-                defaultZoom={defaultProps.zoom}>
-                </GoogleMapReact>
-                <div>
-                lat={40.955413}
-                lng={-99.337844}
-                text="My Marker"
-                </div>
-        </div>
+      <Wrapper>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: 'AIzaSyB2JtTzcz4vdFfnRtRgOQe9uVDYZw5jX2I' }}
+            defaultCenter={defaultProps.center}
+            defaultZoom={defaultProps.zoom}>
+          {/* {observations.map((obs) => ( */}
+            <Marker
+              key='0'
+              text='observation'
+              lat='44.9778'
+              lng='93.001'
+            />
+          {/* ))} */}
+          </GoogleMapReact>
+      </Wrapper>
     )
 
 }
