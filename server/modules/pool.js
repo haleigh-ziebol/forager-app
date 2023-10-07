@@ -1,10 +1,3 @@
-/* the only line you likely need to change is
-
- database: 'prime_app',
-
- change `prime_app` to the name of your database, and you should be all set!
-*/
-
 const pg = require('pg');
 let pool;
 
@@ -27,9 +20,9 @@ if (process.env.DATABASE_URL) {
 else {
     pool = new pg.Pool({
         host: 'localhost',
-        port: 5430
-        user: 'postgres',
-        password: '0099',
+        port: 5430,
+        user: 'postgres', //for windows OS
+        password: '0099', //for windows OS
         database: 'forager_app',
     });
 }
