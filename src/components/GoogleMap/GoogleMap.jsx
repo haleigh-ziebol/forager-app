@@ -8,23 +8,23 @@ const Wrapper = styled.main`
   height: 100%;
 `;
 
-function Map() {
-    const [places, setPlaces] = useState([]);
+function GoogleMap() {
+    // const [places, setPlaces] = useState([]);
 
-    const fetchData = async () => {
-      fetch('http://localhost:3000/mapping/')
-        .then((response) => {
-          console.log(response.data)
-        })
-    };
+    // const fetchData = async () => {
+    //   fetch('http://localhost:3000/mapping/')
+    //     .then((response) => {
+    //       console.log(response.data)
+    //     })
+    // };
   
-    useEffect(() => {
-      fetchData(); // run when page loads
-    }, []);
+    // useEffect(() => {
+    //   fetchData(); // run when page loads
+    // }, []);
   
-    if (!places || places.length === 0) {
-      return null;
-    }
+    // if (!places || places.length === 0) {
+    //   return null;
+    // }
 
 
     const defaultProps = {
@@ -42,12 +42,12 @@ function Map() {
             defaultCenter={defaultProps.center}
             defaultZoom={defaultProps.zoom}>
           {/* {observations.map((obs) => ( */}
-            <Marker
+            {/* <Marker
               key='0'
               text='observation'
               lat='44.9778'
               lng='93.001'
-            />
+            /> */}
           {/* ))} */}
           </GoogleMapReact>
       </Wrapper>
@@ -55,4 +55,4 @@ function Map() {
 
 }
 
-export default Map;
+export default GoogleMap;

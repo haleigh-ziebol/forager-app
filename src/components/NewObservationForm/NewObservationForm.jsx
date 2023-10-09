@@ -1,28 +1,50 @@
 import React, {useState}from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+//option to set longitude with address or map
+
+//function to fetch current date
+function getDate() {
+    const today = new Date().toISOString()
+    return today.substr(0,10)
+  }
+
 
 const NewObservationForm = () => {
     const dispatch = useDispatch();
     
-    //Initial state is an OBJECT, with keys id and name
-    let [newObservation, setNewObservation] = useState({species: '', location: [] , photo:'' , date_added = ''});
+    let [newObservation, setNewObservation] = useState({species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), date_added: getDate(), date_updated: ''});
+    const observationLat = useSelector((store) => store.newObservationLat);
+    const observationLng = useSelector((store) => store.newObservationLng);
 
+
+    
 
     const addNewObservation = event => {
         event.preventDefault();
-        //dispatch({ type: 'ADD_PLANT', payload: newPlant });
-        //updates the next plant to have a new id
-        //setPlant({name: '', kingdom:'', clade:'', order:'', family:'', subfamily:'', genus:'' });
+        setNewObservation({...newObservation, location: [observationLat, observationLng]});
+        dispatch({ type: 'ADD_OBSERVATION', payload: newObservation });
+        setNewObservation({species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), date_added: getDate(), date_updated: ''});
     }
     return (
         <div>
-            <h3>This is the form</h3>
+            <h3>Observation Form</h3>
             <form onSubmit={addNewObservation}>
-                <input type='text' value={newPlant.name} onChange={() => setNewObservation({...newObservation, species: event.target.value})} placeholder="species" />
+                <label htmlFor="species">Species:</label>
+                <input type='text' id="species" value={newObservation.species} onChange={(event) => setNewObservation({...newObservation, species: event.target.value})} placeholder="species" required />
                 <br/>
-                <input type='text' value={newPlant.kingdom} onChange={() => setNewObservation({...newObservation, species: event.target.value})} placeholder="location" />
+                <label htmlFor="loc">Location:</label>
+                <p id="loc">{JSON.stringify(observationLat, observationLng)}</p>
                 <br/>
-                <input type='text' value={newPlant.clade} onChange={() => setNewObservation({...newObservation, species: event.target.value})} placeholder="photo" />
+                <label htmlFor="date">Date Observed:</label>
+                <input type='date' id="date" value={newObservation.date_observed} onChange={(event) => setNewObservation({...newObservation, date_observed: event.target.value})} placeholder="observation date" />
+                <br/>
+                <label>Notes: </label>
+                <br/>
+                <textarea rows="5" cols="35" name="text" value={newObservation.notes} onChange={(event) => setNewObservation({...newObservation, notes: event.target.value})} placeholder="notes"></textarea>
+                <br />
+                <label htmlFor="photos">Photos:</label>
+                <input type='text' id="photos" value={newObservation.photo} onChange={(event) => setNewObservation({...newObservation, photo: event.target.value})} placeholder="photo url" />
                 <br/>
                 <br/>
                 <button type='submit'> add new observation </button>

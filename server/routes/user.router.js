@@ -1,4 +1,5 @@
 const express = require('express');
+
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
