@@ -6,7 +6,7 @@ function SearchMap() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'KEY',
+  googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
   });
   const mapStyle = {        
     height: "50vh",
@@ -17,14 +17,26 @@ function SearchMap() {
 
     let dispatch = useDispatch();
     
-    // function to display coordinates in pop-up window on map click
-    const handleClick = ({x, y, lat, lng, event}) => {
-        setObservedLat(lat);
-        setObservedLng(lng);
-        console.log(lat, lng)
-        const action = { type: 'ADD_OBSERVATION_COORDS', payload: [lat, lng]};
-        dispatch(action);
-    }
+    // // function to display coordinates in pop-up window on map click
+    // const handleClick = ({x, y, lat, lng, event}) => {
+    //     setObservedLat(lat);
+    //     setObservedLng(lng);
+    //     console.log(lat, lng)
+    //     const action = { type: 'ADD_OBSERVATION_COORDS', payload: [lat, lng]};
+    //     dispatch(action);
+    // }
+
+  let [marker, setMarker] = useState([]);
+
+  const onMapClick = (e) => {
+      setMarker([
+        {
+          lat: e.latLng.lat(),
+          lng: e.latLng.lng()
+        }
+      ]);
+    };
+
 
     //eventually set to center of region/state
     const defaultProps = {
@@ -44,9 +56,9 @@ function SearchMap() {
               mapContainerStyle={mapStyle}
               center={defaultProps.center}
               zoom={10}
-              onClick={handleClick}
+              onClick={onMapClick}
             >
-              { ( observedLat !== '') && <Marker position={{ lat: observedLat, lng: observedLng }} />}
+              { ( marker.length !== 0) && <Marker position={marker[0]} />} 
             </GoogleMap>
           )}
         </div>

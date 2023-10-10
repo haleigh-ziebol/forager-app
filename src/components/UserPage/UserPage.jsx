@@ -9,6 +9,7 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      {JSON.stringify(process.env)}
       <LogOutButton className="btn" />
     </div>
   );
