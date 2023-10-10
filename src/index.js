@@ -14,7 +14,7 @@ import App from './components/App/App';
 const newObservationLat = (state = null, action) => {
   switch (action.type) {
     case 'NEW_LATITUDE':
-      return action.payload.lat;
+      return action.payload;
     default:
       return state;
   }
@@ -24,7 +24,7 @@ const newObservationLat = (state = null, action) => {
 const newObservationLng = (state = null, action) => {
   switch (action.type) {
     case 'NEW_LONGITUDE':
-      return action.payload.lng;
+      return action.payload;
     default:
       return state;
   }
@@ -64,11 +64,11 @@ function* addNewObservation(action) {
 
 //saga function to add observation coords
 function* addObservationCoords(action) {
+  const lat = action.payload[0];
+  const lng = action.payload[1];
   try {
-    const lat = {lat: action.payload[0]};
-    const lng = {lng: action.payload[1]};
-    yield put({ type: 'NEW_LONGITUDE', lng});
-    yield put({ type: 'NEW_LATITUDE', lat});
+    yield put({ type: 'NEW_LONGITUDE', payload: lng});
+    yield put({ type: 'NEW_LATITUDE', payload: lat});
   } catch (error) {
       console.log('error posting observation', error);
   }    

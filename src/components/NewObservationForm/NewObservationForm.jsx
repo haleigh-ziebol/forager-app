@@ -13,18 +13,16 @@ function getDate() {
 const NewObservationForm = () => {
     const dispatch = useDispatch();
     
-    let [newObservation, setNewObservation] = useState({species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), date_added: getDate(), date_updated: ''});
+    let [newObservation, setNewObservation] = useState({species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), date_added: getDate()});
     const observationLat = useSelector((store) => store.newObservationLat);
     const observationLng = useSelector((store) => store.newObservationLng);
 
-
-    
-
+    console.log("coord is:", observationLat, observationLng)
     const addNewObservation = event => {
         event.preventDefault();
         setNewObservation({...newObservation, location: [observationLat, observationLng]});
         dispatch({ type: 'ADD_OBSERVATION', payload: newObservation });
-        setNewObservation({species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), date_added: getDate(), date_updated: ''});
+        setNewObservation({species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), date_added: getDate()});
     }
     return (
         <div>
@@ -34,7 +32,7 @@ const NewObservationForm = () => {
                 <input type='text' id="species" value={newObservation.species} onChange={(event) => setNewObservation({...newObservation, species: event.target.value})} placeholder="species" required />
                 <br/>
                 <label htmlFor="loc">Location:</label>
-                <p id="loc">{JSON.stringify(observationLat, observationLng)}</p>
+                <p id="loc">{JSON.stringify(observationLat)}, {JSON.stringify(observationLng)}</p>
                 <br/>
                 <label htmlFor="date">Date Observed:</label>
                 <input type='date' id="date" value={newObservation.date_observed} onChange={(event) => setNewObservation({...newObservation, date_observed: event.target.value})} placeholder="observation date" />

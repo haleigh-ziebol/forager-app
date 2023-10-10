@@ -21,6 +21,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import SearchMap from '../SearchMap/SearchMap'
 
 import './App.css';
+import NewObservationForm from '../NewObservationForm/NewObservationForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,87 +34,9 @@ function App() {
 
   return (
     <div>
+      <NewObservationForm />
       <SearchMap />
-      <Router>
-        <div>
-          <Nav />
-          <Switch>
-            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
 
-            <Route
-              exact
-              path="/about" //can be accessed without login
-            >
-              <AboutPage />
-            </Route>
-
-            <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/user"
-            >
-              <UserPage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
-              exact
-              path="/info"
-            >
-              <InfoPage />
-            </ProtectedRoute>
-
-            <Route
-              exact
-              path="/login"
-            >
-              {user.id ?
-                // If the user is already logged in, 
-                // redirect to the /user page
-                <Redirect to="/user" />
-                :
-                // Otherwise, show the login page
-                <LoginPage />
-              }
-            </Route>
-
-            <Route
-              exact
-              path="/registration"
-            >
-              {user.id ?
-                // If the user is already logged in, 
-                // redirect them to the /user page
-                <Redirect to="/user" />
-                :
-                // Otherwise, show the registration page
-                <RegisterPage />
-              }
-            </Route>
-
-            <Route
-              exact
-              path="/home"
-            >
-              {user.id ?
-                // If the user is already logged in, 
-                // redirect them to the /user page
-                <Redirect to="/user" />
-                :
-                // Otherwise, show the Landing page
-                <LandingPage />
-              }
-            </Route>
-
-            {/* If none of the other routes matched, we will show a 404. */}
-            <Route>
-              <h1>404 Error</h1>
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
     </div>
   );
 }

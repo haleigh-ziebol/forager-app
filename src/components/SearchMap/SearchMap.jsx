@@ -1,10 +1,17 @@
-import GoogleMapReact from 'google-map-react';
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import React, {useState, useEffect} from "react";
 import { useDispatch } from 'react-redux';
 
-import Marker from '../Marker/Marker';
-
 function SearchMap() {
+
+  const { isLoaded } = useLoadScript({
+
+  googleMapsApiKey: 'KEY',
+  });
+  const mapStyle = {        
+    height: "50vh",
+    width: "100%"};
+
     let [observedLng, setObservedLng] = useState('');
     let [observedLat, setObservedLat] = useState('');
 
@@ -14,6 +21,7 @@ function SearchMap() {
     const handleClick = ({x, y, lat, lng, event}) => {
         setObservedLat(lat);
         setObservedLng(lng);
+        console.log(lat, lng)
         const action = { type: 'ADD_OBSERVATION_COORDS', payload: [lat, lng]};
         dispatch(action);
     }
@@ -27,23 +35,22 @@ function SearchMap() {
         zoom: 4
       };
 
-    return (
-        <div style={{ height: '50vh', width: '50%' }}>
-            <GoogleMapReact
-            bootstrapURLKeys={{ key: 'KEY' }}
-            defaultCenter={defaultProps.center}
-            defaultZoom={defaultProps.zoom}
-            onClick={handleClick}
+      return (
+        <div className="map">
+          {!isLoaded ? (
+            <h1>Loading...</h1>
+          ) : (
+            <GoogleMap
+              mapContainerStyle={mapStyle}
+              center={defaultProps.center}
+              zoom={10}
+              onClick={handleClick}
             >
-              <Marker
-                key='1'
-                text='observation'
-                lat={observedLat}
-                lng={observedLng}
-              />
-          </GoogleMapReact>
-      </div>
-    )
+              { ( observedLat !== '') && <Marker position={{ lat: observedLat, lng: observedLng }} />}
+            </GoogleMap>
+          )}
+        </div>
+      );
 
 }
 

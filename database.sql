@@ -15,8 +15,9 @@ CREATE TABLE "observations" (
 	"species_id" INT,
 	"location" VARCHAR[],
 	"photo" VARCHAR(500),
+	"date_observed" DATE,
 	"date_added" DATE
 )
 
-INSERT INTO "observations" ("user_id", "species_id", "location", "photo", "date_added")
-VALUES ("hi", "11", ARRAY ['44.9778', '93.2650'], "", "" )
+INSERT INTO "observations" ("user_id", "species_id", "location", "photo", "date_observed", "date_added")
+VALUES ("hi", "11", ARRAY ['44.9778', '93.2650'], "", "", "" )
