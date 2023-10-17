@@ -1,5 +1,6 @@
 import React, {useState}from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import SearchMap from '../SearchMap/SearchMap';
 
 //option to set longitude with address or map
 
@@ -13,16 +14,17 @@ function getDate() {
 const NewObservationForm = () => {
     const dispatch = useDispatch();
     
-    let [newObservation, setNewObservation] = useState({species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), date_added: getDate()});
+    let [newObservation, setNewObservation] = useState({species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
+    let [marker, setMarker] = useState([]);
     const observationLat = useSelector((store) => store.newObservationLat);
     const observationLng = useSelector((store) => store.newObservationLng);
 
-    console.log("coord is:", observationLat, observationLng)
     const addNewObservation = event => {
         event.preventDefault();
-        setNewObservation({...newObservation, location: [observationLat, observationLng]});
-        dispatch({ type: 'ADD_OBSERVATION', payload: newObservation });
-        setNewObservation({species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), date_added: getDate()});
+        console.log("coord is:", marker[0].lat, marker[0].lng);
+        setNewObservation({...newObservation, location: [marker[0].lat, marker[0].lng]});
+        dispatch({ type: 'ADD_NEW_OBSERVATION', payload: newObservation });
+        setNewObservation({species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
     }
     return (
         <div>
@@ -32,8 +34,7 @@ const NewObservationForm = () => {
                 <input type='text' id="species" value={newObservation.species} onChange={(event) => setNewObservation({...newObservation, species: event.target.value})} placeholder="species" required />
                 <br/>
                 <label htmlFor="loc">Location:</label>
-                <p id="loc">{JSON.stringify(observationLat)}, {JSON.stringify(observationLng)}</p>
-                <br/>
+                <SearchMap  id="loc" marker={marker} setMarker={setMarker}/>
                 <label htmlFor="date">Date Observed:</label>
                 <input type='date' id="date" value={newObservation.date_observed} onChange={(event) => setNewObservation({...newObservation, date_observed: event.target.value})} placeholder="observation date" />
                 <br/>

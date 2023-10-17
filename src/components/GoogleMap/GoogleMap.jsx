@@ -38,7 +38,7 @@ function GoogleMap() {
     return (
       <Wrapper>
           <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyBJQIPTWAiYWst0JmOL7Qadmfb6zUIYRyk' }}
+            bootstrapURLKeys={{ key: '' }}
             defaultCenter={defaultProps.center}
             defaultZoom={defaultProps.zoom}>
           {/* {observations.map((obs) => ( */}

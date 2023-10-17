@@ -2,7 +2,6 @@ import React from 'react';
 
 import NewObservationForm from '../NewObservationForm/NewObservationForm';
 import SpeciesInfo from '../SpeciesInfo/SpeciesInfo';
-import SearchMap from '../SearchMap/SearchMap';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -13,10 +12,8 @@ function InfoPage() {
   return (
     <div className="container">
       <p>Info Page</p>
-
       <SpeciesInfo />
-    <NewObservationForm />
-    <SearchMap />
+      <NewObservationForm />
     </div>
   );
 }

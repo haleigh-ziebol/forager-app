@@ -37,9 +37,9 @@ router.get('/user/:userID', (req, res) => {
 router.post('/',  (req, res) => {
   let newObservation = req.body;
   console.log(`Adding observation`, newObservation);
-  let queryText = `INSERT INTO "observation" ("user_id", "species_id", "location", "photo", "date_added")
-    VALUES ($1, $2, $3, $4, $5);`;
-  pool.query(queryText, [newObservation.userID, newObservation.speciesID, newObservation.location, newObservation.photo, date])
+  let queryText = `INSERT INTO "observations" ("user_id", "species_id", "location", "photo", "date_observed", "time_stamp")
+    VALUES ($1, $2, $3, $4, $5, $6);`;
+  pool.query(queryText, [newObservation.userID, newObservation.species, newObservation.location, newObservation.photo, newObservation.date_observed, newObservation.time_stamp])
   .then(result => {
     res.sendStatus(201);
   })

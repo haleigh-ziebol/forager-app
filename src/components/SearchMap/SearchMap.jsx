@@ -2,31 +2,15 @@ import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import React, {useState, useEffect} from "react";
 import { useDispatch } from 'react-redux';
 
-function SearchMap() {
+function SearchMap({marker, setMarker}) {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
+  googleMapsApiKey: 'API KEY',
   });
   const mapStyle = {        
     height: "50vh",
     width: "100%"};
-
-    let [observedLng, setObservedLng] = useState('');
-    let [observedLat, setObservedLat] = useState('');
-
-    let dispatch = useDispatch();
-    
-    // // function to display coordinates in pop-up window on map click
-    // const handleClick = ({x, y, lat, lng, event}) => {
-    //     setObservedLat(lat);
-    //     setObservedLng(lng);
-    //     console.log(lat, lng)
-    //     const action = { type: 'ADD_OBSERVATION_COORDS', payload: [lat, lng]};
-    //     dispatch(action);
-    // }
-
-  let [marker, setMarker] = useState([]);
 
   const onMapClick = (e) => {
       setMarker([
