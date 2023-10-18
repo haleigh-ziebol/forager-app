@@ -8,7 +8,7 @@ function SearchMap() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'AIzaSyDKZ7CqOhTLEdvHJjoqrfeaa8OoJVFy3co',
+  googleMapsApiKey: 'api',
   });
   const mapStyle = {        
     height: "50vh",
