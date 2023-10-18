@@ -1,24 +1,17 @@
 import { combineReducers } from 'redux';
 
-//reducer for new observation latitude
-const newObservationLat = (state = null, action) => {
+//reducer for new observation coordinates
+const newObservationCoords = (state = [], action) => {
     switch (action.type) {
-      case 'NEW_LATITUDE':
-        return action.payload;
+      case 'NEW_COORDINATES':
+        return [action.payload];
+      case 'RESET_COORDINATES':
+        return [];
       default:
         return state;
     }
   };
   
-  //reducer for new observation longitude
-  const newObservationLng = (state = null, action) => {
-    switch (action.type) {
-      case 'NEW_LONGITUDE':
-        return action.payload;
-      default:
-        return state;
-    }
-  };
   
   //reducer for users observations
   const userObservationsList = (state = [], action) => {
@@ -43,8 +36,7 @@ const newObservationLat = (state = null, action) => {
   };
 
   export default combineReducers({
-    newObservationLat,
-    newObservationLng,
+    newObservationCoords,
     userObservationsList,
     wikiSpeciesData
   });

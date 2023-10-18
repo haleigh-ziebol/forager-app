@@ -1,24 +1,21 @@
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
-import React, {useState, useEffect} from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-function SearchMap({marker, setMarker}) {
+function SearchMap() {
+  const dispatch = useDispatch();
+
+  const coordinates = useSelector(store => store.observation.newObservationCoords)
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'API_KEY',
+  googleMapsApiKey: 'AIzaSyDKZ7CqOhTLEdvHJjoqrfeaa8OoJVFy3co',
   });
   const mapStyle = {        
     height: "50vh",
     width: "100%"};
 
   const onMapClick = (e) => {
-      setMarker([
-        {
-          lat: e.latLng.lat(),
-          lng: e.latLng.lng()
-        }
-      ]);
+    dispatch({ type: 'NEW_COORDINATES', payload: {lat: e.latLng.lat(), lng: e.latLng.lng()} })
     };
 
 
@@ -42,7 +39,7 @@ function SearchMap({marker, setMarker}) {
               zoom={10}
               onClick={onMapClick}
             >
-              { ( marker.length !== 0) && <Marker position={marker[0]} />} 
+              { ( coordinates.length > 0) && <Marker position={coordinates[0]} />} 
             </GoogleMap>
           )}
         </div>

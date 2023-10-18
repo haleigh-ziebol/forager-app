@@ -14,24 +14,42 @@ function getDate() {
 const NewObservationForm = () => {
     const dispatch = useDispatch();
     
-    let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
-    let [marker, setMarker] = useState([]);
+    let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
 
-    const user = useSelector((store) => store.user.userReducer);
-    const plantList = useSelector(store => store.plants.plantList);
 
+    const user = useSelector(store => store.user);
+    const speciesList = useSelector(store => store.plants.plantList);
+    const coordinates = useSelector(store => store.observation.newObservationCoords[0])
+
+    //fetches species for form selector
     useEffect(() => {
-        console.log('component did mount');
+        console.log('fetching species list');
         // dispatch an action to load plants from DB
         dispatch({type:'FETCH_PLANTS'})
     }, []);
 
+    //sets user_id in newObservation
+    useEffect(() => {
+        if(user.id !== ''){
+            console.log('setting user');
+            setNewObservation({...newObservation, user_id: user.id});
+        }
+    }, [user.id]);
+
+    //sets coordinates in newObservation
+    useEffect(() => {
+        if (coordinates == null ) {
+            return console.log("no coords")
+        } else{
+            console.log('setting coordinates');
+            setNewObservation({...newObservation, location: [coordinates.lat, coordinates.lng]});
+        }
+    }, [coordinates]);
+
     //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
-        console.log("coord is:", marker[0].lat, marker[0].lng);
-        setNewObservation({...newObservation, user_id: user.id});
-        setNewObservation({...newObservation, location: [marker[0].lat, marker[0].lng]});
+        console.log("observation is:", newObservation)
         dispatch({ type: 'ADD_NEW_OBSERVATION', payload: newObservation });
         setNewObservation({user_id: '', species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
     }
@@ -39,7 +57,9 @@ const NewObservationForm = () => {
     return (
         <div>
             <h3>Observation Form</h3>
-            {JSON.stringify(plantList)}
+            {JSON.stringify(speciesList)}
+            {JSON.stringify(newObservation)}
+            {JSON.stringify(user)}
             <form onSubmit={addNewObservation}>
                 <label htmlFor="species">Species:</label>
                 <select
@@ -48,14 +68,13 @@ const NewObservationForm = () => {
                 onChange={(event) => setNewObservation({...newObservation, species: event.target.value})}
                 required
                 >
-                    {plantList.map((plant) => {
+                    {speciesList.map((plant) => {
                             return <option key={plant.id} value={plant.id}>{plant.scientific_name}</option>;
                     })}
                 </select>
-                {/* <input type='text' id="species" value={newObservation.species} onChange={(event) => setNewObservation({...newObservation, species: event.target.value})} placeholder="species" required /> */}
                 <br/>
                 <label htmlFor="loc">Location:</label>
-                <SearchMap  id="loc" marker={marker} setMarker={setMarker}/>
+                <SearchMap  id="loc" />
                 <label htmlFor="date">Date Observed:</label>
                 <input type='date' id="date" value={newObservation.date_observed} onChange={(event) => setNewObservation({...newObservation, date_observed: event.target.value})} placeholder="observation date" />
                 <br/>
