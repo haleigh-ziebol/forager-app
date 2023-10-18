@@ -14,17 +14,17 @@ function getDate() {
 const NewObservationForm = () => {
     const dispatch = useDispatch();
     
-    let [newObservation, setNewObservation] = useState({species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
+    let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
     let [marker, setMarker] = useState([]);
-    const observationLat = useSelector((store) => store.newObservationLat);
-    const observationLng = useSelector((store) => store.newObservationLng);
+    const user = useSelector((store) => store.user);
 
     const addNewObservation = event => {
         event.preventDefault();
         console.log("coord is:", marker[0].lat, marker[0].lng);
+        setNewObservation({...newObservation, user_id: user.id});
         setNewObservation({...newObservation, location: [marker[0].lat, marker[0].lng]});
         dispatch({ type: 'ADD_NEW_OBSERVATION', payload: newObservation });
-        setNewObservation({species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
+        setNewObservation({user_id: '', species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
     }
     return (
         <div>

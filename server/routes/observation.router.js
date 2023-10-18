@@ -21,15 +21,19 @@ router.get('/', (req, res) => {
 router.get('/user/:userID', (req, res) => {
   const userID = req.params.userEmail;
   console.log('Fetching all users observations')
-  let queryText = `SELECT * FROM "observations" WHERE "user_id" =$1;`;
-  pool.query(queryText, [userID])
-  .then(result => {
-    res.send(result.rows);
-  })
-  .catch(error => {
-    console.log(`Error fetching users observations`, error);
-    res.sendStatus(500);
-  });
+    if(req.isAuthenticated()) {
+    let queryText = `SELECT * FROM "observations" WHERE "user_id" =$1;`;
+    pool.query(queryText, [userID])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(error => {
+      console.log(`Error fetching users observations`, error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(401);
+  }
 }); //end GET
 
 
@@ -37,32 +41,40 @@ router.get('/user/:userID', (req, res) => {
 router.post('/',  (req, res) => {
   let newObservation = req.body;
   console.log(`Adding observation`, newObservation);
-  let queryText = `INSERT INTO "observations" ("user_id", "species_id", "location", "photo", "date_observed", "time_stamp")
-    VALUES ($1, $2, $3, $4, $5, $6);`;
-  pool.query(queryText, [newObservation.userID, newObservation.species, newObservation.location, newObservation.photo, newObservation.date_observed, newObservation.time_stamp])
-  .then(result => {
-    res.sendStatus(201);
-  })
-  .catch(error => {
-    console.log(`Error adding new observation`, error);
-    res.sendStatus(500);
-  });
+  if(req.isAuthenticated()) {
+    let queryText = `INSERT INTO "observations" ("user_id", "species_id", "location", "photo", "date_observed", "time_stamp")
+      VALUES ($1, $2, $3, $4, $5, $6);`;
+    pool.query(queryText, [newObservation.user_id, newObservation.species, newObservation.location, newObservation.photo, newObservation.date_observed, newObservation.time_stamp])
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(error => {
+      console.log(`Error adding new observation`, error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(401);
+  }
 });//end POST
 
 
 // PUT to update observation by ID
 router.put('/update/:id', (req, res) => {
   let id = req.params.id;
-  let queryText = `UPDATE "observations" SET ///// "id" = $1;`;
   console.log('updating observations for id', id);
-  pool.query(queryText, [id])
-  .then((result) =>{
-      res.sendStatus(200);
-  })
-  .catch((err) => {
-      console.log(`Error making query ${queryText}`, err);
-      res.sendStatus(500)
-  })
+  if (req.isAuthenticated()) {
+    let queryText = `UPDATE "observations" SET ///// "id" = $1;`;
+    pool.query(queryText, [id])
+    .then((result) =>{
+        res.sendStatus(200);
+    })
+    .catch((err) => {
+        console.log(`Error making query ${queryText}`, err);
+        res.sendStatus(500)
+    })
+  } else {
+    res.sendStatus(401);
+  }
 })// end PUT
 
 
@@ -85,16 +97,20 @@ router.delete('/adminDelete/:id', (req, res) => {
 // DELETE feedback by ID for user
 router.delete('/userDelete/:id', (req, res) => {
   let id = req.params.id; // add a check to make sure user generated observation
-  let queryText = 'DELETE FROM "observations" WHERE "id" = $1;';
-  console.log('deleting observation id:', id)
-  pool.query(queryText,[id] )
-  .then((result) =>{
-      res.sendStatus(200);
-  })
-  .catch((err) => {
-      console.log(`Error making query ${queryText}`, err);
-      res.sendStatus(500);
-  })
+  console.log('deleting observation id:', id);
+    if (req.isAuthenticated()) {
+    let queryText = 'DELETE FROM "observations" WHERE "id" = $1;';
+    pool.query(queryText,[id] )
+    .then((result) =>{
+        res.sendStatus(200);
+    })
+    .catch((err) => {
+        console.log(`Error making query ${queryText}`, err);
+        res.sendStatus(500);
+    })
+  } else {
+    res.sendStatus(401);
+  }
 }); //end DELETE
 
 module.exports = router;
