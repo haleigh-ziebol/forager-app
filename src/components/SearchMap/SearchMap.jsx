@@ -6,7 +6,7 @@ function SearchMap({marker, setMarker}) {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'API KEY',
+  googleMapsApiKey: 'API_KEY',
   });
   const mapStyle = {        
     height: "50vh",

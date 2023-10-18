@@ -9,8 +9,9 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const observationRouter = require('./routes/observation.router')
-const wikipediaRouter = require('./routes/wikipedia.router')
+const observationRouter = require('./routes/observation.router');
+const wikipediaRouter = require('./routes/wikipedia.router');
+const plantsRouter = require('./routes/plants.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/observation', observationRouter);
 app.use('/api/wikipedia', wikipediaRouter);
+app.use('/api/plants', plantsRouter);
 
 // Serve static files
 app.use(express.static('build'));

@@ -1,4 +1,4 @@
-import React, {useState}from 'react';
+import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchMap from '../SearchMap/SearchMap';
 
@@ -16,8 +16,17 @@ const NewObservationForm = () => {
     
     let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
     let [marker, setMarker] = useState([]);
-    const user = useSelector((store) => store.user);
 
+    const user = useSelector((store) => store.user.userReducer);
+    const plantList = useSelector(store => store.plants.plantList);
+
+    useEffect(() => {
+        console.log('component did mount');
+        // dispatch an action to load plants from DB
+        dispatch({type:'FETCH_PLANTS'})
+    }, []);
+
+    //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
         console.log("coord is:", marker[0].lat, marker[0].lng);
@@ -26,12 +35,24 @@ const NewObservationForm = () => {
         dispatch({ type: 'ADD_NEW_OBSERVATION', payload: newObservation });
         setNewObservation({user_id: '', species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
     }
+
     return (
         <div>
             <h3>Observation Form</h3>
+            {JSON.stringify(plantList)}
             <form onSubmit={addNewObservation}>
                 <label htmlFor="species">Species:</label>
-                <input type='text' id="species" value={newObservation.species} onChange={(event) => setNewObservation({...newObservation, species: event.target.value})} placeholder="species" required />
+                <select
+                id="species"
+                value={newObservation.species}
+                onChange={(event) => setNewObservation({...newObservation, species: event.target.value})}
+                required
+                >
+                    {plantList.map((plant) => {
+                            return <option key={plant.id} value={plant.id}>{plant.scientific_name}</option>;
+                    })}
+                </select>
+                {/* <input type='text' id="species" value={newObservation.species} onChange={(event) => setNewObservation({...newObservation, species: event.target.value})} placeholder="species" required /> */}
                 <br/>
                 <label htmlFor="loc">Location:</label>
                 <SearchMap  id="loc" marker={marker} setMarker={setMarker}/>
