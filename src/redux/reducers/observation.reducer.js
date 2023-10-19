@@ -14,10 +14,8 @@ const newObservationCoords = (state = [], action) => {
   
   
   //reducer for users observations
-  const userObservationsList = (state = [], action) => {
+  const userObservationList = (state = [], action) => {
     switch (action.type) {
-      case 'ADD_OBSERVATION':
-        return [ ...state, action.payload ];
       case 'SET_USER_OBSERVATIONS':
         return action.payload;
       default:
@@ -37,6 +35,6 @@ const newObservationCoords = (state = [], action) => {
 
   export default combineReducers({
     newObservationCoords,
-    userObservationsList,
+    userObservationList,
     wikiSpeciesData
   });

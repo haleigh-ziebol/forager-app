@@ -2,33 +2,44 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-//GET all observations for admin
-router.get('/', (req, res) => {
-  let queryText = 'SELECT * from "observations";';
-  console.log('Fetching all observations')
-  pool.query(queryText)
-  .then(result => {
-    res.send(result.rows);
-  })
-  .catch(error => {
-    console.log(`Error fetching feedback`, error);
-    res.sendStatus(500);
-  });
-}); //end GET
-
-
-//GET observations submitted by user
-router.get('/user/:userID', (req, res) => {
-  const userID = req.params.userID;
-  console.log('Fetching all users observations')
+//GET species by species search
+router.get('/species/:searchTerm', (req, res) => {
+  const searchTerm = req.params.searchTerm;
+  console.log('Fetching species info')
     if(req.isAuthenticated()) {
-    let queryText = `SELECT * FROM "observations" WHERE "user_id" =$1;`;
-    pool.query(queryText, [userID])
+    let queryText = `SELECT * FROM "species" WHERE "scientific_name" =$1;`;
+    pool.query(queryText, [searchTerm])
     .then(result => {
       res.send(result.rows);
     })
     .catch(error => {
-      console.log(`Error fetching users observations`, error);
+      console.log(`Error fetching species`, error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(401);
+  }
+}); //end GET
+
+//GET species by region search
+router.get('/region', (req, res) => {
+  const searchTerm = req.params.searchTerm;
+  console.log('Fetching species info')
+    if(req.isAuthenticated()) {
+    let queryText = `SELECT r.name, s.*
+                    FROM species s
+                    JOIN species_state x
+                    ON s.id = x.species_id
+                    JOIN states y
+                    ON x.state_id = y.id
+                    JOIN regions r
+                    ON y.region_id = r.id`;
+    pool.query(queryText, [searchTerm])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(error => {
+      console.log(`Error fetching species`, error);
       res.sendStatus(500);
     });
   } else {

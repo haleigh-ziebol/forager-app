@@ -8,7 +8,7 @@ function SearchMap() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'api',
+  googleMapsApiKey: 'KEY',
   });
   const mapStyle = {        
     height: "50vh",

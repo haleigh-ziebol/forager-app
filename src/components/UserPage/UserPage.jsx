@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import ObservationMap from '../ObservationMap/ObservationMap';
 
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
+
   const user = useSelector((store) => store.user);
+  const observationList = useSelector(store => store.observation.userObservationList)
+
+  const dispatch = useDispatch();
+
+  //fetches observationList
+  useEffect(() => {
+      console.log('fetching observation list');
+      // dispatch an action to get observation list
+      dispatch({type:'FETCH_USER_OBSERVATIONS', payload: {user_id: user.id}})
+  }, []);
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+
+      <ObservationMap />
+      <div>
+        { ( observationList.length > 0) && 
+                observationList.map((observation) => {
+                  return <div key={observation.id}>
+                    <p>OBS ID: {observation.id}</p>
+                  </div>;
+                })
+        } 
+      </div>
       {JSON.stringify(process.env)}
       <LogOutButton className="btn" />
     </div>
