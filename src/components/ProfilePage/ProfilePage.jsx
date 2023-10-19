@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
-import ObservationMap from '../ObservationMap/ObservationMap';
+import ObservationMap from '../ObsMap/ObsMap';
 
 function UserPage() {
 
@@ -33,7 +32,6 @@ function UserPage() {
         } 
       </div>
       {JSON.stringify(process.env)}
-      <LogOutButton className="btn" />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NewObservationForm from '../NewObsForm/NewObservationForm';
+import AddObsForm from '../AddObsForm/AddObsForm';
 import SpeciesInfo from '../SpeciesInfo/SpeciesInfo';
 
 // This is one of our simplest components
@@ -8,14 +8,14 @@ import SpeciesInfo from '../SpeciesInfo/SpeciesInfo';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function InfoPage() {
+function AddObsPage() {
   return (
     <div className="container">
       <p>Info Page</p>
       {/* <SpeciesInfo /> */}
-      <NewObservationForm />
+      <AddObsForm />
     </div>
   );
 }
 
-export default InfoPage;
+export default AddObsPage;

@@ -11,7 +11,7 @@ function getDate() {
   }
 
 
-const NewObservationForm = () => {
+const AddObsForm = () => {
     const dispatch = useDispatch();
     
     let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
@@ -93,4 +93,4 @@ const NewObservationForm = () => {
 }
 
 
-export default NewObservationForm;
+export default AddObsForm;

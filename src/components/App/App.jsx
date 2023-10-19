@@ -9,18 +9,19 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
+import LoginNav from '../LoginNav/LoginNav';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
+import AddObsPage from '../AddObsPage/AddObsPage';
+import SearchEdiblesPage from '../SearchEdiblesPage/SearchEdiblesPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
-
 function App() {
   const dispatch = useDispatch();
 
@@ -35,6 +36,7 @@ function App() {
 
       <Router>
 <div>
+  <LoginNav />
   <Nav />
   <Switch>
     {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -54,20 +56,29 @@ function App() {
       If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
       Even though it seems like they are different pages, the user is always on localhost:3000/user */}
     <ProtectedRoute
-      // logged in shows UserPage else shows LoginPage
+      // logged in shows ProfilePage else shows LoginPage
       exact
       path="/user"
     >
-      <UserPage />
+      <ProfilePage />
     </ProtectedRoute>
 
     <ProtectedRoute
-      // logged in shows InfoPage else shows LoginPage
+      // logged in shows AddObservationPage else shows LoginPage
       exact
-      path="/info"
+      path="/addObservation"
     >
-      <InfoPage />
+      <AddObsPage />
     </ProtectedRoute>
+
+    <ProtectedRoute
+      // logged in shows SearchEdiblesPage else shows LoginPage
+      exact
+      path="/search"
+    >
+      <SearchEdiblesPage />
+    </ProtectedRoute>
+
 
     <Route
       exact

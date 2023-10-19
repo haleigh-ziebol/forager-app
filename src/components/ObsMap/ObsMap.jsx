@@ -10,7 +10,7 @@ function ObservationMap() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'KEY',
+  googleMapsApiKey: 'APIKEY',
   });
   const mapStyle = {        
     height: "50vh",
