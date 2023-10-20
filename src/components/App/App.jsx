@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import LoginNav from '../LoginNav/LoginNav';
+import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -36,7 +36,7 @@ function App() {
 
       <Router>
 <div>
-  <LoginNav />
+  <Header />
   <Nav />
   <Switch>
     {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

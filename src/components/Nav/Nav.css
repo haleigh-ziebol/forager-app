@@ -1,30 +1,20 @@
 .nav {
   /* flex box layout */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #00acb0;
+  background-color: #F1E3D3;
   overflow: hidden;
 }
 
-.nav a {
-  text-decoration: none;
-}
 
-.nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
-  margin: 0;
-}
 
 .navLink {
   display: inline-block;
-  color: #f2f2f2;
-  background-color: #00acb0;
+  color: #454A64;
+  background-color: #CCAFAB;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -38,5 +28,5 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color: #EDD6D3;
 }

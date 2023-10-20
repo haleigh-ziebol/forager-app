@@ -3,7 +3,7 @@ import './Footer.css';
 
 
 function Footer() {
-  return <footer>&copy; Prime Digital Academy</footer>;
+  return <footer>&copy; Haleigh Ziebol, October 2023</footer>;
 }
 
 export default Footer;

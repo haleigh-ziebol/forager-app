@@ -26,8 +26,12 @@ router.get('/type/:searchTerm', (req, res) => {
   const searchTerm = req.params.searchTerm;
   console.log('Fetching species info')
     if(req.isAuthenticated()) {
-    let queryText = `SELECT * FROM "species" WHERE "growth_type" LIKE '%${$1}%';`;
+    let queryText = `SELECT * FROM "species" WHERE "growth_type"  LIKE '%' || $1 || '%'
+                      ORDER BY "common_name" ASC;`;
+    console.log("query text is:", queryText)
     pool.query(queryText, [searchTerm])
+    // pool.query(queryText)
+
     .then(result => {
       res.send(result.rows);
     })
@@ -46,7 +50,7 @@ router.get('/region/:searchTerm', (req, res) => {
   const searchTerm = req.params.searchTerm;
   console.log('Fetching species info')
     if(req.isAuthenticated()) {
-    let queryText = `SELECT r.name, s.*
+    let queryText = `SELECT DISTINCT r.name, s.*
                     FROM species s
                     JOIN species_state x
                     ON s.id = x.species_id
@@ -54,7 +58,8 @@ router.get('/region/:searchTerm', (req, res) => {
                     ON x.state_id = y.id
                     JOIN regions r
                     ON y.region_id = r.id
-                    WHERE r.id = $1`;
+                    WHERE r.id = $1
+                    ORDER BY "common_name" ASC`;
     pool.query(queryText, [searchTerm])
     .then(result => {
       res.send(result.rows);

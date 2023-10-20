@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ObservationMap from '../ObsMap/ObsMap';
+import './ProfilePage.css'
 
 function UserPage() {
 
@@ -24,26 +25,28 @@ function UserPage() {
   }, []);
 
   return (
-    <div className="container">
-                  <img 
-                  alt={user.icon}
-                  width={"100px"}
-                  height={"100px"}
-                  src={`Profile_SVG/${user.icon}-svgrepo-com.svg`}
-                  />
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <p>Your region is: {userRegion.length > 0 && JSON.stringify(userRegion[0].name) }</p>
-
-      <ObservationMap />
-      <div>
-        { ( observationList.length > 0) && 
-                observationList.map((observation) => {
-                  return <div key={observation.id}>
-                    <p>OBS ID: {observation.id}</p>
-                  </div>
-                })
-        } 
+    <div className="profile-container">
+      <div className="profile">
+          <img 
+           alt={user.icon}
+            width={"100px"}
+            height={"100px"}
+            src={`Profile_SVG/${user.icon}-svgrepo-com.svg`}
+          />
+          <h2>Welcome, {user.username}!</h2>
+          <p>Your region is: {userRegion.length > 0 && JSON.stringify(userRegion[0].name) }</p>
+      </div>
+      <div className="profile-map">
+        <ObservationMap />
+        <div>
+          { ( observationList.length > 0) && 
+                  observationList.map((observation) => {
+                    return <div key={observation.id}>
+                      <p>OBS ID: {observation.id}</p>
+                    </div>
+                  })
+          } 
+        </div>
       </div>
       {JSON.stringify(process.env)}
     </div>

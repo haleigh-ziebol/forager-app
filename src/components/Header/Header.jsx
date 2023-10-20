@@ -1,19 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import './LoginNav.css';
+import './Header.css';
 import { useSelector } from 'react-redux';
 
-function LoginNav() {
+function Header () {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav">
+    <div className="header">
+      <img 
+      alt="Logo"
+      height={"200px"}
+      width={"600px"}
+      src={`Site_SVG/Logo.svg`}
+      />
       <div>
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
+          <Link className="headLink" to="/login">
             Login / Register
           </Link>
         )}
@@ -21,7 +27,7 @@ function LoginNav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <LogOutButton className="navLink" />
+            <LogOutButton className="headLink" />
           </>
         )}
 
@@ -30,4 +36,4 @@ function LoginNav() {
   );
 }
 
-export default LoginNav;
+export default Header;

@@ -1,0 +1,28 @@
+.header {
+  /* flex box layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #CEA47E;
+  overflow: hidden;
+}
+
+
+.headLink {
+  display: inline-block;
+  color:  #454A64;
+  background-color:  #CEA47E;
+  text-align: center;
+  padding: 24px 10px;
+  text-decoration: none;
+  font-size: 15px;
+
+
+  border: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+.headLink:hover {
+  background-color: #EBD4BF;
+}
