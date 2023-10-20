@@ -12,9 +12,10 @@ function SearchGrowthType () {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSearch = () => {
+    const handleSearch = (event) => {
+        event.preventDefault();
         dispatch({ type:'SEARCH_GROWTH_TYPE' , payload: {searchTerm: searchGrowthType} })
-        history.push(`/results/growth`)
+        history.push('/results/growth')
     }
 
     return(

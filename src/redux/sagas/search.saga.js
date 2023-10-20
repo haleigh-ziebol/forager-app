@@ -15,7 +15,7 @@ function* searchSpecies( action ) {
   function* searchRegion( action ) {
     try {
         const regionalPlantsResponse = yield axios.get(`/api/search/region/${action.payload.searchTerm}`);
-        yield put({ type: 'SET_REGION_RESPONSE', payload: regionalPlantsResponse.data});
+        yield put({ type: 'SET_SPECIES_RESPONSE', payload: regionalPlantsResponse.data});
     } catch (error) {
         console.log(error);
     }
@@ -26,7 +26,7 @@ function* searchSpecies( action ) {
     try {
       yield console.log('searching for growth type', action.payload.searchTerm )
         const growthTypeResponse = yield axios.get(`/api/search/type/${action.payload.searchTerm}`);
-        yield put({ type: 'SET_GROWTH_TYPE_RESPONSE', payload: growthTypeResponse.data});
+        yield put({ type: 'SET_SPECIES_RESPONSE', payload: growthTypeResponse.data});
     } catch (error) {
         console.log(error);
     }

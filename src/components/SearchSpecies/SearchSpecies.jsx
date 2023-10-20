@@ -1,29 +1,30 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 
 function SearchSpecies () {
 
-    const speciesList = useSelector(store => store.plants.plantList);
     const [searchSpecies, setSearchSpecies] = useState('');
 
     
     const dispatch = useDispatch();
+    const history = useHistory();
 
-     //fetches species for form selector
-    useEffect(() => {
-        console.log('fetching species list');
-        // dispatch an action to load plants from DB
-        dispatch({type:'FETCH_PLANTS'})
-    }, []);
+    const handleSearch = (event) => {
+        event.preventDefault();
+        dispatch({ type:'SEARCH_SPECIES' , payload: {searchTerm: searchSpecies} });
+        history.push('/results/species');
 
-    const handleSearch = () => {
-        dispatch({ type:'SEARCH_SPECIES' , payload: {searchTerm: searchSpecies} })
     }
 
     return(
         <div>
-            <p>Species</p>
-            {JSON.stringify(speciesList)}
+            <form onSubmit={handleSearch}>
+                <input type="text" onChange={(event)=>setSearchSpecies(event.target.value)} 
+                value={searchSpecies} placeholder="search term"/>
+                <button type="submit">Search Edibles</button>
+            </form>
         </div>
     )
 }

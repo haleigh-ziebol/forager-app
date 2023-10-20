@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function SearchRegion () {
 
@@ -9,6 +10,7 @@ function SearchRegion () {
     const regionPlants = useSelector((store) => store.search.regionSearchResponse)
     
     const dispatch = useDispatch();
+    const history = useHistory();
 
     //fetches regions for form selector
     useEffect(() => {
@@ -16,8 +18,10 @@ function SearchRegion () {
         dispatch({type:'FETCH_REGIONS'})
     }, []);
 
-    const handleSearch = () => {
-        dispatch({ type:'SEARCH_REGION' , payload: {searchTerm: searchRegion} })
+    const handleSearch = (event) => {
+        event.preventDefault();
+        dispatch({ type:'SEARCH_REGION' , payload: {searchTerm: searchRegion} });
+        history.push('/results/region')
     }
 
     return(

@@ -8,10 +8,7 @@ function SearchResultsPage() {
   const params = useParams();
   const [searchType, setSearchType] = useState('')
 
-  const speciesResults = useSelector(store => store.search.speciesSearchResponse);
-  const regionResults = useSelector(store => store.search.regionSearchResponse);
-  const growthTypeResults = useSelector(store => store.search.growthTypeSearchResponse);
-
+  const speciesResults = useSelector(store => store.search.searchResults[0]);
 
   //sets results page
   useEffect(() => {
@@ -25,21 +22,44 @@ function SearchResultsPage() {
     <div className="container">
       { searchType == 'growth' &&
 
-<table>
-<tr>
-  <th>Common Name(s)</th>
-  <th>Scientific Name</th>
-</tr>
-{growthTypeResults.map((species, i) => {
-          return (<tr key={i}>
-          <td>{species.common_name}</td>
-          <td>{species.scientific_name}</td>
-        </tr>)
-      })}
-</table>
-
+      <table>
+        <thead>
+        <tr>
+          <th>Common Name(s)</th>
+          <th>Scientific Name</th>
+        </tr>
+        </thead>
+        <tbody>
+          {speciesResults.map((species, i) => {
+            return (<tr key={i}>
+                <td>{species.common_name}</td>
+                <td>{species.scientific_name}</td>
+              </tr>)
+          })}
+        </tbody>
+      </table>
       }
 
+      { searchType == 'species'|| searchType=='region' &&
+      <table>
+        <thead>
+        <tr>
+          <th>Common Name(s)</th>
+          <th>Scientific Name</th>
+          <th>Growth Type</th>
+        </tr>
+        </thead>
+        <tbody>
+          {speciesResults.map((species, i) => {
+            return (<tr key={i}>
+                <td>{species.common_name}</td>
+                <td>{species.scientific_name}</td>
+                <td>{species.growth_type}</td>
+              </tr>)
+          })}
+        </tbody>
+      </table>
+      }
 
     </div>
   );
