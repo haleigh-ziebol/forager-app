@@ -13,6 +13,7 @@ const observationRouter = require('./routes/observation.router');
 const wikipediaRouter = require('./routes/wikipedia.router');
 const plantsRouter = require('./routes/plants.router');
 const searchRouter = require('./routes/search.router')
+const userdataRouter = require('./routes/userdata.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,7 +31,8 @@ app.use('/api/user', userRouter);
 app.use('/api/observation', observationRouter);
 app.use('/api/wikipedia', wikipediaRouter);
 app.use('/api/plants', plantsRouter);
-app.use('/api/search', searchRouter)
+app.use('/api/search', searchRouter);
+app.use('/api/userdata', userdataRouter)
 
 // Serve static files
 app.use(express.static('build'));

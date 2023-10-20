@@ -7,9 +7,14 @@ function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [userRegion, setUserRegion] = useState('');
+  const [userIcon, setUserIcon] = useState('');
 
   const errors = useSelector((store) => store.errors);
   const regionList = useSelector((store) => store.plants.regionList);
+
+  const avatarIcons = [{name: "deer", number: 1}, {name: "fox", number: 2}, 
+                    {name: "rabbit", number: 3}, {name: "owl", number: 4},
+                    {name: "snail", number: 5}]
 
   const dispatch = useDispatch();
 
@@ -28,7 +33,8 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
-        region: userRegion
+        region_id: parseFloat(userRegion),
+        icon: userIcon
       },
     });
   }; // end registerUser
@@ -79,21 +85,26 @@ function RegisterForm() {
           </select>
       </div>
       <div>
-        <input 
-        type="radio"
-        name="image"
-        id="image-1"
-        defaultValue={"face"}
-        />
-        <label htmlFor='image-1'>
-          <img 
-          alt="image-1-option"
-          width={"100px"}
-          height={"100px"}
-          src={'Profile_SVG/deer-svgrepo-com.svg'}
-          />
-        </label>
-        
+        <p>Choose Your Avatar:</p>
+            <div onChange={(event) => setUserIcon(event.target.value)}>
+          {avatarIcons.map((avatar) => {
+                return (<div key={avatar.number}>
+                <input 
+                type="radio"
+                id={`image-${avatar.number}`}
+                defaultValue={avatar.name}
+                />
+                <label htmlFor={`image-${avatar.number}`}>
+                  <img 
+                  alt={avatar.name}
+                  width={"100px"}
+                  height={"100px"}
+                  src={`Profile_SVG/${avatar.name}-svgrepo-com.svg`}
+                  />
+                </label>
+              </div>)
+          })}
+          </div>
       </div>
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />

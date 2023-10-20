@@ -7,9 +7,9 @@ CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
-	"access_level" INT,
-	"region_id" INT
-
+	"access_level" INT DEFAULT 0,
+	"region_id" INT REFERENCES "regions",
+	"icon" VARCHAR(20)
 );
 
 CREATE TABLE "observations" (

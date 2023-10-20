@@ -57,9 +57,6 @@ const AddObsForm = () => {
     return (
         <div>
             <h3>Observation Form</h3>
-            {JSON.stringify(speciesList)}
-            {JSON.stringify(newObservation)}
-            {JSON.stringify(user)}
             <form onSubmit={addNewObservation}>
                 <label htmlFor="species">Species:</label>
                 <select

@@ -2,6 +2,26 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+
+//GET observations submitted by user
+router.get('/region/:regionID', (req, res) => {
+  const regionID = req.params.userID;
+  console.log('Fetching all users observations')
+    if(req.isAuthenticated()) {
+    let queryText = `SELECT * FROM "region" WHERE "id" =$1;`;
+    pool.query(queryText, [regionID])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(error => {
+      console.log(`Error fetching users observations`, error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(401);
+  }
+}); //end GET
+
 //GET all observations for admin
 router.get('/', (req, res) => {
   let queryText = 'SELECT * from "observations";';
