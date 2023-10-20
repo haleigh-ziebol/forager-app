@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function SearchGrowthType () {
 
@@ -9,9 +10,11 @@ function SearchGrowthType () {
     const [searchGrowthType, setSearchGrowthType] = useState('');
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSearch = () => {
         dispatch({ type:'SEARCH_GROWTH_TYPE' , payload: {searchTerm: searchGrowthType} })
+        history.push(`/results/growth`)
     }
 
     return(

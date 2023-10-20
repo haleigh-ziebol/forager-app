@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-//reducer for new observation coordinates
+//reducer for species search results
 const speciesSearchResponse = (state = [], action) => {
     switch (action.type) {
       case 'SET_SPECIES_RESPONSE':
@@ -11,7 +11,7 @@ const speciesSearchResponse = (state = [], action) => {
   };
   
   
-  //reducer for users observations
+  //reducer region search results
   const regionSearchResponse = (state = [], action) => {
     switch (action.type) {
       case 'SET_REGION_RESPONSE':
@@ -21,7 +21,7 @@ const speciesSearchResponse = (state = [], action) => {
     }
   };
 
-    //reducer for users observations
+    //reducer for growth type search results
     const growthTypeSearchResponse = (state = [], action) => {
       switch (action.type) {
         case 'SET_GROWTH_TYPE_RESPONSE':

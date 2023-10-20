@@ -11,7 +11,6 @@ import SpeciesInfo from '../SpeciesInfo/SpeciesInfo';
 function AddObsPage() {
   return (
     <div className="container">
-      <p>Info Page</p>
       {/* <SpeciesInfo /> */}
       <AddObsForm />
     </div>
