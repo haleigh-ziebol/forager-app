@@ -5,6 +5,9 @@ function SearchRegion () {
 
     const regionList = useSelector((store) => store.plants.regionList);
     const [searchRegion, setSearchRegion] = useState('');
+    
+    const regionPlants = useSelector((store) => store.search.regionSearchResponse)
+    
     const dispatch = useDispatch();
 
     //fetches regions for form selector
@@ -14,12 +17,13 @@ function SearchRegion () {
     }, []);
 
     const handleSearch = () => {
-
+        dispatch({ type:'SEARCH_REGION' , payload: {searchTerm: searchRegion} })
     }
 
     return(
         
         <div>
+            {JSON.stringify(regionPlants)}
             <form onSubmit={handleSearch}>
                 <label htmlFor="regions">Select Region:</label>
                 <select

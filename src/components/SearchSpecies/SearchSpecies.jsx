@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 function SearchSpecies () {
 
     const speciesList = useSelector(store => store.plants.plantList);
+    const [searchSpecies, setSearchSpecies] = useState('');
+
     
     const dispatch = useDispatch();
 
@@ -13,6 +15,10 @@ function SearchSpecies () {
         // dispatch an action to load plants from DB
         dispatch({type:'FETCH_PLANTS'})
     }, []);
+
+    const handleSearch = () => {
+        dispatch({ type:'SEARCH_SPECIES' , payload: {searchTerm: searchSpecies} })
+    }
 
     return(
         <div>

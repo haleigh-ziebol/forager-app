@@ -4,6 +4,7 @@ import user from './user.reducer';
 import observation from './observation.reducer';
 import plants from './plants.reducer';
 import userdata from './userdata.reducer';
+import search from './search.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   observation, // contains observations logged by users
   plants, // contains data related to plants
   userdata, // contains user info including region, badges
+  search, //search info
 });
 
 export default rootReducer;

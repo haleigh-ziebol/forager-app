@@ -26,7 +26,7 @@ router.get('/type/:searchTerm', (req, res) => {
   const searchTerm = req.params.searchTerm;
   console.log('Fetching species info')
     if(req.isAuthenticated()) {
-    let queryText = `SELECT * FROM "species" WHERE "growth_type" LIKE %$1%;`;
+    let queryText = `SELECT * FROM "species" WHERE "growth_type" LIKE '%${$1}%';`;
     pool.query(queryText, [searchTerm])
     .then(result => {
       res.send(result.rows);
