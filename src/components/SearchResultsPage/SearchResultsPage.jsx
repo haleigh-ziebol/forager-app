@@ -20,6 +20,8 @@ function SearchResultsPage() {
 
   return (
     <div className="container">
+      { speciesResults == "" && <p>no results found!</p> }
+
       { searchType == 'growth' &&
 
       <table>

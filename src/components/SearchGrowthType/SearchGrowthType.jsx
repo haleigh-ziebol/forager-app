@@ -23,7 +23,7 @@ function SearchGrowthType () {
         <div>
             {JSON.stringify(growthTypePlants)}
             <form onSubmit={handleSearch}>
-                <label htmlFor="growth_types">Select Region:</label>
+                <label htmlFor="growth_types">Select Type:</label>
                 <select
                     id="growth_type"
                     value={searchGrowthType}

@@ -43,6 +43,7 @@ function UserPage() {
                   observationList.map((observation) => {
                     return <div key={observation.id}>
                       <p>OBS ID: {observation.id}</p>
+                      <button>edit</button>
                     </div>
                   })
           } 
