@@ -42,7 +42,10 @@ router.get('/user/:userID', (req, res) => {
   const userID = req.params.userID;
   console.log('Fetching all users observations')
     if(req.isAuthenticated()) {
-    let queryText = `SELECT * FROM "observations" WHERE "user_id" =$1;`;
+    let queryText = `SELECT * FROM "observations" 
+                  JOIN species s
+                  ON s.id = species_id
+                  WHERE "user_id" =$1;`;
     pool.query(queryText, [userID])
     .then(result => {
       res.send(result.rows);

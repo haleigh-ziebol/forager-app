@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ObservationMap from '../ObsMap/ObsMap';
 import './ProfilePage.css'
 
-function UserPage() {
+function ProfilePage() {
 
   const user = useSelector((store) => store.user);
   const observationList = useSelector(store => store.observation.userObservationList);
@@ -34,25 +34,30 @@ function UserPage() {
             src={`Profile_SVG/${user.icon}-svgrepo-com.svg`}
           />
           <h2>Welcome, {user.username}!</h2>
-          <p>Your region is: {userRegion.length > 0 && JSON.stringify(userRegion[0].name) }</p>
+          <p>Region: {userRegion.length > 0 && userRegion[0].name}</p>
       </div>
       <div className="profile-map">
         <ObservationMap />
         <div>
           { ( observationList.length > 0) && 
-                  observationList.map((observation) => {
-                    return <div key={observation.id}>
-                      <p>OBS ID: {observation.id}</p>
+                  observationList.map((observation,i) => {
+                    return <div key={i}>
+                      <p>Observation # {observation.id}</p>
+                      <p>Date:{JSON.stringify(observation.date_observed)}</p>
+                      <p>{observation.scientific_name}</p>
+                      <p>Notes: {observation.notes}</p>
+
                       <button>edit</button>
                     </div>
                   })
           } 
         </div>
       </div>
+      {JSON.stringify(observationList)}
       {JSON.stringify(process.env)}
     </div>
   );
 }
 
 // this allows us to use <App /> in index.js
-export default UserPage;
+export default ProfilePage;
