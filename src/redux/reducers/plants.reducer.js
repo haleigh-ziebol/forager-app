@@ -1,13 +1,23 @@
 import { combineReducers } from 'redux';
 
-//reducer for list of plants
-const plantList = (state = [], action) => {
+//reducer for list of common names
+const commonNamesList = (state = [], action) => {
     switch (action.type) {
-      case 'SET_PLANTS':
+      case 'SET_COMMON':
         return action.payload;
       default:
         return state;
     }
+};
+
+//reducer for list of scientific names
+const scientificNamesList = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_SCIENTIFIC':
+      return action.payload;
+    default:
+      return state;
+  }
 };
 
 //reducer for list of regions
@@ -20,19 +30,9 @@ const regionList = (state = [], action) => {
   }
 };
 
-//reducer for regional plants
-const regionalPlantsList = (state = [], action) => {
-  switch (action.type) {
-    case 'SET_MIDWEST':
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
 
   export default combineReducers({
-    plantList,
+    scientificNamesList,
+    commonNamesList,
     regionList,
-    regionalPlantsList,
   });

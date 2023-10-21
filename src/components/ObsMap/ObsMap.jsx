@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GoogleMap, Marker, useLoadScript, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, MarkerF, useLoadScript, InfoWindowF } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
 
 function ObservationMap() {
@@ -42,7 +42,7 @@ function ObservationMap() {
             >
               { ( observationList.length > 0) && 
                 observationList.map((observation) => {
-                  return <Marker 
+                  return <MarkerF 
                     position={{lat: parseFloat(observation.location[0]), lng: parseFloat(observation.location[1])}} 
                     key={observation.id} 
                     onClick={() => onSelect(observation)}
@@ -53,13 +53,13 @@ function ObservationMap() {
               {
                   selected.location && 
                   (
-                    <InfoWindow
+                    <InfoWindowF
                     position={{lat: parseFloat(selected.location[0]), lng: parseFloat(selected.location[1])}}
                     clickable={true}
                     onCloseClick={() => setSelected({})}
                   >
                     <p>{selected.id}</p>
-                  </InfoWindow>
+                  </InfoWindowF>
                   )
               }
             </GoogleMap>

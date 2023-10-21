@@ -42,11 +42,12 @@ CREATE TABLE "states" (
 
 CREATE TABLE "regions" (
 	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR(20)
+	"name" VARCHAR(20),
+	"center" VARCHAR[]
 )
 
-INSERT INTO "regions" ("name")
-VALUES ('Midwest'), ('Northeast'), ('Southeast'), ('Southwest'), ('West')
+INSERT INTO "regions" ("name", "center")
+VALUES ('Midwest', ARRAY['42.280644', '-93.223132']), ('Northeast', ARRAY['42.588240', '-74.253321']), ('Southeast', ARRAY['33.239689', '-85.263921']), ('Southwest', ARRAY['34.078167', '-103.435275']), ('West', ARRAY['42.371375', '-116.601928'])
 
 
 CREATE TABLE "species_state" (

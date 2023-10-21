@@ -1,14 +1,23 @@
-import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import { useEffect, useState } from 'react';
+import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
 
 function SearchMap() {
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
+  const userRegion = useSelector(store => store.userdata.userRegion);
+
+  //fetches user region
+  useEffect(() => {
+      console.log('fetching user region');
+      dispatch({type:'FETCH_USER_REGION', payload: {region: user.region_id}})
+  }, []);
 
   const coordinates = useSelector(store => store.observation.newObservationCoords)
-
+  
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'KEY',
+  googleMapsApiKey: 'KEy',
   });
   const mapStyle = {        
     height: "50vh",
@@ -16,31 +25,30 @@ function SearchMap() {
 
   const onMapClick = (e) => {
     dispatch({ type: 'NEW_COORDINATES', payload: {lat: e.latLng.lat(), lng: e.latLng.lng()} })
-    };
+  };
 
-
-    //eventually set to center of region/state
-    const defaultProps = {
-        center: {
-          lat: 40.430076,
-          lng: -100.960810
-        },
-        zoom: 4
-      };
+  const defaultProps = {
+    coords: {
+      lat: 40.5,
+       lng: -98.2
+    },
+  };
 
       return (
         <div className="map">
           {!isLoaded ? (
             <h1>Loading...</h1>
           ) : (
+            <div>
             <GoogleMap
               mapContainerStyle={mapStyle}
-              center={defaultProps.center}
-              zoom={10}
+              center={userRegion.length >0 ? {lat: parseFloat(userRegion[0].center[0]), lng: parseFloat(userRegion[0].center[1])} : defaultProps.coords}
+              zoom={5}
               onClick={onMapClick}
             >
-              { ( coordinates.length > 0) && <Marker position={coordinates[0]} />} 
+              { ( coordinates.length > 0) && <MarkerF position={coordinates[0]} />} 
             </GoogleMap>
+            </div>
           )}
         </div>
       );

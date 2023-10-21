@@ -1,11 +1,21 @@
 import axios from 'axios';
 import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 
-//saga function to retrieve plant info from DB
-function* fetchPlantData() {
+//saga function to retrieve common name info from DB
+function* fetchCommonPlantData() {
   try {
-    const plantsResponse = yield axios.get('/api/plants');
-    yield put({ type: 'SET_PLANTS', payload: plantsResponse.data});
+    const plantsResponse = yield axios.get('/api/plants/common');
+    yield put({ type: 'SET_COMMON', payload: plantsResponse.data});
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//saga function to retrieve scientific name plant info from DB
+function* fetchScientificPlantData() {
+  try {
+    const plantsResponse = yield axios.get('/api/plants/scientific');
+    yield put({ type: 'SET_SCIENTIFIC', payload: plantsResponse.data});
   } catch (error) {
     console.log(error);
   }
@@ -21,20 +31,12 @@ function* fetchRegions() {
   }
 }
 
-  function* fetchRegionalPlants() {
-    try {
-        const regionalPlantsResponse = yield axios.get(`/api/search/region/${action.payload.region_id}`);
-        yield put({ type: 'SET_REGIONAL_PLANTS', payload: regionalPlantsResponse.data});
-    } catch (error) {
-        console.log(error);
-    }
-  }
   
 
   function* plantsSaga() {
-    yield takeEvery('FETCH_PLANTS', fetchPlantData);
+    yield takeEvery('FETCH_COMMON', fetchCommonPlantData);
+    yield takeEvery('FETCH_SCIENTIFIC', fetchScientificPlantData);
     yield takeEvery('FETCH_REGIONS', fetchRegions);
-    yield takeEvery('SEARCH_REGION', fetchRegionalPlants);
   }
   
   export default plantsSaga;
