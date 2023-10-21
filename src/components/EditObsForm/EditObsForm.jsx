@@ -15,12 +15,11 @@ function getDate() {
 
 const EditObsForm = () => {
     const dispatch = useDispatch();
-    
-    let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
-    const [nameSearchType, setNameSearchType] = useState('common');
+
+    let [updatedObservation, setUpdatedObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
+    const [nameSearchType, setNameSearchType] = useState('scientific');
 
 
-    const user = useSelector(store => store.user);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
     const scientificNamesList = useSelector(store => store.plants.scientificNamesList);
     const coordinates = useSelector(store => store.observation.newObservationCoords[0]);
@@ -32,13 +31,6 @@ const EditObsForm = () => {
         dispatch({type:'FETCH_SCIENTIFIC'})
     }, []);
 
-    //sets user_id in newObservation
-    useEffect(() => {
-        if(user.id !== ''){
-            console.log('setting user');
-            setNewObservation({...newObservation, user_id: user.id});
-        }
-    }, [user.id]);
 
     //sets coordinates in newObservation
     useEffect(() => {
@@ -46,7 +38,7 @@ const EditObsForm = () => {
             return console.log("no coords")
         } else{
             console.log('setting coordinates');
-            setNewObservation({...newObservation, location: [coordinates.lat, coordinates.lng]});
+            setUpdatedObservation({...updatedObservation, location: [coordinates.lat, coordinates.lng]});
         }
     }, [coordinates]);
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ObservationMap from '../ObsMap/ObsMap';
 import './ProfilePage.css'
+import ObsItem from '../ObsItem/ObsItem';
 
 function ProfilePage() {
 
@@ -40,15 +41,8 @@ function ProfilePage() {
         <ObservationMap />
         <div>
           { ( observationList.length > 0) && 
-                  observationList.map((observation,i) => {
-                    return <div key={i}>
-                      <p>Observation # {observation.id}</p>
-                      <p>Date:{JSON.stringify(observation.date_observed)}</p>
-                      <p>{observation.scientific_name}</p>
-                      <p>Notes: {observation.notes}</p>
-
-                      <button>edit</button>
-                    </div>
+                  observationList.map((observation) => {
+                    return <ObsItem observation={observation} />
                   })
           } 
         </div>
