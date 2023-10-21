@@ -20,6 +20,26 @@ function* fetchUserObservations(action) {
         console.log('error posting observation', error);
     }    
   }
+
+  //saga function to delete observation
+  function* deleteObservation(action) {
+    try {
+      yield axios.delete(`/api/observation/userDelete/${action.payload.id}`);
+      yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: action.payload });
+    } catch (error) {
+        console.log('error posting observation', error);
+    }    
+  }
+
+  //saga function to edit observation
+  function* editObservation(action) {
+    try {
+      yield axios.post('/api/observation', action.payload); //update
+      yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: action.payload });
+    } catch (error) {
+        console.log('error posting observation', error);
+    }    
+  }
   
   
   //saga function to get information from wikipedia API
@@ -35,6 +55,8 @@ function* fetchUserObservations(action) {
   function* observationSaga() {
     yield takeEvery('FETCH_USER_OBSERVATIONS', fetchUserObservations);
     yield takeEvery('ADD_NEW_OBSERVATION', addNewObservation);
+    yield takeEvery('DELETE_OBSERVATION', deleteObservation);
+    yield takeEvery('EDIT_OBSERVATION', editObservation)
     yield takeEvery('SEARCH_WIKI', searchWikipedia);
   }
   

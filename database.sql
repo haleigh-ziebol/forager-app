@@ -18,12 +18,13 @@ CREATE TABLE "observations" (
 	"species_id" INT REFERENCES "species",
 	"location" VARCHAR[],
 	"photo" VARCHAR(500),
+	"notes" VARCHAR(500),
 	"date_observed" DATE,
 	"time_stamp" DATE
 )
 
-INSERT INTO "observations" ("user_id", "species_id", "location", "photo", "date_observed", "date_added")
-VALUES ("hi", "11", ARRAY ['44.9778', '93.2650'], "", "", "" )
+INSERT INTO "observations" ("user_id", "species_id", "location", "photo", "notes", "date_observed", "date_added")
+VALUES ("hi", "11", ARRAY ['44.9778', '93.2650'], "", "", "", "" )
 
 
 CREATE TABLE "species" (
