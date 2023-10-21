@@ -19,6 +19,7 @@ function ObsItem( { observation } ) {
 
   const handleDelete = () => {
     //send user_id with payload
+    console.log('observation id:', observation.id)
     dispatch({type:'DELETE_OBSERVATION', payload:{id: observation.id, user_id: user.id}})
 
   }

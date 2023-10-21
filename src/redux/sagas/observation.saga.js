@@ -24,6 +24,7 @@ function* fetchUserObservations(action) {
   //saga function to delete observation
   function* deleteObservation(action) {
     try {
+      yield console.log("action payload is", action.payload)
       yield axios.delete(`/api/observation/userDelete/${action.payload.id}`);
       yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: action.payload });
     } catch (error) {

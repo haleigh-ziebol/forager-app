@@ -4,7 +4,6 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import observationSaga from './observation.saga';
 import plantsSaga from './plants.saga';
-import userdataSaga from './userdata.saga';
 import searchSaga from './search.saga';
 
 // rootSaga is the primary saga.
@@ -21,7 +20,6 @@ export default function* rootSaga() {
     userSaga(),
     observationSaga(),
     plantsSaga(),
-    userdataSaga(),
     searchSaga(),
   ]);
 }

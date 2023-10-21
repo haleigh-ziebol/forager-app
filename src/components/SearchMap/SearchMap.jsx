@@ -4,14 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function SearchMap() {
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
   const userRegion = useSelector(store => store.userdata.userRegion);
-
-  //fetches user region
-  useEffect(() => {
-      console.log('fetching user region');
-      dispatch({type:'FETCH_USER_REGION', payload: {region: user.region_id}})
-  }, []);
 
   const coordinates = useSelector(store => store.observation.newObservationCoords)
   

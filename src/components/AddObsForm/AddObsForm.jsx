@@ -35,7 +35,7 @@ const AddObsForm = () => {
     //sets user_id in newObservation
     useEffect(() => {
         if(user.id !== ''){
-            console.log('setting user');
+            console.log('setting user id:', user.id);
             setNewObservation({...newObservation, user_id: user.id});
         }
     }, [user.id]);

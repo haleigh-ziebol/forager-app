@@ -14,16 +14,11 @@ function ProfilePage() {
 
   //fetches observationList
   useEffect(() => {
-      console.log('fetching observation list');
+      console.log('fetching observation list for user id', user.id);
       // dispatch an action to get observation list
       dispatch({type:'FETCH_USER_OBSERVATIONS', payload: {user_id: user.id}})
   }, []);
 
-  //fetches user region
-  useEffect(() => {
-      console.log('fetching region name');
-      dispatch({type:'FETCH_USER_REGION', payload: {region: user.region_id}})
-  }, []);
 
   return (
     <div className="profile-container">
