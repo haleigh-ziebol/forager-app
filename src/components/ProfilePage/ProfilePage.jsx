@@ -22,7 +22,7 @@ function ProfilePage() {
 
   return (
     <div className="profile-container">
-      <div className="profile">
+      <div className="profile-info">
           <img 
            alt={user.icon}
             width={"100px"}
@@ -31,6 +31,9 @@ function ProfilePage() {
           />
           <h2>Welcome, {user.username}!</h2>
           <p>Region: {userRegion.length > 0 && userRegion[0].name}</p>
+      </div>
+      <div>
+        <ObservationMap />
       </div>
       <div className="observations">
         <div className ="observation-header">
@@ -45,10 +48,7 @@ function ProfilePage() {
                   })
           } 
         </div>
-        <ObservationMap />
       </div>
-      {JSON.stringify(observationList)}
-      {JSON.stringify(process.env)}
     </div>
   );
 }
