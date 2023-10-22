@@ -30,8 +30,8 @@ function SearchResultsPage() {
       <table>
         <thead>
         <tr>
-          <th>Common Name(s)</th>
           <th>Scientific Name</th>
+          <th>Common Name(s)</th>
         </tr>
         </thead>
         <tbody>
@@ -49,8 +49,8 @@ function SearchResultsPage() {
       <table>
         <thead>
         <tr>
-          <th>Common Name(s)</th>
           <th>Scientific Name</th>
+          <th>Common Name(s)</th>
           <th>Growth Type</th>
         </tr>
         </thead>
