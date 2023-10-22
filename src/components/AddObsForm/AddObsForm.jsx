@@ -20,6 +20,7 @@ const AddObsForm = () => {
     const [nameSearchType, setNameSearchType] = useState('common');
 
 
+
     const user = useSelector(store => store.user);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
     const scientificNamesList = useSelector(store => store.plants.scientificNamesList);

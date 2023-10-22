@@ -24,6 +24,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
 
 import './App.css';
+
 function App() {
   const dispatch = useDispatch();
 

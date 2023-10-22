@@ -4,25 +4,6 @@ const { update } = require('lodash');
 const router = express.Router();
 
 
-//GET observations submitted by user
-router.get('/region/:regionID', (req, res) => {
-  const regionID = req.params.userID;
-  console.log('Fetching all users observations')
-    if(req.isAuthenticated()) {
-    let queryText = `SELECT * FROM "region" WHERE "id" =$1;`;
-    pool.query(queryText, [regionID])
-    .then(result => {
-      res.send(result.rows);
-    })
-    .catch(error => {
-      console.log(`Error fetching users observations`, error);
-      res.sendStatus(500);
-    });
-  } else {
-    res.sendStatus(401);
-  }
-}); //end GET
-
 //GET all observations for admin
 router.get('/', (req, res) => {
   let queryText = 'SELECT * from "observations";';
@@ -90,9 +71,11 @@ router.put('/edit/:id', (req, res) => {
   console.log('updating observation for id', id);
   if (req.isAuthenticated()) {
     let queryText = `UPDATE "observations" 
-                  SET "species_id" = $1
-                  WHERE "id" = $2;`;
-    pool.query(queryText, [updatedObservation.species_id, id])
+                  SET "species_id" = $1, "location" = $2, "photo" = $3,
+                  "notes" = $4, "date_observed" = $5, "time_stamp" = $6
+                  WHERE "id" = $7;`;
+    pool.query(queryText, [updatedObservation.species_id, updatedObservation.location, updatedObservation.photo, 
+                          updatedObservation.notes, updatedObservation.date_observed, updatedObservation.time_stamp, id])
     .then((result) =>{
         res.sendStatus(200);
     })
