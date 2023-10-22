@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+//child components
+import SearchResultItem from '../SearchResultItem/SearchResultItem';
+
 
 function SearchResultsPage() {
 
@@ -52,12 +55,8 @@ function SearchResultsPage() {
         </tr>
         </thead>
         <tbody>
-          {speciesResults?.map((species, i) => {
-            return (<tr key={i}>
-                <td>{species.common_name}</td>
-                <td>{species.scientific_name}</td>
-                <td>{species.growth_type}</td>
-              </tr>)
+          {speciesResults?.map((species) => {
+            return <SearchResultItem species={species} />
           })}
         </tbody>
       </table>
