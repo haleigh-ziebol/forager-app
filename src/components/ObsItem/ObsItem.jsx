@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+
+
+//format date for selector
+function alterDate (string) {
+  return string.substr(0,10)
+}
+
 function ObsItem( { observation } ) {
 
   //controls option buttons for observations
@@ -14,7 +21,9 @@ function ObsItem( { observation } ) {
   const dispatch = useDispatch();
  
   const handleEdit = () => {
-    history.push(`/edit/${observation.id}`); //routes to edit page
+    console.log("observation:", observation)
+    dispatch({type: 'OBSERVATION_TO_EDIT', payload: observation})
+    history.push(`/editObservation/${observation.id}`);
   }
 
   const handleDelete = () => {
@@ -26,7 +35,7 @@ function ObsItem( { observation } ) {
 
   return (
     <div key={observation.id}>
-      <p>Observation # {observation.id}</p>       
+      <p>Observation # {(observation.id)}</p>       
       {(displayToggle == true) ? 
       <button onClick={() => setDisplayToggle(false)}>+</button> 
       : 
@@ -36,7 +45,7 @@ function ObsItem( { observation } ) {
         <button onClick={handleDelete}>Delete</button>
       </div>
       }
-      <p>Date:{JSON.stringify(observation.date_observed)}</p>
+      <p>Date: {alterDate(observation.date_observed)}</p>
        <p>{observation.scientific_name}</p>
       <p>Notes: {observation.notes}</p>
   

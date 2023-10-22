@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const { update } = require('lodash');
 const router = express.Router();
 
 
@@ -83,12 +84,15 @@ router.post('/',  (req, res) => {
 
 
 // PUT to update observation by ID
-router.put('/update/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
   let id = req.params.id;
-  console.log('updating observations for id', id);
+  let updatedObservation = req.body;
+  console.log('updating observation for id', id);
   if (req.isAuthenticated()) {
-    let queryText = `UPDATE "observations" SET ///// "id" = $1;`;
-    pool.query(queryText, [id])
+    let queryText = `UPDATE "observations" 
+                  SET "species_id" = $1
+                  WHERE "id" = $2;`;
+    pool.query(queryText, [updatedObservation.species_id, id])
     .then((result) =>{
         res.sendStatus(200);
     })
@@ -100,22 +104,6 @@ router.put('/update/:id', (req, res) => {
     res.sendStatus(401);
   }
 })// end PUT
-
-
-// DELETE feedback by ID for admin
-router.delete('/adminDelete/:id', (req, res) => {
-  let id = req.params.id;
-  let queryText = 'DELETE FROM "observations" WHERE "id" = $1;';
-  console.log('deleting observation id:', id)
-  pool.query(queryText,[id] )
-  .then((result) =>{
-      res.sendStatus(200);
-  })
-  .catch((err) => {
-      console.log(`Error making query ${queryText}`, err);
-      res.sendStatus(500);
-  })
-}); //end DELETE
 
 
 // DELETE feedback by ID for user

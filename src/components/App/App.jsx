@@ -16,6 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import AddObsPage from '../AddObsPage/AddObsPage';
+import EditObsPage from '../EditObsPage/EditObsPage';
 import SearchEdiblesPage from '../SearchEdiblesPage/SearchEdiblesPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -97,6 +98,14 @@ function App() {
               path="/addObservation"
             >
               <AddObsPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute
+              // logged in shows AddObservationPage else shows LoginPage
+              exact
+              path="/editObservation/:id"
+            >
+              <EditObsPage />
             </ProtectedRoute>
 
             <ProtectedRoute

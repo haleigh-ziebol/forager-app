@@ -1,18 +1,18 @@
 import React from 'react';
 
-import AddObsForm from '../AddObsForm/AddObsForm';
+import EditObsForm from '../EditObsForm/EditObsForm';
 
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function AddObsPage() {
+function EditObsPage() {
   return (
     <div className="container">
-      <AddObsForm />
+      <EditObsForm />
     </div>
   );
 }
 
-export default AddObsPage;
+export default EditObsPage;

@@ -10,7 +10,7 @@ import SearchMap from '../SearchMap/SearchMap';
 function getDate() {
     const today = new Date().toISOString()
     return today.substr(0,10)
-  }
+}
 
 
 const AddObsForm = () => {

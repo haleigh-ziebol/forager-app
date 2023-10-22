@@ -1,5 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 //child components
@@ -10,55 +11,57 @@ import SearchMap from '../SearchMap/SearchMap';
 function getDate() {
     const today = new Date().toISOString()
     return today.substr(0,10)
-  }
+}
+
+//format date for selector
+function alterDate (string) {
+    return string.substr(0,10)
+}
 
 
 const EditObsForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    let [updatedObservation, setUpdatedObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
+    const observationToEdit = useSelector(store => store.observation.observationToEdit);
+
     const [nameSearchType, setNameSearchType] = useState('scientific');
-
 
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
     const scientificNamesList = useSelector(store => store.plants.scientificNamesList);
-    const coordinates = useSelector(store => store.observation.newObservationCoords[0]);
+    let [updatedObservation, setUpdatedObservation] = useState(observationToEdit);
 
     //fetches species for form selector
     useEffect(() => {
         console.log('fetching plant names lists');
         dispatch({type:'FETCH_COMMON'})
         dispatch({type:'FETCH_SCIENTIFIC'})
+        dispatch({ type: 'NEW_COORDINATES', payload: {lat: parseFloat(observationToEdit.location[0]), lng: parseFloat(observationToEdit.location[1])} })
     }, []);
 
-
-    //sets coordinates in newObservation
-    useEffect(() => {
-        if (coordinates == null ) {
-            return console.log("no coords")
-        } else{
-            console.log('setting coordinates');
-            setUpdatedObservation({...updatedObservation, location: [coordinates.lat, coordinates.lng]});
-        }
-    }, [coordinates]);
 
     //sets common vs scientific name search
     const handleChange = (event) => {
         setNameSearchType(event.target.value);
-      }
+    }
 
     //updates observation
-    const addNewObservation = event => {
+    const updateObservation = event => {
         event.preventDefault();
-        console.log("observation is:", newObservation)
-        dispatch({ type: 'UPDATE_OBSERVATION', payload: newObservation });
-        setNewObservation({user_id: '', species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
+        if (updatedObservation !== observationToEdit) {
+            console.log("observation is:", updatedObservation)
+            dispatch({ type: 'EDIT_OBSERVATION', payload: updatedObservation });
+        } else { /// update
+            console.log('no changes')
+            history.push('/user')
+        }
     }
 
     return (
         <div>
-            <h3>Observation Form</h3>
-            <form onSubmit={addNewObservation}>
+            {JSON.stringify(observationToEdit)}
+            {JSON.stringify(updatedObservation)}
+            <form onSubmit={updateObservation}>
                 <label htmlFor="name_type">Species:</label>
                 <fieldset id="name_type">
                     <div>
@@ -76,8 +79,8 @@ const EditObsForm = () => {
                     {nameSearchType === 'common' &&
                     
                     <select
-                    value={newObservation.species}
-                    onChange={(event) => setNewObservation({...newObservation, species: event.target.value})}
+                    value={updatedObservation.species_id}
+                    onChange={(event) => setUpdatedObservation({...updatedObservation, species: event.target.value})}
                     required
                     >
                         {commonNamesList.map((plant,i) => {
@@ -101,8 +104,8 @@ const EditObsForm = () => {
                     {nameSearchType === 'scientific' &&
                 
                     <select
-                    value={newObservation.species}
-                    onChange={(event) => setNewObservation({...newObservation, species: event.target.value})}
+                    value={updatedObservation.species_id}
+                    onChange={(event) => setUpdatedObservation({...updatedObservation, species: event.target.value})}
                     required
                     >
                         {scientificNamesList.map((plant,i) => {
@@ -121,17 +124,17 @@ const EditObsForm = () => {
                 <br/>
                 <br/>
                 <label htmlFor="date">Date Observed:</label>
-                <input type='date' id="date" value={newObservation.date_observed} onChange={(event) => setNewObservation({...newObservation, date_observed: event.target.value})} placeholder="observation date" />
+                <input type='date' id="date" value={alterDate(updatedObservation.date_observed)} onChange={(event) => setUpdatedObservation({...updatedObservation, date_observed: event.target.value})} placeholder="observation date" />
                 <br/>
                 <label>Notes: </label>
                 <br/>
-                <textarea rows="5" cols="35" name="text" value={newObservation.notes} onChange={(event) => setNewObservation({...newObservation, notes: event.target.value})} placeholder="notes"></textarea>
+                <textarea rows="5" cols="35" name="text" value={updatedObservation.notes} onChange={(event) => setUpdatedObservation({...updatedObservation, notes: event.target.value})} placeholder="notes"></textarea>
                 <br />
                 <label htmlFor="photos">Photos:</label>
-                <input type='text' id="photos" value={newObservation.photo} onChange={(event) => setNewObservation({...newObservation, photo: event.target.value})} placeholder="photo url" />
+                <input type='text' id="photos" value={updatedObservation.photo} onChange={(event) => setUpdatedObservation({...updatedObservation, photo: event.target.value})} placeholder="photo url" />
                 <br/>
                 <br/>
-                <button type='submit'> add new observation </button>
+                <button type='submit'> Update Observation </button>
             </form>
         </div>
     );

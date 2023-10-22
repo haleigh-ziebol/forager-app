@@ -32,15 +32,20 @@ function ProfilePage() {
           <h2>Welcome, {user.username}!</h2>
           <p>Region: {userRegion.length > 0 && userRegion[0].name}</p>
       </div>
-      <div className="profile-map">
-        <ObservationMap />
-        <div>
+      <div className="observations">
+        <div className ="observation-header">
+          <div><h1>My Observations:</h1>
+            {observationList.length > 0 && 
+            <div><button>List</button><button>Map</button> </div>}
+          </div>
+          {observationList.length == 0 && <p>None for now!</p>}
           { ( observationList.length > 0) && 
                   observationList.map((observation) => {
                     return <ObsItem observation={observation} />
                   })
           } 
         </div>
+        <ObservationMap />
       </div>
       {JSON.stringify(observationList)}
       {JSON.stringify(process.env)}

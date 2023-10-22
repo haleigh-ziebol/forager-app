@@ -35,7 +35,7 @@ function* fetchUserObservations(action) {
   //saga function to edit observation
   function* editObservation(action) {
     try {
-      yield axios.post('/api/observation', action.payload); //update
+      yield axios.put(`/api/observation/edit/${action.payload.id}`, action.payload);
       yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: action.payload });
     } catch (error) {
         console.log('error posting observation', error);
