@@ -2,6 +2,7 @@ import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+//species won't update
 
 //child components
 import SearchMap from '../SearchMap/SearchMap';
@@ -51,6 +52,7 @@ const EditObsForm = () => {
         if (updatedObservation !== observationToEdit) {
             console.log("observation is:", updatedObservation)
             dispatch({ type: 'EDIT_OBSERVATION', payload: updatedObservation });
+            history.push('/user')
         } else { /// update
             console.log('no changes')
             history.push('/user')

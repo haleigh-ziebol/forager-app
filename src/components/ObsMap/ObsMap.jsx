@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { GoogleMap, MarkerF, useLoadScript, InfoWindowF } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
+
+//set center to user Region if observation List is empty
 
 
 function ObservationMap() {
 
   const [ selected, setSelected ] = useState({});
-  const [newCoordList, setNewCoordList] = useState([]);
   const observationList = useSelector(store => store.observation.userObservationList);
 
-  //sets results page
-  useEffect(() => {
-    let newArray = []
-    for (let i=0; i<observationList.length; i++) {
-      let coordObject = {lat: parseFloat(observationList[0].location[0]), lng: parseFloat(observationList[0].location[1])}
-      newArray.push( coordObject)
-    }
-    setNewCoordList(newArray);
-    console.log(newCoordList)
-  }, []);
+  const [map, setMap] = useState(null);
 
+  const onLoad = useCallback((map) => setMap(map), []);
+  
+  
+  // useEffect code modifies bounds when map and observationList changed
+  //from Joe Daniels (https://joedaniels123.medium.com/how-to-update-map-bounds-in-react-google-maps-api-when-a-markers-prop-changes-8bb05818cf4c)
+  useEffect(() => {
+    if (map) {
+      const bounds = new window.google.maps.LatLngBounds();
+      observationList.map(observation => {
+        bounds.extend({
+          lat: parseFloat(observation.location[0]),
+          lng: parseFloat(observation.location[1]),
+        });
+      });
+      map.fitBounds(bounds);
+    }
+  }, [map, observationList]);
 
   const { isLoaded } = useLoadScript({
 
@@ -33,14 +42,9 @@ function ObservationMap() {
       setSelected(observation);
     }
 
-    const onLoad = (map) => {
-      const bounds = new google.maps.LatLngBounds();
-      newCoordList.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
-      map.fitBounds(bounds);
-    };
 
     const OPTIONS = {
-      // minZoom: 7,
+      //minZoom: 10,
     }
 
     //eventually set to center of region/state
@@ -60,7 +64,7 @@ function ObservationMap() {
             <GoogleMap
               onLoad={onLoad}
               mapContainerStyle={mapStyle}
-              // center={defaultProps.center}
+              // center ={}
              options={OPTIONS}
             >
               { ( observationList.length > 0) && 
