@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, MarkerF, useLoadScript, InfoWindowF } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 function ObservationMap() {
 
   const [ selected, setSelected ] = useState({});
-  const observationList = useSelector(store => store.observation.userObservationList)
+  const [newCoordList, setNewCoordList] = useState([]);
+  const observationList = useSelector(store => store.observation.userObservationList);
+
+  //sets results page
+  useEffect(() => {
+    let newArray = []
+    for (let i=0; i<observationList.length; i++) {
+      let coordObject = {lat: parseFloat(observationList[0].location[0]), lng: parseFloat(observationList[0].location[1])}
+      newArray.push( coordObject)
+    }
+    setNewCoordList(newArray);
+    console.log(newCoordList)
+  }, []);
 
 
   const { isLoaded } = useLoadScript({
@@ -20,13 +33,22 @@ function ObservationMap() {
       setSelected(observation);
     }
 
+    const onLoad = (map) => {
+      const bounds = new google.maps.LatLngBounds();
+      newCoordList.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+      map.fitBounds(bounds);
+    };
+
+    const OPTIONS = {
+      // minZoom: 7,
+    }
+
     //eventually set to center of region/state
     const defaultProps = {
         center: {
           lat: 40.430076,
           lng: -100.960810
-        },
-        zoom: 4
+        }
       };
 
       return (
@@ -36,9 +58,10 @@ function ObservationMap() {
           ) : (
             <div>
             <GoogleMap
+              onLoad={onLoad}
               mapContainerStyle={mapStyle}
-              center={defaultProps.center}
-              zoom={10}
+              // center={defaultProps.center}
+             options={OPTIONS}
             >
               { ( observationList.length > 0) && 
                 observationList.map((observation) => {
