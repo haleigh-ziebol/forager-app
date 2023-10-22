@@ -42,7 +42,7 @@ function SearchResultsPage() {
       </table>
       }
 
-      { searchType == 'species'|| searchType=='region' &&
+      { (searchType == 'species'|| searchType=='region') &&
       <table>
         <thead>
         <tr>

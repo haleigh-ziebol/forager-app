@@ -3,6 +3,7 @@ import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 
 function* searchSpecies( action ) {
   try {
+    console.log(action.payload)
       const speciesResponse = yield axios.get(`/api/search/species/${action.payload.searchTerm}`);
       yield put({ type: 'SET_SPECIES_RESPONSE', payload: speciesResponse.data});
   } catch (error) {
