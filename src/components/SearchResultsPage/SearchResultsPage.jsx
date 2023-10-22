@@ -32,7 +32,7 @@ function SearchResultsPage() {
         </tr>
         </thead>
         <tbody>
-          {speciesResults.map((species, i) => {
+          {speciesResults?.map((species, i) => {
             return (<tr key={i}>
                 <td>{species.common_name}</td>
                 <td>{species.scientific_name}</td>
@@ -52,7 +52,7 @@ function SearchResultsPage() {
         </tr>
         </thead>
         <tbody>
-          {speciesResults.map((species, i) => {
+          {speciesResults?.map((species, i) => {
             return (<tr key={i}>
                 <td>{species.common_name}</td>
                 <td>{species.scientific_name}</td>
