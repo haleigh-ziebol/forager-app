@@ -1,61 +1,74 @@
 import React, { useState, useEffect } from 'react';
 
-import SearchSpecies from '../SearchSpecies/SearchSpecies';
 import SearchRegion from '../SearchRegion/SearchRegion';
 import SearchGrowthType from '../SearchGrowthType/SearchGrowthType';
 
 function SearchEdiblesPage() {
 
-  const [searchType, setSearchType] = useState('')
+  const [searchType, setSearchType] = useState({speciesType: false, regionType: false, growthType: false})
+  const [searchTerms, setSearchTerms] = useState({species: "", region: "", growth_type: ""})
 
-  const handleChange = (event) => {
-    setSearchType(event.target.value);
+
+  const submitSearch = (event) => {
+    event.preventDefault();
+
   }
 
   return (
     <div className="container">
-      <p>Search By</p>
-      <fieldset>
-        <div>
-          <input 
-            type="radio"
-            name="species"
-            id="species"
-            value="species"
-            checked={searchType === 'species'}
-            onChange={handleChange}
-          />
-          <label htmlFor="species"> Species
-          </label>
-          {searchType=="species" && <SearchSpecies />}
-        </div>
-        <div>
-          <input 
-            type="radio"
-            name="region"
-            id="region"
-            value="region"
-            checked={searchType === 'region'}
-            onChange={handleChange}
-          />
-          <label htmlFor="region"> Region
-          </label>
-          {searchType == "region" && <SearchRegion />}
-        </div>
-        <div>
-          <input 
-            type="radio"
-            name="growth_type"
-            id="growth_type"
-            value="growth_type"
-            checked={searchType === 'growth_type'}
-            onChange={handleChange}
-          />
-          <label htmlFor="growth_type"> Plant Type
-          </label>
-          {searchType=="growth_type" && <SearchGrowthType />}
-        </div>
-      </fieldset>
+      <h1>Search Edibles</h1>
+      <form onSubmit={submitSearch}>
+        <fieldset>
+        <legend>Search Terms:</legend>
+          <div>
+            <input 
+              type="checkbox"
+              name="species"
+              id="species"
+              value="species"
+              checked={searchType.speciesType}
+              onChange={() => setSearchType({...searchType, speciesType: !searchType.speciesType})}
+            />
+            <label htmlFor="species"> Species
+            </label>
+            {searchType.speciesType && 
+            <div>
+              <input type="text" onChange={(event)=>setSearchTerms({...searchTerms, species: event.target.value})} 
+              value={searchTerms.species} placeholder="search term"/>
+            </div>
+            }
+          </div>
+          
+          <div>
+            <input 
+              type="checkbox"
+              name="region"
+              id="region"
+              value="region"
+              checked={searchType.regionType}
+              onChange={() => setSearchType({...searchType, regionType: !searchType.regionType})}
+            />
+            <label htmlFor="region"> Region
+            </label>
+            {searchType.regionType && <SearchRegion />}
+          </div>
+          <div>
+            <input 
+              type="checkbox"
+              name="growth_type"
+              id="growth_type"
+              value="growth_type"
+              checked={searchType.growthType}
+              onChange={() => setSearchType({...searchType, growthType: !searchType.growthType})}
+            />
+            <label htmlFor="growth_type"> Plant Type
+            </label>
+            {searchType.growthType && <SearchGrowthType />}
+          </div>
+        </fieldset>
+        <button type="submit">Search!</button>
+      </form>
+
     </div>
   );
 }
