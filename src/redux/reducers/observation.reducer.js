@@ -32,6 +32,16 @@ const newObservationCoords = (state = [], action) => {
         return state;
     }
   };
+
+  //reducer for observation to highlight on ProfilePage component
+  const observationToHighlight = (state = "", action) => {
+    switch (action.type) {
+      case 'OBSERVATION_TO_HIGHLIGHT':
+        return action.payload;
+      default:
+        return state;
+    }
+  };
   
   //reducer for wikipedia info
   const wikiSpeciesData = (state = [], action) => {
@@ -48,4 +58,5 @@ const newObservationCoords = (state = [], action) => {
     userObservationList,
     wikiSpeciesData,
     observationToEdit,
+    observationToHighlight,
   });

@@ -15,6 +15,10 @@ img {
 }
 
 
+.highlight-observation {
+  background-color: green;
+}
+
 .species-found {
   background-color: green;
 }

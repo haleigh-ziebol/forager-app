@@ -7,6 +7,9 @@ function ObservationMap() {
   const [ selected, setSelected ] = useState({});
   const observationList = useSelector(store => store.observation.userObservationList);
   const userRegion = useSelector(store => store.userdata.userRegion)
+  const observationToHighlight = useSelector(store => store.observation.observationToHighlight)
+
+  const dispatch = useDispatch();
 
   // code modifies bounds when map and observationList changed
   //from Joe Daniels (https://joedaniels123.medium.com/how-to-update-map-bounds-in-react-google-maps-api-when-a-markers-prop-changes-8bb05818cf4c)
@@ -46,7 +49,7 @@ function ObservationMap() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'KEY',
+  googleMapsApiKey: 'AIzaSyA3Dc6zVscEJS2oXuncVH857ud-om6X94U',
   });
   const mapStyle = {        
     height: "50vh",
@@ -56,6 +59,21 @@ function ObservationMap() {
   const onSelect = (observation) => {
     setSelected(observation);
   }
+
+  const handleMouseOver = (observation) => {
+    dispatch({type: 'OBSERVATION_TO_HIGHLIGHT', payload: observation.id})
+  }
+
+  const handleMouseOut = () => {
+    dispatch({type: 'OBSERVATION_TO_HIGHLIGHT', payload: ""})
+  }
+
+  const iconPin = {
+    path: 'M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z',
+    fillColor: '#64be67',
+    fillOpacity: 1,
+    scale: 0.05, //to reduce the size of icons
+   }
 
 
   const OPTIONS = {
