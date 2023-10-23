@@ -49,7 +49,7 @@ function AddObsForm() {
             setPreviewUrls(newPreviewUrlsArray);
             setCurrentPreviewIndex(0); // Reset the preview index
             setIsFileUploaded(true); // Indicate that files are uploaded
-            setNewObservation({...newObservation, photos: files})
+            // setNewObservation({...newObservation, photo: previewUrls})
         });
     };
 
@@ -192,6 +192,7 @@ function AddObsForm() {
                         <div className="image-preview">
                             <p>Image Preview</p>
                             <img src={previewUrls[currentPreviewIndex]} alt="Preview" width="25%" height="25%" />
+                            <p>"URLs:" {JSON.stringify(files[0])}</p>
                             {previewUrls.length > 1 && 
                                 <div>
                                     <button className="button-left" onClick={goToPreviousPreview}>Left</button>
@@ -202,7 +203,6 @@ function AddObsForm() {
                         </div>
                     )}
                 </div>
-                {JSON.stringify(files)}
                 <label htmlFor="photos">Photos:</label>
                 <input type='text' id="photos" value={newObservation.photo} onChange={(event) => setNewObservation({...newObservation, photo: event.target.value})} placeholder="photo url" />
                 <br/>
