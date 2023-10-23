@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import SearchGrowthType from '../SearchGrowthType/SearchGrowthType';
-
 function SearchEdiblesPage() {
 
   const [searchType, setSearchType] = useState({speciesType: false, regionType: false, growthType: false})
   const [searchTerms, setSearchTerms] = useState({species: "", region: "", growth_type: ""})
 
   const regionList = useSelector((store) => store.plants.regionList);
+  const growthTypes = ["Tree", "Shrub", "Forb", "Vine"]
 
   const dispatch = useDispatch();
 
@@ -20,6 +19,12 @@ function SearchEdiblesPage() {
 
   const submitSearch = (event) => {
     event.preventDefault();
+    const searchParams = {
+      species: searchType.speciesType ? searchTerms.species : null,
+      region: searchType.regionType ? searchTerms.region : null,
+      growth_type: searchType.growthType ? searchTerms.growth_type : null,
+    }
+    dispatch({type:'SEARCH_SPECIES' , payload: searchParams})
 
   }
 
@@ -59,16 +64,19 @@ function SearchEdiblesPage() {
             />
             <label htmlFor="region"> Region
             </label>
+            <br/>
             {searchType.regionType && 
-            <select
-            id="regions"
+              <select
+                id="regions"
                 value={searchTerms.region}
-                onChange={(event)=>setSearchTerms({...searchTerms, species: event.target.value})} required
-            >
-                {regionList.map((region) => {
-                    return <option key={region.id} value={region.id}>{region.name}</option>;
-                })}
-            </select>}
+                onChange={(event)=>setSearchTerms({...searchTerms, species: event.target.value})} 
+                required
+              >
+                  {regionList.map((region) => {
+                      return <option key={region.id} value={region.id}>{region.name}</option>;
+                  })}
+              </select>
+            }
           </div>
           <div>
             <input 
@@ -81,7 +89,19 @@ function SearchEdiblesPage() {
             />
             <label htmlFor="growth_type"> Plant Type
             </label>
-            {searchType.growthType && <SearchGrowthType />}
+            <br/>
+            {searchType.growthType && 
+              <select
+                id="growth_type"
+                value={searchTerms.growth_type}
+                onChange={(event)=>setSearchTerms({...searchTerms, growth_type: event.target.value})} 
+                required
+              >
+                {growthTypes.map((growth, i) => {
+                    return <option key={i} value={growth}>{growth}</option>;
+                })}
+              </select>
+            }
           </div>
         </fieldset>
         <button type="submit">Search!</button>
