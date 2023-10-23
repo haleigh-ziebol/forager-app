@@ -17,7 +17,6 @@ function ObservationMap() {
   const setBounds = () => {
     if (observationList.length >1 ) {
       const bounds = new window.google.maps.LatLngBounds();
-      console.log(bounds)
       observationList.map(observation => {
         bounds.extend({
           lat: parseFloat(observation.location[0]),
@@ -51,7 +50,7 @@ function ObservationMap() {
   });
   const mapStyle = {        
     height: "50vh",
-    width: "100%"
+    width: "50wh",
   };
 
   const onSelect = (observation) => {

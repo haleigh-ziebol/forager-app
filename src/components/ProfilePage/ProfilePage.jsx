@@ -32,12 +32,12 @@ function ProfilePage() {
           <h2>Welcome, {user.username}!</h2>
           <p>Region: {userRegion.length > 0 && userRegion[0].name}</p>
       </div>
-      <div>
-        <ObservationMap />
-      </div>
-      <div className="observations">
+      <ObservationMap />
+      <div className="observation-info">
         <div className ="observation-header">
           <div><h1>My Observations:</h1>
+        </div>
+        <div className ="observation-body">
             {observationList.length > 0 && 
             <div><button>List</button><button>Map</button> </div>}
           </div>

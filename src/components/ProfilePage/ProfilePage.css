@@ -1,9 +1,20 @@
-/* .profile-container {
-  display: flex;
+.profile-container {
+  display: flex; 
+  flex-direction: row;
+  color: red;
 }
 
 
+.profile-info {
+  color: blue;
+  flex-grow: 1;
+}
 
-.profile-map {
-  display: flex;
-} */
+.observation-info {
+  flex-grow: 2;
+}
+
+.map {
+  flex-grow: 3;
+}
+  
