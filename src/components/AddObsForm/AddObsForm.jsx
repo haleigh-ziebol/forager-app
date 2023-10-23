@@ -13,12 +13,11 @@ function getDate() {
 }
 
 
-const AddObsForm = () => {
+function AddObsForm() {
     const dispatch = useDispatch();
     
     let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
-    const [nameSearchType, setNameSearchType] = useState('common');
-
+    const [nameSearchType, setNameSearchType] = useState('common'); //species set to common name by default
 
 
     const user = useSelector(store => store.user);
@@ -26,6 +25,52 @@ const AddObsForm = () => {
     const scientificNamesList = useSelector(store => store.plants.scientificNamesList);
     const coordinates = useSelector(store => store.observation.newObservationCoords[0]);
 
+
+    //file upload code from Getachew Hundera
+    const [files, setFiles] = useState([])
+    const [previewUrls, setPreviewUrls] = useState([]);
+    const [isFileUploaded, setIsFileUploaded] = useState(false);
+    
+    const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);    
+    const fileChangedHandler = (event) => {
+        const selectedFiles = Array.from(event.target.files); // directly converting FileList to array
+
+        // usedPromise.allSettled to ensure all promises either fulfill or reject
+        Promise.allSettled(selectedFiles.map(file => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result); // Resolve the promise with the reader result
+                reader.onerror = reject; // Reject the promise if there's an error
+                reader.readAsDataURL(file);
+            });
+        })).then(results => {
+            const newPreviewUrlsArray = results.map(result => result.status === "fulfilled" ? result.value : null);
+            setFiles(selectedFiles);
+            setPreviewUrls(newPreviewUrlsArray);
+            setCurrentPreviewIndex(0); // Reset the preview index
+            setIsFileUploaded(true); // Indicate that files are uploaded
+            setNewObservation({...newObservation, photos: files})
+        });
+    };
+
+    const goToNextPreview = () => {
+        setCurrentPreviewIndex((prevIndex) => (prevIndex + 1) % files.length); // Go to the next preview, loop back to the first after the last
+    };
+
+    const goToPreviousPreview = () => {
+        setCurrentPreviewIndex((prevIndex) => (prevIndex - 1 + files.length) % files.length); // Go to the previous preview, loop back to the last after the first
+    };
+
+    const handleCancelUpload = () => {
+        //  cancel the file upload and reset state variables
+        setFiles([]);
+        setPreviewUrls([]);
+        setIsFileUploaded(false);
+    };
+
+    //end file upload code from Getachew Hundera
+
+    
     //fetches species for form selector
     useEffect(() => {
         console.log('fetching plant names lists');
@@ -136,6 +181,28 @@ const AddObsForm = () => {
                 <br/>
                 <textarea rows="5" cols="35" name="text" value={newObservation.notes} onChange={(event) => setNewObservation({...newObservation, notes: event.target.value})} placeholder="notes"></textarea>
                 <br />
+
+                <div className="upload-container">
+                    {!isFileUploaded && (
+                        <>
+                            <input type="file" onChange={fileChangedHandler} multiple />
+                        </>
+                    )}
+                    {isFileUploaded && previewUrls.length > 0 && (
+                        <div className="image-preview">
+                            <p>Image Preview</p>
+                            <img src={previewUrls[currentPreviewIndex]} alt="Preview" width="25%" height="25%" />
+                            {previewUrls.length > 1 && 
+                                <div>
+                                    <button className="button-left" onClick={goToPreviousPreview}>Left</button>
+                                    <button className="button-right" onClick={goToNextPreview}>Right</button>
+                                </div>
+                            }
+                            <button className="cancel-button" onClick={handleCancelUpload}>X</button>
+                        </div>
+                    )}
+                </div>
+                {JSON.stringify(files)}
                 <label htmlFor="photos">Photos:</label>
                 <input type='text' id="photos" value={newObservation.photo} onChange={(event) => setNewObservation({...newObservation, photo: event.target.value})} placeholder="photo url" />
                 <br/>
