@@ -20,9 +20,9 @@ function SearchEdiblesPage() {
   const submitSearch = (event) => {
     event.preventDefault();
     const searchParams = {
-      species: searchType.speciesType ? searchTerms.species : null,
-      region: searchType.regionType ? searchTerms.region : null,
-      growth_type: searchType.growthType ? searchTerms.growth_type : null,
+      species: searchType.speciesType ? `%${searchTerms.species}%` : '%',
+      region: searchType.regionType ? searchTerms.region : '%',
+      growth_type: searchType.growthType ? `%${searchTerms.growth_type}%` : '%',
     }
     dispatch({type:'SEARCH_SPECIES' , payload: searchParams})
 
@@ -69,7 +69,7 @@ function SearchEdiblesPage() {
               <select
                 id="regions"
                 value={searchTerms.region}
-                onChange={(event)=>setSearchTerms({...searchTerms, species: event.target.value})} 
+                onChange={(event)=>setSearchTerms({...searchTerms, region: event.target.value})} 
                 required
               >
                   {regionList.map((region) => {

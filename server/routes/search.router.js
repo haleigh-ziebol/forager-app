@@ -4,9 +4,9 @@ const router = express.Router();
 
 
 //GET search all terms
-router.get('/species', (req, res) => {
+router.get('/', (req, res) => {
   const region = req.query.region;
-  const name = req.query.name;
+  const species = req.query.species;
   const type = req.query.type;
   console.log('Fetching ALL species info for search')
     if(req.isAuthenticated()) {
@@ -20,11 +20,11 @@ router.get('/species', (req, res) => {
                       JOIN regions r
                       ON y.region_id = r.id
                       WHERE r.id = $1 AND
-                      ("scientific_name"  ILIKE '%' || $2 || '%'
-                      OR "common_name"  ILIKE '%' || $2 || '%')
-                      AND "growth_type"  LIKE '%' || $3 || '%'
+                      ("scientific_name"  ILIKE $2
+                      OR "common_name"  ILIKE $2)
+                      AND "growth_type"  LIKE $3
                       ORDER BY "scientific_name" ASC;`
-    pool.query(queryText, [region, name, type])
+    pool.query(queryText, [region, species, type])
     .then(result => {
       res.send(result.rows);
       console.log(result.rows)
