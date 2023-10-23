@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import SearchRegion from '../SearchRegion/SearchRegion';
 import SearchGrowthType from '../SearchGrowthType/SearchGrowthType';
 
 function SearchEdiblesPage() {
@@ -8,6 +8,15 @@ function SearchEdiblesPage() {
   const [searchType, setSearchType] = useState({speciesType: false, regionType: false, growthType: false})
   const [searchTerms, setSearchTerms] = useState({species: "", region: "", growth_type: ""})
 
+  const regionList = useSelector((store) => store.plants.regionList);
+
+  const dispatch = useDispatch();
+
+  //fetches regions for form selector
+  useEffect(() => {
+      console.log('fetching region list');
+      dispatch({type:'FETCH_REGIONS'})
+  }, []);
 
   const submitSearch = (event) => {
     event.preventDefault();
@@ -50,7 +59,16 @@ function SearchEdiblesPage() {
             />
             <label htmlFor="region"> Region
             </label>
-            {searchType.regionType && <SearchRegion />}
+            {searchType.regionType && 
+            <select
+            id="regions"
+                value={searchTerms.region}
+                onChange={(event)=>setSearchTerms({...searchTerms, species: event.target.value})} required
+            >
+                {regionList.map((region) => {
+                    return <option key={region.id} value={region.id}>{region.name}</option>;
+                })}
+            </select>}
           </div>
           <div>
             <input 
