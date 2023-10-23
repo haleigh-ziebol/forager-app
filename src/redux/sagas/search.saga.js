@@ -5,9 +5,8 @@ function* searchSpecies( action ) {
   try {
     console.log(action.payload)
       const searchURL = yield `?species=${action.payload.species}&region=${action.payload.region}&type=${action.payload.growth_type}`
-      console.log('search URL:' , searchURL)
       const speciesResponse = yield axios.get(`/api/search/${searchURL}`);
-      yield put({ type: 'SET_SPECIES_RESPONSE', payload: speciesResponse.data});
+      yield put({ type: 'SET_SPECIES_RESPONSE', payload: {data: speciesResponse.data , searchTerms: action.payload}});
   } catch (error) {
       console.log(error);
   }

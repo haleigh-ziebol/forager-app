@@ -8,16 +8,8 @@ import SearchResultItem from '../SearchResultItem/SearchResultItem';
 
 function SearchResultsPage() {
 
-  const params = useParams();
-  const [searchType, setSearchType] = useState('')
-
-  const speciesResults = useSelector(store => store.search.searchResults[0]);
-
-  //sets results page
-  useEffect(() => {
-    console.log('setting results type');
-    setSearchType(params.type)
-  }, []);
+  const speciesResults = useSelector(store => store.search.searchResults[0].data[0]);
+  const searchTerms = useSelector(store => store.search.searchResults[0].searchTerms);
 
 
 
