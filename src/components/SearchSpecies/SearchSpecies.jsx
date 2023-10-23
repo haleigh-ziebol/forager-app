@@ -13,7 +13,7 @@ function SearchSpecies () {
 
     const handleSearch = (event) => {
         event.preventDefault();
-        dispatch({ type:'SEARCH_SPECIES' , payload: {searchTerm: searchSpecies} });
+        dispatch({ type:'SEARCH_SPECIES' , payload: {searchTerm: '?region=1&name=Ace&type=Tree'} });
         history.push('/results/species');
 
     }
