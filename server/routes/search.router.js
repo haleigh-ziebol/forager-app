@@ -9,22 +9,40 @@ router.get('/', (req, res) => {
   const species = req.query.species;
   const type = req.query.type;
   console.log('Fetching ALL species info for search')
-    if(req.isAuthenticated()) {
-      let queryText = `SELECT DISTINCT r.name, s.*, o.user_id FROM species s
-                      FULL JOIN observations o
-                      ON s.id = o.species_id
-                      JOIN species_state x
-                      ON s.id = x.species_id
-                      JOIN states y
-                      ON x.state_id = y.id
-                      JOIN regions r
-                      ON y.region_id = r.id
-                      WHERE r.id = $1 AND
-                      ("scientific_name"  ILIKE $2
-                      OR "common_name"  ILIKE $2)
-                      AND "growth_type"  LIKE $3
-                      ORDER BY "scientific_name" ASC;`
+  if(req.isAuthenticated() && region !== '%') {
+    let queryText = `SELECT DISTINCT r.name, s.*, o.user_id FROM species s
+                    FULL JOIN observations o
+                    ON s.id = o.species_id
+                    JOIN species_state x
+                    ON s.id = x.species_id
+                    JOIN states y
+                    ON x.state_id = y.id
+                    JOIN regions r
+                    ON y.region_id = r.id
+                    WHERE r.id = $1 AND
+                    ("scientific_name"  ILIKE $2
+                    OR "common_name"  ILIKE $2)
+                    AND "growth_type"  LIKE $3
+                    ORDER BY "scientific_name" ASC;`
     pool.query(queryText, [region, species, type])
+    .then(result => {
+      res.send(result.rows);
+      console.log(result.rows)
+    })
+    .catch(error => {
+      console.log(`Error fetching species`, error);
+      res.sendStatus(500);
+    });
+  } else if(req.isAuthenticated() && region == '%') {
+    let queryText = `SELECT s.*, o.user_id 
+                    FROM species s
+                    FULL JOIN observations o
+                    ON s.id = o.species_id
+                    WHERE ("scientific_name"  ILIKE $1
+                    OR "common_name"  ILIKE $1)
+                    AND "growth_type"  LIKE $2
+                    ORDER BY "scientific_name" ASC;`
+    pool.query(queryText, [species, type])
     .then(result => {
       res.send(result.rows);
       console.log(result.rows)
