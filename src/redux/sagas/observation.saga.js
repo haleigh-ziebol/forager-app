@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
 //saga function to retrieve observations from DB
 function* fetchUserObservations(action) {
