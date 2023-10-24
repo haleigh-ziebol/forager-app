@@ -120,7 +120,7 @@ function App() {
             <ProtectedRoute
               // logged in shows SearchEdiblesPage else shows LoginPage
               exact
-              path="/results/:type"
+              path="/results"
             >
               <SearchResultsPage />
             </ProtectedRoute>

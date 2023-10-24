@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function SearchEdiblesPage() {
 
@@ -10,6 +11,7 @@ function SearchEdiblesPage() {
   const growthTypes = ["Tree", "Shrub", "Forb", "Vine"]
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   //fetches regions for form selector
   useEffect(() => {
@@ -25,6 +27,7 @@ function SearchEdiblesPage() {
       growth_type: searchType.growthType ? `%${searchTerms.growth_type}%` : '%',
     }
     dispatch({type:'SEARCH_SPECIES' , payload: searchParams})
+    history.push('/results')
 
   }
 
