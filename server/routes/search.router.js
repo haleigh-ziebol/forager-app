@@ -57,6 +57,29 @@ router.get('/', (req, res) => {
 }); //end GET
 
 
+//GET search by species ID
+router.get('/id/:ID', (req, res) => {
+  const id = req.params.ID;
+  console.log('Fetching species info for search from DB')
+    if(req.isAuthenticated()) {
+      let queryText = `SELECT * from "species"
+                  WHERE "id" = $1;`;
+    pool.query(queryText, [id])
+    .then(result => {
+      res.send(result.rows[0]);
+      console.log(result.rows[0])
+    })
+    .catch(error => {
+      console.log(`Error fetching species`, error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(401);
+  }
+}); //end GET
+
+
+
 //GET search by species name
 router.get('/species/:searchTerm', (req, res) => {
   const searchTerm = req.params.searchTerm;

@@ -31,12 +31,11 @@ function* fetchRegions() {
   }
 }
 
-  
-
-  function* plantsSaga() {
-    yield takeEvery('FETCH_COMMON', fetchCommonPlantData);
-    yield takeEvery('FETCH_SCIENTIFIC', fetchScientificPlantData);
-    yield takeEvery('FETCH_REGIONS', fetchRegions);
-  }
+//root saga for plants
+function* plantsSaga() {
+  yield takeEvery('FETCH_COMMON', fetchCommonPlantData);
+  yield takeEvery('FETCH_SCIENTIFIC', fetchScientificPlantData);
+  yield takeEvery('FETCH_REGIONS', fetchRegions);
+}
   
   export default plantsSaga;
