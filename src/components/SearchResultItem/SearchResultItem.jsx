@@ -1,6 +1,13 @@
 import React from 'react';
 
 
+    //wikipedia API call for text and image
+      //send species to search router?
+        //need scientific name, but snip after var send scientific name 
+    //process text with wtf_wiki
+    //display image
+    
+
 function SearchResultItem({ species }) {
 
   return (

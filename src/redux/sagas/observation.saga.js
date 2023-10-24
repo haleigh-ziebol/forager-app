@@ -42,23 +42,12 @@ function* fetchUserObservations(action) {
     }    
   }
   
-  
-  //saga function to get information from wikipedia API
-  function* searchWikipedia(action) {
-    try {
-          const wikipediaResponse = yield axios.get(`/api/wikipedia/search/${action.payload}`); // gets wikipedia data for observation
-          yield put({ type: 'SET_WIKI_DATA', payload: wikipediaResponse.data}); // sends to reducer
-    } catch (error) {
-        console.log(error);
-    }
-  }
 
   function* observationSaga() {
     yield takeEvery('FETCH_USER_OBSERVATIONS', fetchUserObservations);
     yield takeEvery('ADD_NEW_OBSERVATION', addNewObservation);
     yield takeEvery('DELETE_OBSERVATION', deleteObservation);
     yield takeEvery('EDIT_OBSERVATION', editObservation)
-    yield takeEvery('SEARCH_WIKI', searchWikipedia);
   }
   
   export default observationSaga;
