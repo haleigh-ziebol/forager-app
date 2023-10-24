@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+//child components
 import ObservationMap from '../ObsMap/ObsMap';
-import './ProfilePage.css'
 import ObsItem from '../ObsItem/ObsItem';
+
+//styling
+import './ProfilePage.css'
 
 function ProfilePage() {
 
@@ -11,6 +16,7 @@ function ProfilePage() {
   const userRegion = useSelector(store => store.userdata.userRegion)
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   //fetches observationList
   useEffect(() => {
@@ -41,7 +47,12 @@ function ProfilePage() {
             {observationList.length > 0 && 
             <div><button>List</button><button>Map</button> </div>}
           </div>
-          {observationList.length == 0 && <p>None for now!</p>}
+          {observationList.length == 0 && 
+            <div>
+              <p>None for now!</p>
+              <button onClick={()=> history.push('/addObservation')}>Add A Find</button>
+            </div>
+          }
           { ( observationList.length > 0) && 
                   observationList.map((observation) => {
                     return <ObsItem observation={observation} />
