@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import SpeciesInfo from '../SpeciesInfo/SpeciesInfo';
 
 function SearchEdiblesPage() {
 
@@ -33,6 +34,8 @@ function SearchEdiblesPage() {
 
   return (
     <div className="container">
+
+      <SpeciesInfo />
       <h1>Search Edibles</h1>
       <form onSubmit={submitSearch}>
         <fieldset>
