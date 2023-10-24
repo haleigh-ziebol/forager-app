@@ -13,14 +13,21 @@ function SearchResultsPage() {
   const regionList = useSelector((store) => store.plants.regionList);
 
   const [transformedSearchTerms, setTransformedSearchTerms] = useState({region: "", species: "", growth_type:""})
+  const [filterObservations, setFilterObservations] = useState(false);
+
+  const [region, setRegion] = useState("")
+  const [species, setSpecies] = useState("")
+  const history = useHistory();
 
   const transformRegion = () => {
     if (searchTerms.region === '%') {
-      setTransformedSearchTerms({...transformedSearchTerms, region: "ANY"});
+      // setTransformedSearchTerms({...transformedSearchTerms, region: "ANY"});
+      setRegion("ANY")
     }
     else {
-      const region = regionList.find(x => x.id == searchTerms.region);
-      setTransformedSearchTerms({...transformedSearchTerms, region: region.name});
+      const regionString = regionList.find(x => x.id == searchTerms.region);
+      // setTransformedSearchTerms({...transformedSearchTerms, region: region.name});
+      setRegion(regionString)
     }
   }
 
@@ -36,11 +43,13 @@ function SearchResultsPage() {
 
   const transformSpecies = () => {
     if (searchTerms.species === '%') {
-      setTransformedSearchTerms({...transformedSearchTerms, species: "ANY"});
+      // setTransformedSearchTerms({...transformedSearchTerms, species: "ANY"});
+      setSpecies("ANY")
     }
     else {
       const speciesString = searchTerms.species.replace(/%/g, "");
-      setTransformedSearchTerms({...transformedSearchTerms, species: speciesString});
+      // setTransformedSearchTerms({...transformedSearchTerms, species: speciesString});
+      setSpecies(speciesString)
     }
   }
 
@@ -50,10 +59,10 @@ function SearchResultsPage() {
     transformSpecies();
   }
   
-  //transforms search terms for string in display
-  useEffect(() => {
-    transformSpecies();
-  }, [speciesResults]);
+  // //transforms search terms for string in display
+  // useEffect(() => {
+  //   transformSpecies();
+  // }, [speciesResults]);
 
   useEffect(() => {
     transformRegion();
@@ -67,11 +76,21 @@ function SearchResultsPage() {
   return (
     <div className="container">
      <h2>Search Results:</h2>
-     {JSON.stringify(transformedSearchTerms)}
+     <label htmlFor="filter-observations"> Filter Out Species I've Observed </label>
+     <input 
+        type="checkbox"
+        name="filter-observations"
+        id="filter-observations"
+        value="filter-observations"
+        checked={filterObservations}
+        onChange={() => setFilterObservations(!filterObservations)}
+    />
+    <br/>
+    <button onClick={() => history.push('/search')}>Try a Different Search</button>
+     <p>{`Your search for ${species} species in the ${region} region returned ${speciesResults.length} results.`}</p>
     { speciesResults == "" && 
       <div>
       <p>No Results Found!</p>
-      <button>Try a Different Search</button>
       </div>
     }
 
@@ -87,7 +106,12 @@ function SearchResultsPage() {
           </thead>
           <tbody>
             {speciesResults?.map((species) => {
-              return <SearchResultItem species={species} />
+              if (filterObservations && species.user_id !== null) {
+                return <div></div>
+              }
+              else {
+                return <SearchResultItem species={species} />
+              }
             })}
           </tbody>
         </table>
