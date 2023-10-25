@@ -1,14 +1,18 @@
 import { combineReducers } from 'redux';
   
   //reducer for wikipedia info
-  const wikiSpeciesData = (state = {}, action) => {
+  const wikiSpeciesData = (state = {database: "", text: "", image: "", link: "", redirect: ""}, action) => {
     switch (action.type) {
       case 'SET_SPECIES_INFO':
-        return {...wikiSpeciesData, database: action.payload};
+        return {...state, database: action.payload};
+      case 'SET_LINK_TEXT':
+        return {...state, link: action.payload};
       case 'SET_WIKI_TEXT_DATA':
-        return {...wikiSpeciesData, text: action.payload};
+        return {...state, text: action.payload};
       case 'SET_WIKI_IMAGE_DATA':
-        return {...wikiSpeciesData, image: action.payload};
+        return {...state, image: action.payload};
+      case 'CLEAR_INFO':
+        return {database: "", text: "", image: "", link: "", redirect: ""};
       default:
         return state;
     }

@@ -48,6 +48,7 @@ function ObsItem( { observation } ) {
       <p>Date: {alterDate(observation.date_observed)}</p>
        <p>{observation.scientific_name}</p>
       <p>Notes: {observation.notes}</p>
+      <button onClick={() => history.push(`/info/${observation.id}`)}>more info</button>
   
     </div>
   );

@@ -13,6 +13,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+// Pages
 import AboutPage from '../AboutPage/AboutPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import AddObsPage from '../AddObsPage/AddObsPage';
@@ -22,6 +23,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
+import SpeciesInfoPage from '../SpeciesInfoPage/SpeciesInfoPage';
+
 
 import './App.css';
 
@@ -115,6 +118,15 @@ function App() {
               path="/search"
             >
               <SearchEdiblesPage />
+            </ProtectedRoute>
+
+            
+            <ProtectedRoute
+              // logged in shows speciesInfo else shows LoginPage
+              exact
+              path="/info/:id"
+            >
+              <SpeciesInfoPage />
             </ProtectedRoute>
 
             <ProtectedRoute
