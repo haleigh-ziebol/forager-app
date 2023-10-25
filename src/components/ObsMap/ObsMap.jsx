@@ -56,8 +56,8 @@ function ObservationMap() {
     width: "50wh",
   };
 
-  const onSelect = (observation) => {
-    setSelected(observation);
+  const onSelect = (observation, index) => {
+    setSelected({observation: observation, index: index});
   }
 
   const handleMouseOver = (observation) => {
@@ -92,24 +92,24 @@ function ObservationMap() {
              options={OPTIONS}
             >
               { ( observationList.length > 0) && 
-                observationList.map((observation) => {
+                observationList.map((observation, i) => {
                   return <MarkerF 
                     position={{lat: parseFloat(observation.location[0]), lng: parseFloat(observation.location[1])}} 
                     key={observation.id} 
-                    onClick={() => onSelect(observation)}
+                    onClick={() => onSelect(observation, i+1)}
                   />;
                 })
               } 
 
               {
-                  selected.location && 
+                  selected.observation && 
                   (
                     <InfoWindowF
-                    position={{lat: parseFloat(selected.location[0]), lng: parseFloat(selected.location[1])}}
+                    position={{lat: parseFloat(selected.observation.location[0]), lng: parseFloat(selected.observation.location[1])}}
                     clickable={true}
                     onCloseClick={() => setSelected({})}
                   >
-                    <p>{selected.id}</p>
+                    <p>{selected.index}</p>
                   </InfoWindowF>
                   )
               }

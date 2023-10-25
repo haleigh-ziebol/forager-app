@@ -6,7 +6,6 @@ import './LandingPage.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -14,27 +13,17 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
-      <h2>{heading}</h2>
-
-      <div className="grid">
-        <div className="grid-col grid-col_8">
-          <p>
-            text text 
-          </p>
-
+    <div className="home">
+        <img 
+          alt={"foraging basket"}
+          width={"689px"}
+          height={"589px"}
+          src={`Site_SVG/home.svg`}
+        />
+        <div>
+          <h1>keep track of your finds</h1>
+          <h1>earn foraging badges</h1>
         </div>
-        <div className="grid-col grid-col_4">
-          <RegisterForm />
-
-          <center>
-            <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
-              Login
-            </button>
-          </center>
-        </div>
-      </div>
     </div>
   );
 }

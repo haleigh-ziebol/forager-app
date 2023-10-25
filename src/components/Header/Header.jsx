@@ -9,10 +9,10 @@ function Header () {
 
   return (
     <div className="header">
-      <img 
+      <img className= "logo"
       alt="Logo"
-      height={"200px"}
-      width={"600px"}
+      height={"100px"}
+      width={"300px"}
       src={`Site_SVG/Logo.svg`}
       />
       <div>

@@ -5,8 +5,13 @@
   align-items: center;
   background-color: #CEA47E;
   overflow: hidden;
+
 }
 
+.logo{
+  margin-top: 10px;
+  margin-left: 75px
+}
 
 .headLink {
   display: inline-block;

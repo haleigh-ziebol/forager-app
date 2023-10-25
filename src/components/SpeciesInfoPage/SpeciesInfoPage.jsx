@@ -4,6 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import wtf from 'wtf_wikipedia';
 
+//MUI components
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+
+
+
 function SpeciesInfoPage() {
 
     const dispatch = useDispatch();
@@ -39,21 +45,22 @@ function SpeciesInfoPage() {
 
 
     return(
-        <div>
-            <h1>Species Info</h1>
-
-            <h2>Common Name: {speciesInfo.database.common_name}</h2>
-            <h2>Scientific Name: {speciesInfo.database.scientific_name}</h2>
-            <h2>Growth Type: {speciesInfo.database.growth_type}</h2>
-            <img src={speciesInfo.image}
-            alt={speciesInfo.database.scientific_name}
-            />
-            <br/>
-            <p>Basic Info:</p>
-            <p style={{whiteSpace: "pre-wrap"}}>{parsedWikiText}</p> {/*pre-wrap deals with \n from wikitext parser */}
-            <p>Source: <a href={`https://en.wikipedia.org/wiki/${speciesInfo.link}`} >Wikipedia </a> </p>
-            <p> More Info: <a href={`https://plants.sc.egov.usda.gov/home/plantProfile?symbol=${speciesInfo.database.USDA_CODE}`} >USDA</a></p>
-        </div>
+       <div>
+        <h1>Species Info</h1>
+        <Card sx={{ maxWidth: 3/4 }}>
+          <h2>Common Name: {speciesInfo.database.common_name}</h2>
+          <h2>Scientific Name: {speciesInfo.database.scientific_name}</h2>
+          <h2>Growth Type: {speciesInfo.database.growth_type}</h2>
+          <img src={speciesInfo.image}
+          alt={speciesInfo.database.scientific_name}
+          />
+          <br/>
+          <p>Basic Info:</p>
+          <p style={{whiteSpace: "pre-wrap"}}>{parsedWikiText}</p> {/*pre-wrap deals with \n from wikitext parser */}
+          <p>Source: <a href={`https://en.wikipedia.org/wiki/${speciesInfo.link}`} >Wikipedia </a> </p>
+          <p> More Info: <a href={`https://plants.sc.egov.usda.gov/home/plantProfile?symbol=${speciesInfo.database.USDA_CODE}`} >USDA</a></p>
+        </Card>
+      </div>
     )
 }
 

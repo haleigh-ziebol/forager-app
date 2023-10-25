@@ -1,20 +1,32 @@
 .profile-container {
   display: flex; 
   flex-direction: row;
-  color: red;
+
 }
 
 
 .profile-info {
-  color: blue;
   flex-grow: 1;
 }
 
 .observation-info {
-  flex-grow: 2;
+  flex-grow: 4;
+}
+
+.observation-container-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.observation-container-map {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .map {
-  flex-grow: 3;
+  flex-grow: 4;
 }
   
