@@ -39,8 +39,8 @@ function* searchSpecies(action) {
         const name = yield DBResponse.data.scientific_name;
         const searchTerm = yield name.split(" ")[0] + "_" + name.split(" ")[1];
         yield put({type: 'SET_LINK_TEXT', payload: searchTerm});
-        yield put({type: 'SEARCH_WIKI_IMAGE', payload: searchTerm});
         yield put({type: 'SEARCH_WIKI_TEXT', payload: searchTerm});
+        yield put({type: 'SEARCH_WIKI_IMAGE', payload: searchTerm});
   } catch (error) {
       console.log(error);
   }

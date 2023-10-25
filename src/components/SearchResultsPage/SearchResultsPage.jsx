@@ -21,34 +21,34 @@ function SearchResultsPage() {
 
   const transformRegion = () => {
     if (searchTerms.region === '%') {
-      // setTransformedSearchTerms({...transformedSearchTerms, region: "ANY"});
+      setTransformedSearchTerms({...state, region: "ANY"});
       setRegion("ANY")
     }
     else {
       const regionString = regionList.find(x => x.id == searchTerms.region);
-      // setTransformedSearchTerms({...transformedSearchTerms, region: region.name});
+      setTransformedSearchTerms({...state, region: region.name});
       setRegion(regionString)
     }
   }
 
   const transformGrowth = () => {
     if (searchTerms.growth_type === '%') {
-      setTransformedSearchTerms({...transformedSearchTerms, growth_type: "ANY"});
+      setTransformedSearchTerms({...state, growth_type: "ANY"});
     }
     else {
       const growthString = searchTerms.growth_type.replace(/%/g, "");
-      setTransformedSearchTerms({...transformedSearchTerms, growth_type: growthString});
+      setTransformedSearchTerms({...state, growth_type: growthString});
     }
   }
 
   const transformSpecies = () => {
     if (searchTerms.species === '%') {
-      // setTransformedSearchTerms({...transformedSearchTerms, species: "ANY"});
+      setTransformedSearchTerms({...state, species: "ANY"});
       setSpecies("ANY")
     }
     else {
       const speciesString = searchTerms.species.replace(/%/g, "");
-      // setTransformedSearchTerms({...transformedSearchTerms, species: speciesString});
+      setTransformedSearchTerms({...state, species: speciesString});
       setSpecies(speciesString)
     }
   }
