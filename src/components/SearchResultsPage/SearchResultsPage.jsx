@@ -7,7 +7,6 @@ import SearchResultItem from '../SearchResultItem/SearchResultItem';
 
 
 function SearchResultsPage() {
-
   const speciesResults = useSelector(store => store.search.searchResults[0].data);
   const searchTerms = useSelector(store => store.search.searchResults[0].searchTerms);
   const regionList = useSelector((store) => store.plants.regionList);
@@ -19,58 +18,58 @@ function SearchResultsPage() {
   const [species, setSpecies] = useState("")
   const history = useHistory();
 
-  const transformRegion = () => {
-    if (searchTerms.region === '%') {
-      setTransformedSearchTerms({...state, region: "ANY"});
-      setRegion("ANY")
-    }
-    else {
-      const regionString = regionList.find(x => x.id == searchTerms.region);
-      setTransformedSearchTerms({...state, region: region.name});
-      setRegion(regionString)
-    }
-  }
+  // const transformRegion = () => {
+  //   if (searchTerms.region === '%') {
+  //     setTransformedSearchTerms({...state, region: "ANY"});
+  //     setRegion("ANY")
+  //   }
+  //   else {
+  //     const regionString = regionList.find(x => x.id == searchTerms.region);
+  //     setTransformedSearchTerms({...state, region: region.name});
+  //     setRegion(regionString)
+  //   }
+  // }
 
-  const transformGrowth = () => {
-    if (searchTerms.growth_type === '%') {
-      setTransformedSearchTerms({...state, growth_type: "ANY"});
-    }
-    else {
-      const growthString = searchTerms.growth_type.replace(/%/g, "");
-      setTransformedSearchTerms({...state, growth_type: growthString});
-    }
-  }
+  // const transformGrowth = () => {
+  //   if (searchTerms.growth_type === '%') {
+  //     setTransformedSearchTerms({...state, growth_type: "ANY"});
+  //   }
+  //   else {
+  //     const growthString = searchTerms.growth_type.replace(/%/g, "");
+  //     setTransformedSearchTerms({...state, growth_type: growthString});
+  //   }
+  // }
 
-  const transformSpecies = () => {
-    if (searchTerms.species === '%') {
-      setTransformedSearchTerms({...state, species: "ANY"});
-      setSpecies("ANY")
-    }
-    else {
-      const speciesString = searchTerms.species.replace(/%/g, "");
-      setTransformedSearchTerms({...state, species: speciesString});
-      setSpecies(speciesString)
-    }
-  }
+  // const transformSpecies = () => {
+  //   if (searchTerms.species === '%') {
+  //     setTransformedSearchTerms({...state, species: "ANY"});
+  //     setSpecies("ANY")
+  //   }
+  //   else {
+  //     const speciesString = searchTerms.species.replace(/%/g, "");
+  //     setTransformedSearchTerms({...state, species: speciesString});
+  //     setSpecies(speciesString)
+  //   }
+  // }
 
-  const transformAll = () => {
-    transformRegion();
-    transformGrowth();
-    transformSpecies();
-  }
-  
-  // //transforms search terms for string in display
-  // useEffect(() => {
+  // const transformAll = () => {
+  //   transformRegion();
+  //   transformGrowth();
   //   transformSpecies();
+  // }
+  
+  // // //transforms search terms for string in display
+  // // useEffect(() => {
+  // //   transformSpecies();
+  // // }, [speciesResults]);
+
+  // useEffect(() => {
+  //   transformRegion();
   // }, [speciesResults]);
 
-  useEffect(() => {
-    transformRegion();
-  }, [speciesResults]);
-
-  useEffect(() => {
-    transformGrowth();
-  }, [speciesResults]);
+  // useEffect(() => {
+  //   transformGrowth();
+  // }, [speciesResults]);
 
 
   return (
@@ -87,7 +86,7 @@ function SearchResultsPage() {
     />
     <br/>
     <button onClick={() => history.push('/search')}>Try a Different Search</button>
-     <p>{`Your search for ${species} species in the ${region} region returned ${speciesResults.length} results.`}</p>
+     {/* <p>{`Your search for ${species} species in the ${region} region returned ${speciesResults.length} results.`}</p> */}
     { speciesResults == "" && 
       <div>
       <p>No Results Found!</p>

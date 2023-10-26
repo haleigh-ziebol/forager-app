@@ -26,7 +26,7 @@ function SearchEdiblesPage() {
       region: searchType.regionType ? searchTerms.region : '%',
       growth_type: searchType.growthType ? `%${searchTerms.growth_type}%` : '%',
     }
-    dispatch({type:'SEARCH_SPECIES' , payload: searchParams})
+    dispatch({type:'SEARCH_SPECIES' , payload: searchParams});
     history.push('/results')
 
   }

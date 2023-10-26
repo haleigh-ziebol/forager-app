@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Header.css';
 import { useSelector } from 'react-redux';
 
 function Header () {
   const user = useSelector((store) => store.user);
+  const history = useHistory();
 
   return (
     <div className="header">
@@ -14,14 +15,19 @@ function Header () {
       height={"100px"}
       width={"300px"}
       src={`Site_SVG/Logo.svg`}
+      onClick={history.push('/home')}
       />
       <div>
         {/* If no user is logged in, show these links */}
         {!user.id && (
-          // If there's no user, show login/registration links
-          <Link className="headLink" to="/login">
-            Login / Register
-          </Link>
+          <div>
+            <Link className="headLink" to="/login">
+              Login
+            </Link>
+            <Link className="headLink" to="/registration">
+              Register
+            </Link>
+          </div>
         )}
 
         {/* If a user is logged in, show these links */}

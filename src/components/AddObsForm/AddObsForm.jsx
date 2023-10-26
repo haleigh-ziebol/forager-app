@@ -1,10 +1,11 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 //child components
 import SearchMap from '../SearchMap/SearchMap';
 
+//MUI components
+import Alert from '@mui/material/Alert';
 
 //function to fetch current date
 function getDate() {
@@ -19,12 +20,11 @@ const AddObsForm = () => {
     let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
     const [nameSearchType, setNameSearchType] = useState('common');
 
-
-
     const user = useSelector(store => store.user);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
     const scientificNamesList = useSelector(store => store.plants.scientificNamesList);
     const coordinates = useSelector(store => store.observation.newObservationCoords[0]);
+    const observations = useSelector(store => store.observation.userObservationList);
 
     //fetches species for form selector
     useEffect(() => {
@@ -54,7 +54,7 @@ const AddObsForm = () => {
     //sets common vs scientific name search
     const handleChange = (event) => {
         setNameSearchType(event.target.value);
-      }
+    }
 
     //adds user's new observation
     const addNewObservation = event => {
@@ -66,6 +66,7 @@ const AddObsForm = () => {
 
     return (
         <div>
+            <Alert severity="success">This is a success alert — check it out!</Alert>
             <h3>Observation Form</h3>
             <form onSubmit={addNewObservation}>
                 <label htmlFor="name_type">Species:</label>

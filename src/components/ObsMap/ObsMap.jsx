@@ -7,7 +7,6 @@ function ObservationMap() {
   const [ selected, setSelected ] = useState({});
   const observationList = useSelector(store => store.observation.userObservationList);
   const userRegion = useSelector(store => store.userdata.userRegion)
-  const observationToHighlight = useSelector(store => store.observation.observationToHighlight)
 
   const dispatch = useDispatch();
 
@@ -58,14 +57,6 @@ function ObservationMap() {
 
   const onSelect = (observation, index) => {
     setSelected({observation: observation, index: index});
-  }
-
-  const handleMouseOver = (observation) => {
-    dispatch({type: 'OBSERVATION_TO_HIGHLIGHT', payload: observation.id})
-  }
-
-  const handleMouseOut = () => {
-    dispatch({type: 'OBSERVATION_TO_HIGHLIGHT', payload: ""})
   }
 
   const iconPin = {

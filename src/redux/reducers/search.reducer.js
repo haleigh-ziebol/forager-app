@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 //reducer for species search results
-const searchResults = (state = [], action) => {
+const searchResults = (state = [{data:[], searchTerms:{}}], action) => {
     switch (action.type) {
       case 'SET_SPECIES_RESPONSE':
         return [action.payload];

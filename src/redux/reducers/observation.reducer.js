@@ -43,20 +43,10 @@ const newObservationCoords = (state = [], action) => {
     }
   };
   
-  //reducer for wikipedia info
-  const wikiSpeciesData = (state = [], action) => {
-    switch (action.type) {
-      case 'SET_WIKI_DATA':
-        return [action.payload];
-      default:
-        return state;
-    }
-  };
 
   export default combineReducers({
     newObservationCoords,
     userObservationList,
-    wikiSpeciesData,
     observationToEdit,
     observationToHighlight,
   });

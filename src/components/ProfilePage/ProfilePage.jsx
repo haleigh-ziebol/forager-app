@@ -43,6 +43,7 @@ function ProfilePage() {
           />
           <h2>Welcome, {user.username}!</h2>
           <p>Region: {userRegion.length > 0 && userRegion[0].name}</p>
+          <p>Badges:</p>
       </div>
       {mapView && <ObservationMap /> }
       <div className="observation-info">

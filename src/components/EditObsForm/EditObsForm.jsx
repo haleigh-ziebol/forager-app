@@ -107,7 +107,7 @@ const EditObsForm = () => {
                 
                     <select
                     value={updatedObservation.species_id}
-                    onChange={(event) => setUpdatedObservation({...updatedObservation, species: event.target.value})}
+                    onChange={(event) => setUpdatedObservation({...updatedObservation, species_id: event.target.value})}
                     required
                     >
                         {scientificNamesList.map((plant,i) => {

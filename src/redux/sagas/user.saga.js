@@ -38,7 +38,6 @@ function* fetchUserRegion(action) {
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeEvery('FETCH_USER_REGION', fetchUserRegion);
-
 }
 
 export default userSaga;
