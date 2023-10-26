@@ -34,10 +34,12 @@ const newObservationCoords = (state = [], action) => {
   };
 
   //reducer for observation to highlight on ProfilePage component
-  const observationToHighlight = (state = "", action) => {
+  const observationToHighlight = (state = {id: "", location: []}, action) => {
     switch (action.type) {
       case 'OBSERVATION_TO_HIGHLIGHT':
         return action.payload;
+      case 'RESET_HIGHLIGHT':
+        return {id: "", location: []};
       default:
         return state;
     }
