@@ -99,7 +99,7 @@ function RegisterForm() {
                   alt={avatar.name}
                   width={"100px"}
                   height={"100px"}
-                  src={`Profile_SVG/${avatar.name}-svgrepo-com.svg`}
+                  src={`Site_SVG/profile-icon/${avatar.name}.svg`}
                   />
                 </label>
               </div>)

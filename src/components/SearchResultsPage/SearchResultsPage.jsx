@@ -11,70 +11,61 @@ function SearchResultsPage() {
   const searchTerms = useSelector(store => store.search.searchResults[0].searchTerms);
   const regionList = useSelector((store) => store.plants.regionList);
 
-  const [transformedSearchTerms, setTransformedSearchTerms] = useState({region: "", species: "", growth_type:""})
   const [filterObservations, setFilterObservations] = useState(false);
 
   const [region, setRegion] = useState("")
   const [species, setSpecies] = useState("")
+  const [growthType, setGrowthType] = useState("");
   const history = useHistory();
 
-  // const transformRegion = () => {
-  //   if (searchTerms.region === '%') {
-  //     setTransformedSearchTerms({...state, region: "ANY"});
-  //     setRegion("ANY")
-  //   }
-  //   else {
-  //     const regionString = regionList.find(x => x.id == searchTerms.region);
-  //     setTransformedSearchTerms({...state, region: region.name});
-  //     setRegion(regionString)
-  //   }
-  // }
+  const transformRegion = () => {
+    if (searchTerms.region === '%') {
+      setRegion("ANY")
+    }
+    else {
+      const regionString = regionList.find(x => x.id == searchTerms.region);
+      setRegion(regionString.name)
+    }
+  }
 
-  // const transformGrowth = () => {
-  //   if (searchTerms.growth_type === '%') {
-  //     setTransformedSearchTerms({...state, growth_type: "ANY"});
-  //   }
-  //   else {
-  //     const growthString = searchTerms.growth_type.replace(/%/g, "");
-  //     setTransformedSearchTerms({...state, growth_type: growthString});
-  //   }
-  // }
+  const transformGrowth = () => {
+    if (searchTerms.growth_type === '%') {
+      setGrowthType("ANY")
+    }
+    else {
+      const growthString = searchTerms.growth_type.replace(/%/g, "");
+      setGrowthType(growthString)
+    }
+  }
 
-  // const transformSpecies = () => {
-  //   if (searchTerms.species === '%') {
-  //     setTransformedSearchTerms({...state, species: "ANY"});
-  //     setSpecies("ANY")
-  //   }
-  //   else {
-  //     const speciesString = searchTerms.species.replace(/%/g, "");
-  //     setTransformedSearchTerms({...state, species: speciesString});
-  //     setSpecies(speciesString)
-  //   }
-  // }
+  const transformSpecies = () => {
+    if (searchTerms.species === '%') {
+      setSpecies("ANY")
+    }
+    else {
+      const speciesString = searchTerms.species.replace(/%/g, "");
+      setSpecies(speciesString)
+    }
+  }
 
-  // const transformAll = () => {
-  //   transformRegion();
-  //   transformGrowth();
-  //   transformSpecies();
-  // }
+  const transformAll = () => {
+    transformRegion();
+    transformGrowth();
+    transformSpecies();
+  }
   
-  // // //transforms search terms for string in display
-  // // useEffect(() => {
-  // //   transformSpecies();
-  // // }, [speciesResults]);
-
-  // useEffect(() => {
-  //   transformRegion();
-  // }, [speciesResults]);
-
-  // useEffect(() => {
-  //   transformGrowth();
-  // }, [speciesResults]);
+  //transforms search terms for string in display
+  useEffect(() => {
+    transformAll();
+  }, [searchTerms]);
 
 
   return (
     <div className="container">
      <h2>Search Results:</h2>
+     {species == "ANY" ? 
+     <p>{speciesResults.length} results for {region} region, {species} name and {growthType} growth type.</p>
+    : <p>{speciesResults.length} results for {region} region, name including "{species}" and {growthType} growth type.</p> }
      <label htmlFor="filter-observations"> Filter Out Species I've Observed </label>
      <input 
         type="checkbox"

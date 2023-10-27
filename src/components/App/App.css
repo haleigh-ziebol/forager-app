@@ -9,9 +9,9 @@ body {
   margin: 0px;
 }
 
-img {
-  display: inline-block;
-  max-width: 100%;
+
+.unearned {
+  opacity: 0.2;
 }
 
 .home {

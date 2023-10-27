@@ -14,8 +14,19 @@ function* searchSpecies( action ) {
   }
 }
 
+function* badgeUserRegion( action ) {
+  try {
+    const badgeResponse = yield axios.get(`/api/search/badge/?region=${action.payload.region}&id=${action.payload.user_id}`);
+    yield console.log(badgeResponse)
+      yield put({ type: 'SET_BADGE_USER_REGION', payload: badgeResponse.data });
+  } catch (error) {
+      console.log(error);
+  }
+}
+
 function* observationSaga() {
   yield takeEvery('SEARCH_SPECIES', searchSpecies);
+  yield takeEvery('BADGE_USER_REGION', badgeUserRegion);
 }
   
   export default observationSaga;

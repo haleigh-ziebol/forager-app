@@ -67,7 +67,7 @@ router.get('/id/:ID', (req, res) => {
     pool.query(queryText, [id])
     .then(result => {
       res.send(result.rows[0]);
-      console.log(result.rows[0])
+      console.log(result.rows)
     })
     .catch(error => {
       console.log(`Error fetching species`, error);
@@ -132,13 +132,14 @@ router.get('/type/:searchTerm', (req, res) => {
 }); //end GET
 
 
-//GET search by region
-router.get('/region/:searchTerm', (req, res) => {
-  const searchTerm = req.params.searchTerm;
+//GET search for species observed by user that count towards regional badge
+router.get('/badge', (req, res) => {
+  const region = req.query.region;
+  const user_id = req.query.id;
   console.log('Fetching species info by region')
     if(req.isAuthenticated()) {
-    let queryText = `SELECT DISTINCT r.name, s.*, o.user_id FROM species s
-                  FULL JOIN observations o
+    let queryText = `SELECT COUNT(DISTINCT s."USDA_CODE") FROM species s
+                  JOIN observations o
                   ON s.id = o.species_id
                   JOIN species_state x
                   ON s.id = x.species_id
@@ -146,9 +147,8 @@ router.get('/region/:searchTerm', (req, res) => {
                   ON x.state_id = y.id
                   JOIN regions r
                   ON y.region_id = r.id
-                  WHERE r.id = $1
-                  ORDER BY "common_name" ASC`;
-    pool.query(queryText, [searchTerm])
+                  WHERE (r.id = $1 AND o.user_id = $2);`;
+    pool.query(queryText, [region, user_id])
     .then(result => {
       res.send(result.rows);
     })
