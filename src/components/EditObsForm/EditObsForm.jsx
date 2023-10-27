@@ -72,8 +72,6 @@ const EditObsForm = () => {
     return (
         <div>
             <h3>Edit Observation</h3>
-            {JSON.stringify(observationToEdit)}
-            {JSON.stringify(updatedObservation)}
             <form onSubmit={updateObservation}>
                 <label htmlFor="name_type">Species:</label>
                 <fieldset id="name_type">

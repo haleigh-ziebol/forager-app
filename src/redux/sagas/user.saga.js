@@ -18,6 +18,7 @@ function* fetchUser() {
     // now that the session has given us a user object
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
+    yield console.log("response", response.data)
     yield put({ type: 'SET_USER', payload: response.data });
     yield put({type: 'FETCH_USER_REGION', payload: response.data })
   } catch (error) {

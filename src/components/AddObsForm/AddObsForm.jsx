@@ -17,8 +17,9 @@ function getDate() {
 const AddObsForm = () => {
     const dispatch = useDispatch();
     
-    const [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
+    const [newObservation, setNewObservation] = useState({ user_id: null, species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
     const [nameSearchType, setNameSearchType] = useState('common');
+    const [success, setSuccess] = useState(false)
 
     const user = useSelector(store => store.user);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
@@ -32,13 +33,15 @@ const AddObsForm = () => {
         dispatch({type:'FETCH_SCIENTIFIC'})
     }, []);
 
-    //sets user_id in newObservation
-    useEffect(() => {
-        if(user.id !== ''){
-            console.log('setting user id:', user.id);
-            setNewObservation({...newObservation, user_id: user.id});
-        }
-    }, [user.id]);
+    //use effect is not working ...
+    // //sets user_id in newObservation
+    // useEffect(() => {
+    //     if(user.id > 0){
+    //         console.log('setting user id:', user.id);
+    //         setNewObservation({...newObservation, user_id: user.id});
+    //         console.log(newObservation)
+    //     }
+    // }, [user.id]);
 
     //sets coordinates in newObservation
     useEffect(() => {
@@ -58,14 +61,20 @@ const AddObsForm = () => {
     //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
+        setNewObservation({...newObservation, user_id: user.id})
         console.log("observation is:", newObservation)
-        dispatch({ type: 'ADD_NEW_OBSERVATION', payload: newObservation });
-        setNewObservation({user_id: '', species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
+        dispatch({ type: 'ADD_NEW_OBSERVATION', payload: newObservation, callback });    
+    }
+
+    const callback = () => {
+        console.log("in callback")
+        setNewObservation({user_id: null, species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
+        setSuccess(true)
     }
 
     return (
         <div>
-            <Alert severity="success">This is a success alert — check it out!</Alert>
+            {success && <Alert severity="success">This is a success alert — check it out!</Alert>}
             <h3>Observation Form</h3>
             <form onSubmit={addNewObservation}>
                 <label htmlFor="name_type">Species:</label>
