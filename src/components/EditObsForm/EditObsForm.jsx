@@ -25,11 +25,11 @@ const EditObsForm = () => {
     const history = useHistory();
 
     const observationToEdit = useSelector(store => store.observation.observationToEdit);
-
-    const [nameSearchType, setNameSearchType] = useState('scientific');
-
+    const coordinates = useSelector(store => store.observation.newObservationCoords[0]);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
     const scientificNamesList = useSelector(store => store.plants.scientificNamesList);
+
+    const [nameSearchType, setNameSearchType] = useState('scientific');
     let [updatedObservation, setUpdatedObservation] = useState(observationToEdit);
 
     //fetches species for form selector
@@ -46,6 +46,16 @@ const EditObsForm = () => {
         setNameSearchType(event.target.value);
     }
 
+     //sets coordinates in updated observation
+    useEffect(() => {
+        if (coordinates == null ) {
+            return console.log("no coords")
+        } else{
+            console.log('setting coordinates');
+            setUpdatedObservation({...updatedObservation, location: [coordinates.lat, coordinates.lng]});
+        }
+    }, [coordinates]);
+
     //updates observation
     const updateObservation = event => {
         event.preventDefault();
@@ -61,6 +71,7 @@ const EditObsForm = () => {
 
     return (
         <div>
+            <h3>Edit Observation</h3>
             {JSON.stringify(observationToEdit)}
             {JSON.stringify(updatedObservation)}
             <form onSubmit={updateObservation}>

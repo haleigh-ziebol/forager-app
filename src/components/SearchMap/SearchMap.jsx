@@ -14,7 +14,7 @@ function SearchMap() {
   });
   const mapStyle = {        
     height: "50vh",
-    width: "100%"};
+    width: "75%"};
 
   const onMapClick = (e) => {
     dispatch({ type: 'NEW_COORDINATES', payload: {lat: e.latLng.lat(), lng: e.latLng.lng()} })

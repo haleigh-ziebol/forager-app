@@ -90,7 +90,7 @@ function Observations() {
    }
 
   return (
-    <div>
+    <div className="observation-container">
       {mapView && <div className="map">
         {!isLoaded ? (
           <h1>Loading...</h1>
@@ -140,8 +140,9 @@ function Observations() {
       </div>}
       <div className="observation-info">
       <div className ="observations-header">
-        <div><h1>My Observations:</h1>
-      </div>
+        <div>
+          <h1>My Observations:</h1>
+        </div>
       <div className ="observations-body">
           {observationList.length > 0 && 
           <div>

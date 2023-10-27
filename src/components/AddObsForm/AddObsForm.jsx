@@ -17,14 +17,13 @@ function getDate() {
 const AddObsForm = () => {
     const dispatch = useDispatch();
     
-    let [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
+    const [newObservation, setNewObservation] = useState({ user_id: '', species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
     const [nameSearchType, setNameSearchType] = useState('common');
 
     const user = useSelector(store => store.user);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
     const scientificNamesList = useSelector(store => store.plants.scientificNamesList);
     const coordinates = useSelector(store => store.observation.newObservationCoords[0]);
-    const observations = useSelector(store => store.observation.userObservationList);
 
     //fetches species for form selector
     useEffect(() => {

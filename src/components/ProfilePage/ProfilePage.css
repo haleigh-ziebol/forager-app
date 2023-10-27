@@ -8,8 +8,18 @@
   flex-grow: 1;
 }
 
-.observation-info {
+.observation-container {
   flex-grow: 4;
+  display: flex;
+  flex-direction: row;
+}
+
+.map {
+  flex-grow: 1; 
+}
+
+.observation-info {
+  flex-grow: 1;
 }
 
 .observation-container-list {
@@ -23,9 +33,5 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-}
-
-.map {
-  flex-grow: 4;
 }
   
