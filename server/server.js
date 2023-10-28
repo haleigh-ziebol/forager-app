@@ -6,18 +6,26 @@ const app = express();
 
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
+const fileUpload = require('express-fileupload')
+
 
 // Route includes
 const userRouter = require('./routes/user.router');
 const observationRouter = require('./routes/observation.router');
 const wikipediaRouter = require('./routes/wikipedia.router');
 const plantsRouter = require('./routes/plants.router');
-const searchRouter = require('./routes/search.router')
-const userdataRouter = require('./routes/userdata.router')
+const searchRouter = require('./routes/search.router');
+const userdataRouter = require('./routes/userdata.router');
+const imageRouter = require('./routes/image.router');
 
-// Body parser middleware
+//middleware //
+//req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// file upload
+app.use(fileUpload());
+app.use(express.static('build'));
 
 // Passport Session Configuration //
 app.use(sessionMiddleware);
@@ -32,10 +40,9 @@ app.use('/api/observation', observationRouter);
 app.use('/api/wikipedia', wikipediaRouter);
 app.use('/api/plants', plantsRouter);
 app.use('/api/search', searchRouter);
-app.use('/api/userdata', userdataRouter)
+app.use('/api/userdata', userdataRouter);
+app.use('/api/image', imageRouter);
 
-// Serve static files
-app.use(express.static('build'));
 
 // App Set //
 const PORT = process.env.PORT || 5000;

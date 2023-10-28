@@ -22,7 +22,7 @@ const AddObsForm = () => {
     const [nameSearchType, setNameSearchType] = useState('common');
     const [success, setSuccess] = useState(false)
     const [failed, setFailed] = useState(false)
-
+    const [selectedFile, setSelectedFile] = useState();
 
     const user = useSelector(store => store.user);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
@@ -59,9 +59,31 @@ const AddObsForm = () => {
         setNameSearchType(event.target.value);
     }
 
+    //photo upload
+    const onFileChange = async (event) => {
+        const fileToUpload = event.target.files[0];
+        const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png' ]
+        if (acceptedImageTypes.includes(selectedFile.type)) {
+            setSelectedFile(fileToUpload);
+        }
+        else {
+            alert('Please select an image');
+        }
+    }
+
     //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
+        const fileName = encodeURIComponent(selectedFile.name);
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+        axios.post(`api/image?imageName=${fileName}`, formData)
+        .then(response => {
+            console.log('Success')
+        }).catch(error => {
+            console.log ('error', error)
+        })
+        
         const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
         if(newObservation.user_id !== null && newObservation.species !== null) { //prevents observation from being submitted without user.id and species
         dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });    
@@ -192,7 +214,14 @@ const AddObsForm = () => {
                 </textarea>
                 <br />
                 <label htmlFor="photos">Photos:</label>
-                <input type='text' id="photos" value={newObservation.photo} onChange={(event) => setNewObservation({...newObservation, photo: event.target.value})} placeholder="photo url" />
+                <input 
+                    type='file' 
+                    id="photos" 
+                    accept="image/*"
+                    value={newObservation.photo} 
+                    onChange={onFileChange} 
+                    placeholder="photo upload" 
+                />
                 <br/>
                 <br/>
                 <button type='submit'> add new observation </button>
