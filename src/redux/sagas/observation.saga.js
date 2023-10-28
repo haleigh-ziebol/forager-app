@@ -16,9 +16,10 @@ function* fetchUserObservations(action) {
     try {
       yield axios.post('/api/observation', action.payload);
       yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: action.payload });
-      action.callback();
+      action.callback(true);
     } catch (error) {
         console.log('error posting observation', error);
+        action.callback(false);
     }    
   }
 

@@ -71,7 +71,7 @@ function Observations() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'KEY',
+  googleMapsApiKey: 'LEY',
   });
   const mapStyle = {        
     height: "50vh",

@@ -6,6 +6,7 @@ import SearchMap from '../SearchMap/SearchMap';
 
 //MUI components
 import Alert from '@mui/material/Alert';
+import Fade from "@mui/material/Fade";
 
 //function to fetch current date
 function getDate() {
@@ -20,6 +21,8 @@ const AddObsForm = () => {
     const [newObservation, setNewObservation] = useState({ user_id: null, species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
     const [nameSearchType, setNameSearchType] = useState('common');
     const [success, setSuccess] = useState(false)
+    const [failed, setFailed] = useState(false)
+
 
     const user = useSelector(store => store.user);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
@@ -33,15 +36,13 @@ const AddObsForm = () => {
         dispatch({type:'FETCH_SCIENTIFIC'})
     }, []);
 
-    //use effect is not working ...
-    // //sets user_id in newObservation
-    // useEffect(() => {
-    //     if(user.id > 0){
-    //         console.log('setting user id:', user.id);
-    //         setNewObservation({...newObservation, user_id: user.id});
-    //         console.log(newObservation)
-    //     }
-    // }, [user.id]);
+    //sets user_id in newObservation
+    useEffect(() => {
+        if(user.id > 0){
+            console.log('setting user id:', user.id);
+            setNewObservation({...newObservation, user_id: user.id});
+        }
+    }, [user]);
 
     //sets coordinates in newObservation
     useEffect(() => {
@@ -61,20 +62,58 @@ const AddObsForm = () => {
     //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
-        setNewObservation({...newObservation, user_id: user.id})
-        console.log("observation is:", newObservation)
-        dispatch({ type: 'ADD_NEW_OBSERVATION', payload: newObservation, callback });    
+        const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
+        dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });    
     }
 
-    const callback = () => {
-        console.log("in callback")
-        setNewObservation({user_id: null, species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
-        setSuccess(true)
+    const callback = (string) => {
+        if (string == true) {
+            successObservation();
+        } else {
+            errorObservation();
+        }
+    }
+
+    const successObservation = () => {
+        setNewObservation({user_id: user.id, species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
+        window.scrollTo(0, 0);
+        setSuccess(true);
+    }
+
+    const errorObservation = () => {
+        window.scrollTo(0, 0);
+        setFailed(true);
     }
 
     return (
         <div>
-            {success && <Alert severity="success">This is a success alert — check it out!</Alert>}
+            { success &&
+                <Fade
+                in={success}
+                timeout={{ enter: 200, exit: 200 }} //Edit these two values to change the duration of transition when the element is getting appeared and disappeard
+                addEndListener={() => {
+                    setTimeout(() => {
+                    setSuccess(false)
+                    }, 4000);
+                }}
+                >
+                    <Alert severity="success">Observation Added!</Alert>
+                </Fade>
+            }
+            { failed &&
+                <Fade
+                in={failed}
+                timeout={{ enter: 200, exit: 200 }} //Edit these two values to change the duration of transition when the element is getting appeared and disappeard
+                addEndListener={() => {
+                    setTimeout(() => {
+                    setFailed(false)
+                    }, 4000);
+                }}
+                >
+                    <Alert severity="error">Error with adding observation! Make sure all inputs set</Alert>
+                </Fade>
+            }
+
             <h3>Observation Form</h3>
             <form onSubmit={addNewObservation}>
                 <label htmlFor="name_type">Species:</label>
