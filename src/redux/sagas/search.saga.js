@@ -29,4 +29,4 @@ function* observationSaga() {
   yield takeEvery('BADGE_USER_REGION', badgeUserRegion);
 }
   
-  export default observationSaga;
+export default observationSaga;

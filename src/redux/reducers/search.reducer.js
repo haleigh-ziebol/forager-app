@@ -23,5 +23,4 @@ const userRegionBadgeResults = (state = [{count: 0}], action) => {
 export default combineReducers({
   searchResults,
   userRegionBadgeResults,
-
 });

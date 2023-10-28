@@ -2,8 +2,6 @@ import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-//species won't update
-
 //child components
 import SearchMap from '../SearchMap/SearchMap';
 
@@ -31,6 +29,7 @@ const EditObsForm = () => {
 
     const [nameSearchType, setNameSearchType] = useState('scientific');
     let [updatedObservation, setUpdatedObservation] = useState(observationToEdit);
+    const [failed, setFailed] = useState(false)
 
     //fetches species for form selector
     useEffect(() => {
@@ -61,16 +60,41 @@ const EditObsForm = () => {
         event.preventDefault();
         if (updatedObservation !== observationToEdit) {
             console.log("observation is:", updatedObservation)
-            dispatch({ type: 'EDIT_OBSERVATION', payload: updatedObservation });
-            history.push('/user')
-        } else { /// update
-            console.log('no changes')
-            history.push('/user')
+            dispatch({ type: 'EDIT_OBSERVATION', payload: updatedObservation, callback });
+        } else {
+            errorObservation();
         }
+    }
+
+    const callback = (string) => {
+        if (string == true) {
+            history.push('/user')
+        } else {
+            errorObservation();
+        }
+    }
+
+    const errorObservation = () => {
+        window.scrollTo(0, 0);
+        setFailed(true);
     }
 
     return (
         <div>
+            { failed &&
+                <Fade
+                in={failed}
+                timeout={{ enter: 200, exit: 200 }}
+                addEndListener={() => {
+                    setTimeout(() => {
+                    setFailed(false)
+                    }, 4000);
+                }}
+                >
+                    <Alert severity="error">Error with updating observation! Check your inputs.</Alert>
+                </Fade>
+            }
+
             <h3>Edit Observation</h3>
             <form onSubmit={updateObservation}>
                 <label htmlFor="name_type">Species:</label>

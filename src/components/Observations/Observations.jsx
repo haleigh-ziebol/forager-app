@@ -71,7 +71,7 @@ function Observations() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'LEY',
+  googleMapsApiKey: 'KEY',
   });
   const mapStyle = {        
     height: "50vh",
@@ -81,13 +81,6 @@ function Observations() {
   const onSelect = (observation, index) => {
     setSelected({observation: observation, index: index});
   }
-
-  const iconPin = {
-    path: 'M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z',
-    fillColor: '#64be67',
-    fillOpacity: 1,
-    scale: 0.05, //to reduce the size of icons
-   }
 
   return (
     <div className="observation-container">

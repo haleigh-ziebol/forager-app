@@ -38,4 +38,4 @@ function* plantsSaga() {
   yield takeEvery('FETCH_REGIONS', fetchRegions);
 }
   
-  export default plantsSaga;
+export default plantsSaga;

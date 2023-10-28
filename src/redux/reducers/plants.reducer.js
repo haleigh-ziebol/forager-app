@@ -31,8 +31,8 @@ const regionList = (state = [], action) => {
 };
 
 
-  export default combineReducers({
-    scientificNamesList,
-    commonNamesList,
-    regionList,
-  });
+export default combineReducers({
+  scientificNamesList,
+  commonNamesList,
+  regionList,
+});

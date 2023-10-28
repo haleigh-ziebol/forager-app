@@ -63,7 +63,11 @@ const AddObsForm = () => {
     const addNewObservation = event => {
         event.preventDefault();
         const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
+        if(newObservation.user_id !== null && newObservation.species !== null) { //prevents observation from being submitted without user.id and species
         dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });    
+        } else {
+            callback(false)
+        }
     }
 
     const callback = (string) => {
@@ -75,7 +79,7 @@ const AddObsForm = () => {
     }
 
     const successObservation = () => {
-        setNewObservation({user_id: user.id, species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
+        setNewObservation({...newObservation, species: '', location: [] , photo:'' , notes:'', date_observed: getDate(), time_stamp: getDate()});
         window.scrollTo(0, 0);
         setSuccess(true);
     }
@@ -90,11 +94,11 @@ const AddObsForm = () => {
             { success &&
                 <Fade
                 in={success}
-                timeout={{ enter: 200, exit: 200 }} //Edit these two values to change the duration of transition when the element is getting appeared and disappeard
+                timeout={{ enter: 200, exit: 200 }}
                 addEndListener={() => {
                     setTimeout(() => {
                     setSuccess(false)
-                    }, 4000);
+                    }, 4000); //alerts on a timer
                 }}
                 >
                     <Alert severity="success">Observation Added!</Alert>
@@ -103,7 +107,7 @@ const AddObsForm = () => {
             { failed &&
                 <Fade
                 in={failed}
-                timeout={{ enter: 200, exit: 200 }} //Edit these two values to change the duration of transition when the element is getting appeared and disappeard
+                timeout={{ enter: 200, exit: 200 }}
                 addEndListener={() => {
                     setTimeout(() => {
                     setFailed(false)
@@ -178,11 +182,14 @@ const AddObsForm = () => {
                 <br/>
                 <br/>
                 <label htmlFor="date">Date Observed:</label>
-                <input type='date' id="date" value={newObservation.date_observed} onChange={(event) => setNewObservation({...newObservation, date_observed: event.target.value})} placeholder="observation date" />
+                <input type='date' id="date" value={newObservation.date_observed} 
+                    onChange={(event) => setNewObservation({...newObservation, date_observed: event.target.value})} placeholder="observation date" required/>
                 <br/>
                 <label>Notes: </label>
                 <br/>
-                <textarea rows="5" cols="35" name="text" value={newObservation.notes} onChange={(event) => setNewObservation({...newObservation, notes: event.target.value})} placeholder="notes"></textarea>
+                <textarea rows="5" cols="35" name="text" value={newObservation.notes} onChange={(event) => setNewObservation({...newObservation, notes: event.target.value})} 
+                    placeholder="not required">
+                </textarea>
                 <br />
                 <label htmlFor="photos">Photos:</label>
                 <input type='text' id="photos" value={newObservation.photo} onChange={(event) => setNewObservation({...newObservation, photo: event.target.value})} placeholder="photo url" />

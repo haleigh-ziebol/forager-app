@@ -11,7 +11,6 @@ const userRegion = (state = [{id: "", name: "", center: ["", ""]}], action) => {
 };
 
 
-  export default combineReducers({
-    userRegion,
-
-  });
+export default combineReducers({
+  userRegion,
+});
