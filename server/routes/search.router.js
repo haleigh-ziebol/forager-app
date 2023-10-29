@@ -27,7 +27,6 @@ router.get('/', (req, res) => {
     pool.query(queryText, [region, species, type])
     .then(result => {
       res.send(result.rows);
-      console.log(result.rows)
     })
     .catch(error => {
       console.log(`Error fetching species`, error);
@@ -45,7 +44,6 @@ router.get('/', (req, res) => {
     pool.query(queryText, [species, type])
     .then(result => {
       res.send(result.rows);
-      console.log(result.rows)
     })
     .catch(error => {
       console.log(`Error fetching species`, error);
@@ -67,7 +65,6 @@ router.get('/id/:ID', (req, res) => {
     pool.query(queryText, [id])
     .then(result => {
       res.send(result.rows[0]);
-      console.log(result.rows)
     })
     .catch(error => {
       console.log(`Error fetching species`, error);
@@ -94,7 +91,6 @@ router.get('/species/:searchTerm', (req, res) => {
     pool.query(queryText, [searchTerm])
     .then(result => {
       res.send(result.rows);
-      console.log(result.rows)
     })
     .catch(error => {
       console.log(`Error fetching species`, error);

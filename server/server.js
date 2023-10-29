@@ -1,12 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-require('dotenv').config();
-
-const app = express();
+const fileUpload = require('express-fileupload')
 
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
-const fileUpload = require('express-fileupload')
+
+require('dotenv').config();
+
+const app = express();
 
 
 // Route includes

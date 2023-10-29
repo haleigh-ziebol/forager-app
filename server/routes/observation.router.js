@@ -1,6 +1,5 @@
 const express = require('express');
 const pool = require('../modules/pool');
-const { update } = require('lodash');
 const router = express.Router();
 
 
