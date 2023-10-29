@@ -7,7 +7,8 @@ function Badges() {
   const user = useSelector((store) => store.user);
   const userRegion = useSelector(store => store.userdata.userRegion[0])
   const regionBadgeSpecies = useSelector(store => store.search.userRegionBadgeResults)
-
+  const berryBadgeSpecies = useSelector(store => store.search.berriesBadgeResults)
+  const treeBadgeSpecies = useSelector(store => store.search.treeBadgeResults)
 
   const dispatch = useDispatch();
 
@@ -15,15 +16,14 @@ function Badges() {
   useEffect(() => {
     console.log('fetching list of unique species from regional observations');
     // dispatch an action to get list
-    console.log( { region: userRegion.id, user_id: user.id})
-    console.log(userRegion)
     dispatch({type: 'BADGE_USER_REGION', payload: { region: userRegion.id, user_id: user.id}})
+    //berries
+    dispatch({type: 'BADGE_TREES', payload: { user_id: user.id}})
+    //trees
+    dispatch({type: 'BADGE_BERRIES', payload: { user_id: user.id}})
+
   }, []);
 
-
-  //full join observations to regional plants, new column to count number of unique species observed
-  //reducer for number
-  //saga for badges
 
   return (
     <div className="badge-container">
@@ -58,7 +58,7 @@ function Badges() {
             width={"75px"}
             height={"75px"}
             src={`Site_SVG/badges/berry.svg`}
-            title={regionBadgeSpecies[0].count <20 ? "Log 10 berries!" : "Berry Berry Berry"}
+            title={regionBadgeSpecies[0].count <20 ? `Log 10 berries! You've found ${berryBadgeSpecies[0].count} berry species.` : "Berry Berry Berry"}
           />
           <label htmlFor='berries'>Berry Finder</label>
         </div>
@@ -70,7 +70,7 @@ function Badges() {
             width={"75px"}
             height={"75px"}
             src={`Site_SVG/badges/tree.svg`}
-            title={regionBadgeSpecies[0].count <20 ? "Find 20 trees!" : "Tree Forager Status, hell yeah!"}
+            title={regionBadgeSpecies[0].count <20 ? `Find 10 trees! You've found ${treeBadgeSpecies[0].count} tree species.` : "Tree Forager Status, hell yeah!"}
           />
           <label htmlFor='trees'>Tree Finder</label>
         </div>

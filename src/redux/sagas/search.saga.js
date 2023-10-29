@@ -16,7 +16,7 @@ function* searchSpecies( action ) {
 
 function* badgeUserRegion( action ) {
   try {
-    const badgeResponse = yield axios.get(`/api/search/badge/?region=${action.payload.region}&id=${action.payload.user_id}`);
+    const badgeResponse = yield axios.get(`/api/search/badge/regional/?region=${action.payload.region}&id=${action.payload.user_id}`);
     yield console.log(badgeResponse)
       yield put({ type: 'SET_BADGE_USER_REGION', payload: badgeResponse.data });
   } catch (error) {
@@ -24,9 +24,34 @@ function* badgeUserRegion( action ) {
   }
 }
 
+function* badgeBerries( action ) {
+  try {
+    const badgeResponse = yield axios.get(`/api/search/badge/berries/?id=${action.payload.user_id}`);
+    yield console.log(badgeResponse)
+      yield put({ type: 'SET_BADGE_BERRIES', payload: badgeResponse.data });
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+function* badgeTrees( action ) {
+  try {
+    const badgeResponse = yield axios.get(`/api/search/badge/tree/?id=${action.payload.user_id}`);
+    yield console.log(badgeResponse)
+      yield put({ type: 'SET_BADGE_TREES', payload: badgeResponse.data });
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
+
 function* observationSaga() {
   yield takeEvery('SEARCH_SPECIES', searchSpecies);
   yield takeEvery('BADGE_USER_REGION', badgeUserRegion);
+  yield takeEvery('BADGE_BERRIES', badgeBerries);
+  yield takeEvery('BADGE_TREES', badgeTrees);
+
 }
   
 export default observationSaga;

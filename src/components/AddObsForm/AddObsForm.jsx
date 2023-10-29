@@ -63,17 +63,18 @@ const AddObsForm = () => {
     const addNewObservation = event => {
         event.preventDefault();
         const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
-        if(newObservation.user_id !== null && newObservation.species !== null) { //prevents observation from being submitted without user.id and species
+        if(payload.user_id !== null && payload.species !== null) { //prevents observation from being submitted without user.id and species
         dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });    
         } else {
-            callback(false)
+            callback(false);
+            console.log("trouble with vars")
         }
     }
 
     const callback = (string) => {
         if (string == true) {
             successObservation();
-        } else {
+        } else if (string == false) {
             errorObservation();
         }
     }
