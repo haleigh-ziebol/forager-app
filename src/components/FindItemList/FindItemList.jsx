@@ -11,7 +11,7 @@ function alterDate (string) {
   return string.substr(0,10)
 }
 
-function ObsItemList( { observation, i } ) {
+function FindItemList( { observation, i } ) {
 
   //controls option buttons for observations
   let [displayToggle, setDisplayToggle] = useState(true);
@@ -85,4 +85,4 @@ function ObsItemList( { observation, i } ) {
   );
 }
 
-export default ObsItemList;
+export default FindItemList;

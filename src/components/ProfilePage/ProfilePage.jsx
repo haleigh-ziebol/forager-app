@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 //child components
-import Observations from '../Observations/Observations';
+import Finds from '../Finds/Finds';
 
 //styling
 import './ProfilePage.css'
@@ -26,7 +26,7 @@ function ProfilePage() {
           <p>Region: {userRegion.length > 0 && userRegion[0].name}</p>
           <Badges/>
       </div>
-      <Observations />
+      <Finds />
     </div>
   );
 }

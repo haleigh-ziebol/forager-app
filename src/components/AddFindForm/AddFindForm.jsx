@@ -119,7 +119,7 @@ const AddObsForm = () => {
                 </Fade>
             }
 
-            <h3>Observation Form</h3>
+            <h3>Add A Find</h3>
             <form onSubmit={addNewObservation}>
                 <label htmlFor="name_type">Species:</label>
                 <fieldset id="name_type">

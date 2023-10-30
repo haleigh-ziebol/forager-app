@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //child components
-import ObsItemList from '../ObsItemList/ObsItemList';
-import ObsItemMap from '../ObsItemMap/ObsItemMap';
+import FindItemList from '../FindItemList/FindItemList';
+import FindItemMap from '../FindItemMap/FindItemMap';
 
 
 //MUI components
 import List from '@mui/material/List';
 
-function Observations() {
+function Finds() {
 
   const [ selected, setSelected ] = useState({});
   const [mapView, setMapView] = useState(true)
@@ -71,7 +71,7 @@ function Observations() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'KEY',
+  googleMapsApiKey: process.env.GOOGLE_MAPS_KEY,
   });
   const mapStyle = {        
     height: "50vh",
@@ -134,7 +134,7 @@ function Observations() {
       <div className="observation-info">
       <div className ="observations-header">
         <div>
-          <h1>My Observations:</h1>
+          <h1>My Finds:</h1>
         </div>
       <div className ="observations-body">
           {observationList.length > 0 && 
@@ -151,7 +151,7 @@ function Observations() {
         {!mapView && <div className="observation-container-list">
           { ( observationList.length > 0) && 
             observationList.map((observation, i) => {
-              return <ObsItemList className="observation-blocks" observation={observation} i={i} />
+              return <FindItemList className="observation-blocks" observation={observation} i={i} />
             })
           }
         </div>}
@@ -159,7 +159,7 @@ function Observations() {
           <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
           { ( observationList.length > 0) && 
             observationList.map((observation, i) => {
-              return <ObsItemMap className="" i={i} observation={observation} />
+              return <FindItemMap className="" i={i} observation={observation} />
             })
           }
           </List>
@@ -172,4 +172,4 @@ function Observations() {
 
 }
 
-export default Observations;
+export default Finds;

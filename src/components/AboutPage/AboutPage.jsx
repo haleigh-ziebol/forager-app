@@ -9,7 +9,12 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>
+          Foragers have special spots they visit every year and are always looking for new wild edibles. 
+          On this app users input the location and species along with photos and notes for their foraging spot. 
+          This data is stored on a map where they can view, edit and delete finds. 
+          When they input a new species, it counts toward regional foraging badges that a user can earn.
+        </p>
       </div>
     </div>
   );
