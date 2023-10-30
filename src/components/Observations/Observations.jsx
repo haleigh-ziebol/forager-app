@@ -71,7 +71,7 @@ function Observations() {
 
   const { isLoaded } = useLoadScript({
 
-  googleMapsApiKey: 'KEY',
+  googleMapsApiKey: process.env.GOOGLE_MAPS_KEY,
   });
   const mapStyle = {        
     height: "50vh",
@@ -134,7 +134,7 @@ function Observations() {
       <div className="observation-info">
       <div className ="observations-header">
         <div>
-          <h1>My Observations:</h1>
+          <h1>My Finds:</h1>
         </div>
       <div className ="observations-body">
           {observationList.length > 0 && 

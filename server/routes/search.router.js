@@ -77,18 +77,17 @@ router.get('/id/:ID', (req, res) => {
 
 
 
-//GET search by species name
-router.get('/species/:searchTerm', (req, res) => {
-  const searchTerm = req.params.searchTerm;
-  console.log('Fetching species info for search')
+//GET search for berry badge
+router.get('/badge/berries', (req, res) => {
+  const user_id = req.query.id;
+  console.log('Fetching species info for berry badge')
     if(req.isAuthenticated()) {
-      let queryText = `SELECT s.*, o.user_id FROM "species" s
-                  LEFT JOIN "observations" o
-                  ON o.species_id = s.id
-                  WHERE "scientific_name"  ILIKE '%' || $1 || '%'
-                  OR "common_name"  ILIKE '%' || $1 || '%'
-                  ORDER BY "common_name" ASC;`;
-    pool.query(queryText, [searchTerm])
+      let queryText = `SELECT COUNT(DISTINCT s."USDA_CODE") FROM species s
+                      JOIN "observations" o
+                      ON o.species_id = s.id
+                      WHERE "common_name"  ILIKE '%berry%'
+                      AND o.user_id = $1;`;
+    pool.query(queryText, [user_id])
     .then(result => {
       res.send(result.rows);
     })
@@ -102,19 +101,17 @@ router.get('/species/:searchTerm', (req, res) => {
 }); //end GET
 
 
-//GET search by growth type
-router.get('/type/:searchTerm', (req, res) => {
-  const searchTerm = req.params.searchTerm;
-  console.log('Fetching species info by growth type')
+//GET search for trees badge
+router.get('/badge/tree', (req, res) => {
+  const user_id = req.query.id;
+  console.log('Fetching species info for tree badge')
     if(req.isAuthenticated()) {
-    let queryText = `SELECT s.*, o.user_id FROM "species" s
-                    LEFT JOIN "observations" o
-                    ON o.species_id = s.id 
-                    WHERE "growth_type"  LIKE '%' || $1 || '%'
-                    ORDER BY "common_name" ASC;`;
-    pool.query(queryText, [searchTerm])
-    // pool.query(queryText)
-
+    let queryText = `SELECT COUNT(DISTINCT s."USDA_CODE") FROM species s
+                  JOIN "observations" o
+                  ON o.species_id = s.id
+                  WHERE s.growth_type  LIKE '%Tree%' AND
+                  o.user_id = $1;`;
+    pool.query(queryText, [user_id])
     .then(result => {
       res.send(result.rows);
     })
@@ -129,7 +126,7 @@ router.get('/type/:searchTerm', (req, res) => {
 
 
 //GET search for species observed by user that count towards regional badge
-router.get('/badge', (req, res) => {
+router.get('/badge/regional', (req, res) => {
   const region = req.query.region;
   const user_id = req.query.id;
   console.log('Fetching species info by region')

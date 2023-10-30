@@ -76,6 +76,7 @@ const AddObsForm = () => {
     //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
+<<<<<<< HEAD
         console.log(selectedFile)
         const fileName = encodeURIComponent(selectedFile.name);
         console.log(fileName, "file name")
@@ -95,12 +96,21 @@ const AddObsForm = () => {
         // } else {
         //     callback(false)
         // }
+=======
+        const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
+        if(payload.user_id !== null && payload.species !== null) { //prevents observation from being submitted without user.id and species
+        dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });    
+        } else {
+            callback(false);
+            console.log("trouble with vars")
+        }
+>>>>>>> main
     }
 
     const callback = (string) => {
         if (string == true) {
             successObservation();
-        } else {
+        } else if (string == false) {
             errorObservation();
         }
     }
@@ -117,7 +127,7 @@ const AddObsForm = () => {
     }
 
     return (
-        <div>
+        <div className='center'>
             { success &&
                 <Fade
                 in={success}
@@ -145,7 +155,7 @@ const AddObsForm = () => {
                 </Fade>
             }
 
-            <h3>Observation Form</h3>
+            <h3>Add A Find</h3>
             <form onSubmit={addNewObservation}>
                 <label htmlFor="name_type">Species:</label>
                 <fieldset id="name_type">
