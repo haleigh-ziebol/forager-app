@@ -1,5 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 //child components
 import SearchMap from '../SearchMap/SearchMap';
@@ -22,7 +23,7 @@ const AddObsForm = () => {
     const [nameSearchType, setNameSearchType] = useState('common');
     const [success, setSuccess] = useState(false)
     const [failed, setFailed] = useState(false)
-
+    const [selectedFile, setSelectedFile] = useState();
 
     const user = useSelector(store => store.user);
     const commonNamesList = useSelector(store => store.plants.commonNamesList);
@@ -59,16 +60,41 @@ const AddObsForm = () => {
         setNameSearchType(event.target.value);
     }
 
+    //photo upload
+    const onFileChange = async (event) => {
+        const fileToUpload = event.target.files[0];
+        console.log("file", fileToUpload)
+        const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg' ]
+        if (acceptedImageTypes.includes(fileToUpload.type)) {
+            setSelectedFile(fileToUpload);
+        }
+        else {
+            alert('Please select an image');
+        }
+    }
+
     //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
-        const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
-        if(payload.user_id !== null && payload.species !== null) { //prevents observation from being submitted without user.id and species
-        dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });    
-        } else {
-            callback(false);
-            console.log("trouble with vars")
-        }
+       console.log(selectedFile)
+        const fileName = encodeURIComponent(selectedFile.name);
+        console.log(fileName, "file name")
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+        console.log(formData, "form data")
+        axios.post(`api/image?imageName=${fileName}`, formData)
+        .then(response => {
+            console.log('Success')
+        }).catch(error => {
+            console.log ('error', error)
+        })
+        
+        // const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
+        // if(newObservation.user_id !== null && newObservation.species !== null) { //prevents observation from being submitted without user.id and species
+        // dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });    
+        // } else {
+        //     callback(false)
+        // }
     }
 
     const callback = (string) => {
@@ -192,9 +218,16 @@ const AddObsForm = () => {
                     placeholder="not required">
                 </textarea>
                 <br />
+
                 <label htmlFor="photos">Photos:</label>
-                <input type='text' id="photos" value={newObservation.photo} onChange={(event) => setNewObservation({...newObservation, photo: event.target.value})} placeholder="photo url" />
+                <input 
+                    type='file' 
+                    id="photos" 
+                    accept="image/*"
+                    onChange={onFileChange} 
+                />
                 <br/>
+
                 <br/>
                 <button type='submit'> add new observation </button>
             </form>

@@ -11,7 +11,6 @@ router.get('/region/:regionID', (req, res) => {
     let queryText = `SELECT * FROM "regions" WHERE "id" =$1;`;
     pool.query(queryText, [regionID])
     .then(result => {
-      console.log(result.rows)
       res.send(result.rows);
     })
     .catch(error => {
