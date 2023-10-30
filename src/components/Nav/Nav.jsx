@@ -16,7 +16,7 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/addObservation">
-              Add Observation
+              Add Find
             </Link>
 
             <Link className="navLink" to="/search">

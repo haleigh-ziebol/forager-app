@@ -76,7 +76,7 @@ const AddObsForm = () => {
     //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
-        console.log(selectedFile)
+       console.log(selectedFile)
         const fileName = encodeURIComponent(selectedFile.name);
         console.log(fileName, "file name")
         const formData = new FormData();
@@ -100,7 +100,7 @@ const AddObsForm = () => {
     const callback = (string) => {
         if (string == true) {
             successObservation();
-        } else {
+        } else if (string == false) {
             errorObservation();
         }
     }
@@ -117,7 +117,7 @@ const AddObsForm = () => {
     }
 
     return (
-        <div>
+        <div className='center'>
             { success &&
                 <Fade
                 in={success}
@@ -145,7 +145,7 @@ const AddObsForm = () => {
                 </Fade>
             }
 
-            <h3>Observation Form</h3>
+            <h3>Add A Find</h3>
             <form onSubmit={addNewObservation}>
                 <label htmlFor="name_type">Species:</label>
                 <fieldset id="name_type">

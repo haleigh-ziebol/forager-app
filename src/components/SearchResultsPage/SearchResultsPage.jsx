@@ -18,13 +18,15 @@ function SearchResultsPage() {
   const [growthType, setGrowthType] = useState("");
   const history = useHistory();
 
+  
   const transformRegion = () => {
     if (searchTerms.region === '%') {
       setRegion("ANY")
     }
     else {
-      const regionString = regionList.find(x => x.id == searchTerms.region);
-      setRegion(regionString.name)
+      const searchRegion = regionList.find(x => x.id == searchTerms.region);
+      setRegion(searchRegion.name)
+      console.log(searchRegion)
     }
   }
 
@@ -47,16 +49,15 @@ function SearchResultsPage() {
       setSpecies(speciesString)
     }
   }
-
-  const transformAll = () => {
-    transformRegion();
-    transformGrowth();
-    transformSpecies();
-  }
   
   //transforms search terms for string in display
   useEffect(() => {
-    transformAll();
+    if (searchTerms.region) { //protects against race condition
+    console.log(searchTerms);
+    transformRegion();
+    transformGrowth();
+    transformSpecies();
+    }
   }, [searchTerms]);
 
 
