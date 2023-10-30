@@ -52,9 +52,12 @@ function SearchResultsPage() {
   
   //transforms search terms for string in display
   useEffect(() => {
+    if (searchTerms.region) { //protects against race condition
+    console.log(searchTerms);
     transformRegion();
     transformGrowth();
     transformSpecies();
+    }
   }, [searchTerms]);
 
 
