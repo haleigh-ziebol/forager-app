@@ -19,12 +19,11 @@ router.post('/', async  (req, res) => {
       console.log("data:", imageData)
       const uploadedFile = await s3Client.upload({
         Bucket: 'forager-app/user-observations',
-        Key: `${user.id}_${imageName}.jpg`, //look up time stamp in unix code
+        Key: `${req.user.id}_${imageName}.jpg`, //look up time stamp in unix code
         Body: imageData,
       }).promise() //from old node module
       //url for file access
-      console.log("uploadedFile:", uploadedFile)
-      res.send(uploadedFile.location);
+      res.send(uploadedFile.Location);
     }
     catch (err) {
       if (err.status >= 100 && err.status < 600){
