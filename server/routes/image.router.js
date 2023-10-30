@@ -11,18 +11,21 @@ const s3Client = new aws.S3({
 
 //POST new observation as user
 router.post('/', async  (req, res) => {
-  // if(req.isAuthenticated()) {
+  if(req.isAuthenticated()) {
     try {
       const {imageName} = req.query;
       const imageData = req.files.image.data;
-
+      console.log("name:", imageName);
+      console.log("data:", imageData)
       const uploadedFile = await s3Client.upload({
         Bucket: 'forager-app/user-observations' ,
         Key: `${imageName}.jpg`,
         Body: imageData,
       })
       //url for file access
-      res.sendStatus(uploadedFile.location);
+      console.log("uploadedFile:", uploadedFile)
+      res.send(uploadedFile.location);
+
     }
     catch (err) {
       if (err.status >= 100 && err.status < 600){
@@ -32,10 +35,10 @@ router.post('/', async  (req, res) => {
       res.status(500);
       }
     }
-  // }
-    // else {
-    //   res.sendStatus(401);
-    // }
+  }
+    else {
+      res.sendStatus(401);
+    }
 });//end POST
 
 module.exports = router;
