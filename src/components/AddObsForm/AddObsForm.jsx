@@ -77,7 +77,11 @@ const AddObsForm = () => {
     const addNewObservation = event => {
         event.preventDefault();
 <<<<<<< HEAD
+<<<<<<< HEAD
         console.log(selectedFile)
+=======
+       console.log(selectedFile)
+>>>>>>> 95d5b384fefbe38d132b98bdc7c470b231c1b79d
         const fileName = encodeURIComponent(selectedFile.name);
         console.log(fileName, "file name")
         const formData = new FormData();
@@ -96,6 +100,7 @@ const AddObsForm = () => {
         // } else {
         //     callback(false)
         // }
+<<<<<<< HEAD
 =======
         const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
         if(payload.user_id !== null && payload.species !== null) { //prevents observation from being submitted without user.id and species
@@ -105,6 +110,8 @@ const AddObsForm = () => {
             console.log("trouble with vars")
         }
 >>>>>>> main
+=======
+>>>>>>> 95d5b384fefbe38d132b98bdc7c470b231c1b79d
     }
 
     const callback = (string) => {
