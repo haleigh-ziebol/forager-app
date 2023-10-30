@@ -15,7 +15,7 @@ function Nav() {
               My Profile
             </Link>
 
-            <Link className="navLink" to="/addFind">
+            <Link className="navLink" to="/addObservation">
               Add Find
             </Link>
 

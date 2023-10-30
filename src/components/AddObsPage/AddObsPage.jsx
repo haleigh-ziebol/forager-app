@@ -1,13 +1,13 @@
 import React from 'react';
 
-import AddObsForm from '../AddFindForm/AddFindForm';
+import AddObsForm from '../AddObsForm/AddObsForm';
 
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function AddFindPage() {
+function AddObsPage() {
   return (
     <div className="container">
       <AddObsForm />
@@ -15,4 +15,4 @@ function AddFindPage() {
   );
 }
 
-export default AddFindPage;
+export default AddObsPage;

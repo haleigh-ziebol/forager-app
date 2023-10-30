@@ -10,7 +10,7 @@ function AboutPage() {
     <div className="container">
       <div>
         <p>
-          Foragers have special spots they visit every year and are always looking for new wild edibles. 
+          Foragers have special spots they visit every year and are always looking for new wild edibles! 
           On this app users input the location and species along with photos and notes for their foraging spot. 
           This data is stored on a map where they can view, edit and delete finds. 
           When they input a new species, it counts toward regional foraging badges that a user can earn.

@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //child components
-import FindItemList from '../FindItemList/FindItemList';
-import FindItemMap from '../FindItemMap/FindItemMap';
+import ObsItemList from '../ObsItemList/ObsItemList';
+import ObsItemMap from '../ObsItemMap/ObsItemMap';
 
 
 //MUI components
 import List from '@mui/material/List';
 
-function Finds() {
+function Observations() {
 
   const [ selected, setSelected ] = useState({});
   const [mapView, setMapView] = useState(true)
@@ -151,7 +151,7 @@ function Finds() {
         {!mapView && <div className="observation-container-list">
           { ( observationList.length > 0) && 
             observationList.map((observation, i) => {
-              return <FindItemList className="observation-blocks" observation={observation} i={i} />
+              return <ObsItemList className="observation-blocks" observation={observation} i={i} />
             })
           }
         </div>}
@@ -159,7 +159,7 @@ function Finds() {
           <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
           { ( observationList.length > 0) && 
             observationList.map((observation, i) => {
-              return <FindItemMap className="" i={i} observation={observation} />
+              return <ObsItemMap className="" i={i} observation={observation} />
             })
           }
           </List>
@@ -172,4 +172,4 @@ function Finds() {
 
 }
 
-export default Finds;
+export default Observations;
