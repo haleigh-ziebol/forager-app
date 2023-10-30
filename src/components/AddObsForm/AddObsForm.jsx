@@ -91,7 +91,7 @@ const AddObsForm = () => {
     }
 
     return (
-        <div>
+        <div className='center'>
             { success &&
                 <Fade
                 in={success}
