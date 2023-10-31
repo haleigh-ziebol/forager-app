@@ -32,7 +32,7 @@ function SearchEdiblesPage() {
   }
 
   return (
-    <div className="container">
+    <div className="container center">
       <h1>Search Edibles</h1>
       <form onSubmit={submitSearch}>
         <fieldset>

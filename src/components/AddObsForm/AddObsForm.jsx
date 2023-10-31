@@ -82,19 +82,16 @@ const AddObsForm = () => {
         const formData = new FormData();
         formData.append('image', selectedFile);
         console.log(formData, "form data")
-        axios.post(`api/image?imageName=${fileName}`, formData)
-        .then(response => {
-            console.log('Success')
-        }).catch(error => {
-            console.log ('error', error)
-        })
-        
-        // const payload = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
-        // if(newObservation.user_id !== null && newObservation.species !== null) { //prevents observation from being submitted without user.id and species
-        // dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });    
-        // } else {
-        //     callback(false)
-        // }
+        const addUserId = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
+        console.log(addUserId, "user")
+        const payload = {observationData: addUserId, formData: formData, fileName:fileName}
+
+        if(addUserId.user_id !== null && newObservation.species !== null) { //prevents observation from being submitted without user.id and species
+            dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });
+            console.log("observation submitted")
+        } else {
+            callback(false)
+        }
     }
 
     const callback = (string) => {
@@ -229,7 +226,7 @@ const AddObsForm = () => {
                 <br/>
 
                 <br/>
-                <button type='submit'> add new observation </button>
+                <button type='submit'> add new find! </button>
             </form>
         </div>
     );

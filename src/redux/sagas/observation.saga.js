@@ -14,8 +14,12 @@ function* fetchUserObservations(action) {
 //saga function to add observation to DB
 function* addNewObservation(action) {
   try {
-    yield axios.post('/api/observation', action.payload);
-    yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: action.payload });
+    const imageLocation = yield axios.post(`api/image/?imageName=${action.payload.fileName}`, action.payload.formData)
+    yield console.log(imageLocation)
+    const observation = yield {...action.payload.observationData, photo: imageLocation.data}
+    yield console.log(observation)
+    yield axios.post('/api/observation', observation);
+    yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: observation });
     action.callback(true);
   } catch (error) {
       console.log('error posting observation', error);

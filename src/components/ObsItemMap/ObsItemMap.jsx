@@ -80,6 +80,12 @@ function ObsItemMap( { observation, i } ) {
         onClick={() => history.push(`/info/${observation.id}`)}
       />
       <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
+      <img 
+        alt={`photo_obs_id${observation.id}`}
+        width={"40px"}
+        height={"80px"}
+        src={observation.photo}
+      />
       <button onClick={() => dispatch({type:'OBSERVATION_TO_HIGHLIGHT', payload: { id: observation.id, location: observation.location}})}>find on Map</button>
     </ListItem>
   );
