@@ -86,9 +86,17 @@ const AddObsForm = () => {
         console.log(addUserId, "user")
         const payload = {observationData: addUserId, formData: formData, fileName:fileName}
 
-        if(addUserId.user_id !== null && newObservation.species !== null) { //prevents observation from being submitted without user.id and species
+        if(addUserId.user_id !== null && newObservation.species !== null && payload.fileName !== null) { //prevents observation from being submitted without user.id and species
             dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });
             console.log("observation submitted")
+             if(addUserId.user_id !== null && newObservation.species !== null && payload.fileName !== null) { //prevents observation from being submitted without user.id and species
+            dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });
+            console.log("observation submitted")
+        }
+        else if(addUserId.user_id !== null && newObservation.species !== null && payload.fileName == null) {
+            dispatch({ type: 'ADD_NEW_OBSERVATION', payload: payload, callback });
+            console.log("observation submitted")
+        } 
         } else {
             callback(false)
         }

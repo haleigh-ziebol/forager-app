@@ -1,16 +1,18 @@
 .profile-container {
+  flex-grow: 2;
   display: flex; 
   flex-direction: row;
-  margin: 20px;
+  justify-content: space-between;
 }
 
 .profile-info {
-  flex-grow: 1;
   background-color: #E6F0E8;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .observation-container {
-  flex-grow: 4;
+  flex-grow: 3;
   display: flex;
   flex-direction: row;
 }
@@ -34,5 +36,6 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
   
