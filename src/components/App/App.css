@@ -34,6 +34,22 @@ body {
 .species-found {
   background-color: green;
 }
+
+.modal {
+  width: 50vw;
+  height: 50vh;
+  background-color: #E6CFC1;
+}
+
+.avatar-box {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+}
+
+.avatar-item {
+  padding: 20px
+}
+
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -121,11 +137,10 @@ Form Treatment
 
 .formPanel {
   box-sizing: border-box;
-  width: 400px;
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: #EEFFF1;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }

@@ -6,7 +6,7 @@ function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="modal center">
       <LoginForm />
 
       <center>

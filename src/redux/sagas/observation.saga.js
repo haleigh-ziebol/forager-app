@@ -51,7 +51,6 @@ function* editObservation(action) {
   }    
 }
   
-
 function* observationSaga() {
   yield takeEvery('FETCH_USER_OBSERVATIONS', fetchUserObservations);
   yield takeEvery('ADD_NEW_OBSERVATION', addNewObservation);

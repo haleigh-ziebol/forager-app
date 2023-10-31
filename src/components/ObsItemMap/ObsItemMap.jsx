@@ -86,7 +86,14 @@ function ObsItemMap( { observation, i } ) {
         height={"80px"}
         src={observation.photo}
       />
-      <button onClick={() => dispatch({type:'OBSERVATION_TO_HIGHLIGHT', payload: { id: observation.id, location: observation.location}})}>find on Map</button>
+
+        <img 
+          alt="marker"
+          width="20px"
+          height="20px"
+          src={`Site_SVG/marker.svg`}
+          onClick={() => dispatch({type:'OBSERVATION_TO_HIGHLIGHT', payload: { id: observation.id, location: observation.location}})}
+        />
     </ListItem>
   );
 }

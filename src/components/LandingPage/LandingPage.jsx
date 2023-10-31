@@ -23,6 +23,7 @@ function LandingPage() {
         <div>
           <h1>keep track of your finds</h1>
           <h1>earn foraging badges</h1>
+          <button onClick={()=> history.push('/about')}>About</button>
         </div>
     </div>
   );

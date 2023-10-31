@@ -11,6 +11,8 @@ import ObsItemMap from '../ObsItemMap/ObsItemMap';
 //MUI components
 import List from '@mui/material/List';
 
+// if observation is highlighted, bounce it
+
 function Observations() {
 
   const [ selected, setSelected ] = useState({});
@@ -65,8 +67,6 @@ function Observations() {
       setBounds();
     }
   }, [map, observationList]);
-
-
   //end code modified from Joe Daniels
 
   const { isLoaded } = useLoadScript({
@@ -78,9 +78,20 @@ function Observations() {
     width: "50wh",
   };
 
+  //for infoWindow
   const onSelect = (observation, index) => {
     setSelected({observation: observation, index: index});
   }
+
+  //resets highlighted obs after timeout 
+  useEffect(() => {
+    if (highlightObs.id !== "") {
+      const timer = setTimeout(() => {
+        dispatch({type: 'RESET_HIGHLIGHT'})
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [highlightObs]);
 
   return (
     <div className="observation-container">
@@ -99,10 +110,10 @@ function Observations() {
                   position={{lat: parseFloat(observation.location[0]), lng: parseFloat(observation.location[1])}} 
                   key={observation.id} 
                   onClick={() => onSelect(observation, i+1)}
-                />;
+                  animation={observation.id==highlightObs.id ? google.maps.Animation.BOUNCE : null}
+                />
               })
             } 
-
             {
                 (selected.observation) && 
                 (
@@ -110,18 +121,6 @@ function Observations() {
                   position={{lat: parseFloat(selected.observation.location[0]), lng: parseFloat(selected.observation.location[1])}}
                   clickable={true}
                   onCloseClick={() => setSelected({})}
-                >
-                  <p>{selected.index}</p>
-                </InfoWindowF>
-                )
-            }
-            {
-                (highlightObs.id !== 0) && 
-                (
-                  <InfoWindowF
-                  position={{lat: parseFloat(highlightObs.location[0]), lng: parseFloat(highlightObs.location[1])}}
-                  clickable={true}
-                  onCloseClick={() => dispatch({type: 'RESET_HIGHLIGHT'})}
                 >
                   <p>{selected.index}</p>
                 </InfoWindowF>
