@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux';
 //child components
 import SearchResultItem from '../SearchResultItem/SearchResultItem';
 
+//MUI components
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
+
 
 function SearchResultsPage() {
   const speciesResults = useSelector(store => store.search.searchResults[0].data);
@@ -87,7 +90,30 @@ function SearchResultsPage() {
 
     { speciesResults !== "" &&
       <div>
-        <table>
+
+<TableContainer>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Scientific Name </TableCell>
+            <TableCell align="right">Common Name(s)</TableCell>
+            <TableCell align="right">Growth Type</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+
+        {speciesResults?.map((species) => {
+              if (filterObservations && species.user_id !== null) {
+                return <div></div>
+              }
+              else {
+                return <SearchResultItem species={species} />
+              }
+            })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+        {/* <table>
           <thead>
           <tr>
             <th>Scientific Name</th>
@@ -96,16 +122,8 @@ function SearchResultsPage() {
           </tr>
           </thead>
           <tbody>
-            {speciesResults?.map((species) => {
-              if (filterObservations && species.user_id !== null) {
-                return <div></div>
-              }
-              else {
-                return <SearchResultItem species={species} />
-              }
-            })}
           </tbody>
-        </table>
+        </table> */}
       </div>
     }
 

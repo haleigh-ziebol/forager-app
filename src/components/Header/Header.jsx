@@ -15,7 +15,7 @@ function Header () {
       height={"100px"}
       width={"300px"}
       src={`Site_SVG/Logo.svg`}
-      onClick={history.push('/home')}
+      onClick={() =>history.push('/home')}
       />
       <div>
         {/* If no user is logged in, show these links */}
