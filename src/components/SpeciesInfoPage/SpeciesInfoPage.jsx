@@ -45,11 +45,11 @@ function SpeciesInfoPage() {
 
 
     return(
-       <div>
+       <div className="background center">
         <h1>Species Info</h1>
         <Card sx={{ maxWidth: 3/4 }}>
           <h2>Common Name: {speciesInfo.database.common_name}</h2>
-          <h2>Scientific Name: {speciesInfo.database.scientific_name}</h2>
+          <h2>Scientific Name: <i>{speciesInfo.database.scientific_name}</i></h2>
           <h2>Growth Type: {speciesInfo.database.growth_type}</h2>
           <img src={speciesInfo.image}
           alt={speciesInfo.database.scientific_name}

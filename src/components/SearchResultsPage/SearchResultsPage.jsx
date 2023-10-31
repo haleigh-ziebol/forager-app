@@ -68,8 +68,8 @@ function SearchResultsPage() {
     <div className="container">
      <h2>Search Results:</h2>
      {species == "ANY" ? 
-     <p>{speciesResults.length} results for {region} region, {species} name and {growthType} growth type.</p>
-    : <p>{speciesResults.length} results for {region} region, name including "{species}" and {growthType} growth type.</p> }
+     <p>{speciesResults.length} results for species from {region} region, with {species} name and {growthType} growth type.</p>
+    : <p>{speciesResults.length} results for species from {region} region, with a name including "{species}" and {growthType} growth type.</p> }
      <label htmlFor="filter-observations"> Filter Out Species I've Observed </label>
      <input 
         type="checkbox"

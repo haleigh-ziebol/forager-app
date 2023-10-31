@@ -72,7 +72,7 @@ function ObsItemList( { observation, i } ) {
       </div>
       }
       <p>Date: {alterDate(observation.date_observed)}</p>
-      <p>{observation.scientific_name}</p>
+      <p><i>{observation.scientific_name}</i></p>
       <img 
         alt="info"
         width={"25px"}

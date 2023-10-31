@@ -14,7 +14,7 @@ function ProfilePage() {
   const userRegion = useSelector(store => store.userdata.userRegion)
 
   return (
-    <div className="profile-container">
+    <div className="profile-container background">
       <div className="profile-info">
           <img 
            alt={user.icon}

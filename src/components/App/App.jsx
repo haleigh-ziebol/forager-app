@@ -104,7 +104,7 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute
-              // logged in shows AddObservationPage else shows LoginPage
+              // logged in shows EditObservationPage else shows LoginPage
               exact
               path="/editObservation/:id"
             >
@@ -136,11 +136,19 @@ function App() {
               <SearchResultsPage />
             </ProtectedRoute>
 
+
             <Route
               exact
               path="/home"
             >
-              <LandingPage />
+              {user.id ?
+                // If the user is already logged in, 
+                // redirect them to the /user page
+                <Redirect to="/user" />
+                :
+                // Otherwise, show the registration page
+                <LandingPage />
+              }
             </Route>
 
             {/* If none of the other routes matched, we will show a 404. */}

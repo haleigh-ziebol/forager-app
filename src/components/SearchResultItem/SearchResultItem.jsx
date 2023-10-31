@@ -13,7 +13,7 @@ function SearchResultItem({ species }) {
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
       >
         <TableCell component="th" scope="row">
-          {species.scientific_name}
+        <i>{species.scientific_name}</i>
         </TableCell>
         <TableCell align="right">{species.common_name}</TableCell>
         <TableCell align="right">{species.growth_type}</TableCell>
