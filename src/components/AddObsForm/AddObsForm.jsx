@@ -126,7 +126,7 @@ const AddObsForm = () => {
 
     return (
         <div className='center'>
-        {/* <Debounce/> */}
+        <Debounce/>
             { success &&
                 <Fade
                 in={success}

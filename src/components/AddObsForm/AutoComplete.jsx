@@ -4,7 +4,6 @@ import { Input, List } from "antd";
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 
 const Debounce = () => {
-    const google = window.google;
 
   const {
     placePredictions,
