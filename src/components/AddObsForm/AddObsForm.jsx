@@ -17,9 +17,6 @@ function getDate() {
 
 
 const AddObsForm = () => {
-    <script async
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
-</script>
     const dispatch = useDispatch();
     
     const [newObservation, setNewObservation] = useState({ user_id: null, species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
@@ -79,12 +76,15 @@ const AddObsForm = () => {
     //adds user's new observation
     const addNewObservation = event => {
         event.preventDefault();
-       console.log(selectedFile)
-        const fileName = encodeURIComponent(selectedFile.name);
-        console.log(fileName, "file name")
+        console.log(selectedFile)
+        let fileName = "";
         const formData = new FormData();
+        if (selectedFile) { // keeps photo data empty if nothing uploaded
+        fileName = encodeURIComponent(selectedFile.name);
+        console.log(fileName, "file name")
         formData.append('image', selectedFile);
         console.log(formData, "form data")
+        }
         const addUserId = {...newObservation, user_id: user.id} //payload is set immediately whereas setting newObs with useState is lagged
         console.log(addUserId, "user")
         const payload = {observationData: addUserId, formData: formData, fileName:fileName}
@@ -126,7 +126,7 @@ const AddObsForm = () => {
 
     return (
         <div className='center'>
-        <Debounce/>
+        {/* <Debounce/> */}
             { success &&
                 <Fade
                 in={success}

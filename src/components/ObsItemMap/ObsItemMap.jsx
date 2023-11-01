@@ -30,7 +30,7 @@ function ObsItemMap( { observation, i } ) {
   const handleDelete = () => {
     //send user_id with payload
     console.log('observation id:', observation.id)
-    dispatch({type:'DELETE_OBSERVATION', payload:{id: observation.id, user_id: user.id}})
+    dispatch({type:'DELETE_OBSERVATION', payload:{id: observation.id, user_id: user.id}})//image: observation.photo for delete route
 
   }
 
@@ -80,14 +80,16 @@ function ObsItemMap( { observation, i } ) {
         onClick={() => history.push(`/info/${observation.id}`)}
       />
       <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
-      <img 
-        alt={`photo_obs_id${observation.id}`}
-        width={"40px"}
-        height={"80px"}
-        src={observation.photo}
-      />
-
+      { (observation.photo !== "") &&
         <img 
+          alt={`photo_obs_id${observation.id}`}
+          width={"40px"}
+          height={"80px"}
+          src={observation.photo}
+        />
+      }
+     
+       <img 
           alt="marker"
           width="20px"
           height="20px"

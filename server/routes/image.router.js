@@ -39,4 +39,32 @@ router.post('/', async  (req, res) => {
     }
 });//end POST
 
+
+// //DELETE uploaded photo
+// router.delete('/delete', async  (req, res) => {
+//   if(req.isAuthenticated()) {
+//     try {
+//       const {imageLocation} = req.query;
+//       console.log("name:", imageLocation);
+//       await s3Client.deleteObject({
+//         Bucket: 'forager-app/user-observations',
+//         Key: imageLocation,
+//       }).promise() //from old node module
+//       //url for file access
+//       res.sendStatus();
+//     }
+//     catch (err) {
+//       if (err.status >= 100 && err.status < 600){
+//       res.status(err.status);
+//       }
+//       else{
+//       res.status(500);
+//       }
+//     }
+//   }
+//     else {
+//       res.sendStatus(401);
+//     }
+// });//end DELETE
+
 module.exports = router;

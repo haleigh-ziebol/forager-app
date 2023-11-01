@@ -14,7 +14,10 @@ function* fetchUserObservations(action) {
 //saga function to add observation to DB
 function* addNewObservation(action) {
   try {
-    const imageLocation = yield axios.post(`api/image/?imageName=${action.payload.fileName}`, action.payload.formData)
+    let imageLocation = {data:""};
+    if (action.payload.fileName) {
+      imageLocation = yield axios.post(`api/image/?imageName=${action.payload.fileName}`, action.payload.formData)
+    }
     yield console.log(imageLocation)
     const observation = yield {...action.payload.observationData, photo: imageLocation.data}
     yield console.log(observation)
@@ -32,6 +35,7 @@ function* deleteObservation(action) {
   try {
     yield console.log("action payload is", action.payload)
     yield axios.delete(`/api/observation/userDelete/${action.payload.id}`);
+    yield axios.delete(`/api/image/delete/?${action.payload.image}`)
     yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: action.payload });
   } catch (error) {
     console.log('error posting observation', error);
