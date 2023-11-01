@@ -1,6 +1,6 @@
 import React from 'react';
 
-const techArray = ['React.js', 'Saga.js', 'Redux.js', 'Express.js', 'Node.js', 'Axios', 'Postgres', 'SQL', 'HTML5', 'CSS', 'GitHub', 'Google Maps API', 'Amazon Web Services (AWS)']
+const techArray = ['React.js', 'Saga.js', 'Redux.js', 'wtf_wikipedia.js', 'react-google-maps/api.js', 'Express.js', 'Node.js', 'Axios', 'Postgres', 'SQL', 'HTML5', 'CSS', 'GitHub', 'Google Maps API', 'Amazon Web Services (AWS)']
 
 function AboutPage() {
   return (

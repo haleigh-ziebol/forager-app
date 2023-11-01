@@ -1,6 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import Debounce from './AutoComplete.jsx'
 
 //child components
 import SearchMap from '../SearchMap/SearchMap';
@@ -17,6 +17,9 @@ function getDate() {
 
 
 const AddObsForm = () => {
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+</script>
     const dispatch = useDispatch();
     
     const [newObservation, setNewObservation] = useState({ user_id: null, species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
@@ -123,6 +126,7 @@ const AddObsForm = () => {
 
     return (
         <div className='center'>
+        <Debounce/>
             { success &&
                 <Fade
                 in={success}

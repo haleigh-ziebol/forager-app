@@ -13,6 +13,8 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+      <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_KEY}&libraries=places&callback=initMap`} async></script>
+
       <App />
       </BrowserRouter>
     </Provider>
