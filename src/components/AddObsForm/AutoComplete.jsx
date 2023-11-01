@@ -1,56 +1,66 @@
-import { useState } from "react";
-import { Input, List } from "antd";
+import { useRef, useEffect } from "react";
 
-import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-
-const Debounce = () => {
-
-  const {
-    placePredictions,
-    getPlacePredictions,
-    isPlacePredictionsLoading,
-  } = useGoogle({
-    apiKey: process.env.REACT_APP_GOOGLE,
-  });
-  const [value, setValue] = useState("");
-
-  return (
-    <div style={{ width: "250px" }}>
-      <span>Debounced</span>
-      <Input.Search
-        style={{ color: "black" }}
-        value={value}
-        placeholder="Debounce 500 ms"
-        onChange={(evt) => {
-          getPlacePredictions({ input: evt.target.value });
-          setValue(evt.target.value);
-        }}
-        loading={isPlacePredictionsLoading}
-      />
-      <div
-        style={{
-          marginTop: "20px",
-          width: "200px",
-          height: "200px",
-          display: "flex",
-          flex: "1",
-          flexDirection: "column",
-          marginBottom: "100px",
-        }}
-      >
-        {!isPlacePredictionsLoading && (
-          <List
-            dataSource={placePredictions}
-            renderItem={(item) => (
-              <List.Item onClick={() => setValue(item.description)}>
-                <List.Item.Meta title={item.description} />
-              </List.Item>
-            )}
-          />
-        )}
-      </div>
-    </div>
+const AutoComplete = () => {
+ const autoCompleteRef = useRef();
+ const inputRef = useRef();
+ const options = {
+  componentRestrictions: { country: "us" },
+  fields: ["geometry"],
+  types: ["establishment"]
+ };
+ useEffect(() => {
+  autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+   inputRef.current,
+   options
   );
+  autoCompleteRef.current.addListener("place_changed", async function () {
+   const place = await autoCompleteRef.current.getPlace();
+   console.log({ place });
+  });
+ }, []);
+ return (
+  <div>
+   <label>enter address :</label>
+   <input ref={inputRef} />
+  </div>
+ );
 };
+export default AutoComplete;
 
-export default Debounce;
+// import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+// import useEffect from 'react';
+
+// export default () => {
+//   const {
+//     placesService,
+//     placePredictions,
+//     getPlacePredictions,
+//     isPlacePredictionsLoading,
+//   } = usePlacesService({
+//     apiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
+//   });
+
+//   useEffect(() => {
+//     // fetch place details for the first element in placePredictions array
+//     if (placePredictions.length)
+//       placesService?.getDetails(
+//         {
+//           placeId: placePredictions[0].place_id,
+//         },
+//         (placeDetails) => savePlaceDetailsToState(placeDetails)
+//       );
+//   }, [placePredictions]);
+
+//   return (
+//     <>
+//       <Input
+//         placeholder="Debounce 500 ms"
+//         onChange={(evt) => {
+//           getPlacePredictions({ input: evt.target.value });
+//         }}
+//         loading={isPlacePredictionsLoading}
+//       />
+//       {placePredictions.map((item) => renderItem(item))}
+//     </>
+//   );
+// };
