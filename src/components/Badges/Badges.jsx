@@ -41,24 +41,24 @@ function Badges() {
 
         <div>
           <img 
-            className={regionBadgeSpecies[0].count <20 ? "unearned" : ""}
+            className={regionBadgeSpecies[0].count <10 ? "unearned" : ""}
             alt={user.icon}
             width={"75px"}
             height={"75px"}
             src={`Site_SVG/badges/red.svg`}
-            title={regionBadgeSpecies[0].count <20 ? "Next goal: find 20 species!" : "WOWZA! 20 species observed in your region"}
+            title={regionBadgeSpecies[0].count <20 ? "Next goal: find 10 species!" : "WOWZA! 10 species observed in your region"}
           />
-          <label htmlFor='20-things'>20 Species</label>
+          <label htmlFor='20-things'>10 Species</label>
         </div>
         <div>
           <img 
             id="berries"
-            className={berryBadgeSpecies[0].count <10 ? "unearned" : ""}
+            className={berryBadgeSpecies[0].count <5 ? "unearned" : ""}
             alt={user.icon}
             width={"75px"}
             height={"75px"}
             src={`Site_SVG/badges/berry.svg`}
-            title={berryBadgeSpecies[0].count <10 ? `Log 10 berries! You've found ${berryBadgeSpecies[0].count} berry species.` : "Berry Berry Berry"}
+            title={berryBadgeSpecies[0].count <5 ? `Log 5 berries! You've found ${berryBadgeSpecies[0].count} berry species.` : "Berry Berry Berry"}
           />
           <label htmlFor='berries'>Berry Finder</label>
         </div>

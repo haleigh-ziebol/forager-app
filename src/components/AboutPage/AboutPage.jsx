@@ -1,6 +1,6 @@
 import React from 'react';
 
-const techArray = ['React.js', 'Saga.js', 'Redux.js', 'Express.js', 'Node.js', 'Axios', 'Postgres', 'SQL', 'HTML5', 'CSS', 'GitHub', 'Google Maps API', 'Amazon Web Services (AWS)']
+const techArray = ['React.js', 'Saga.js', 'Redux.js', 'Express.js', 'Node.js', 'Axios', 'Postgres', 'SQL', 'HTML5', 'CSS', 'GitHub', 'Wikipedia API', 'Google Maps API', 'Amazon Web Services (AWS)']
 
 function AboutPage() {
   return (
@@ -22,6 +22,9 @@ function AboutPage() {
         <h3>Data:</h3>
         <p>Species data scraped from the USDA <a href="https://plants.sc.egov.usda.gov/home">PLANTS Database</a> and 
         the Lady Bird Johnson Wildflower Center of UTexas's <a href="https://www.wildflower.org/plants-main">Native Plants of North America Database</a> using <a href="https://www.octoparse.com/">Octoparse</a>.</p>
+      
+        <br/>
+        <p>©Haleigh Ziebol 2023</p>
       </div>
     </div>
   );

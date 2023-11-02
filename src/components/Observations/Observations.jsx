@@ -11,8 +11,6 @@ import ObsItemMap from '../ObsItemMap/ObsItemMap';
 //MUI components
 import List from '@mui/material/List';
 
-// if observation is highlighted, bounce it
-
 function Observations() {
 
   const [ selected, setSelected ] = useState({});
@@ -22,7 +20,6 @@ function Observations() {
   const observationList = useSelector(store => store.observation.userObservationList);
   const userRegion = useSelector(store => store.userdata.userRegion)
   const highlightObs = useSelector(store => store.observation.observationToHighlight)
-
 
   const dispatch = useDispatch();
   const history = useHistory();

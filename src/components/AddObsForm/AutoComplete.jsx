@@ -13,6 +13,7 @@ const AutoComplete = () => {
    inputRef.current,
    options
   );
+  console.log(inputRef, "input ref")
   autoCompleteRef.current.addListener("place_changed", async function () {
    const place = await autoCompleteRef.current.getPlace();
    console.log({ place });

@@ -78,7 +78,7 @@ function ObsItemList( { observation, i } ) {
         width={"25px"}
         height={"25px"}
         src={`Site_SVG/info.svg`}
-        onClick={() => history.push(`/info/${observation.id}`)}
+        onClick={() => history.push(`/info/${observation.species_id}`)}
       />
       <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
       { (observation.photo !== "") &&

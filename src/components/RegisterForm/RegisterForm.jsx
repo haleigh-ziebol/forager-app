@@ -12,8 +12,8 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const regionList = useSelector((store) => store.plants.regionList);
 
-  const avatarIcons = [{name: "deer", number: 1}, {name: "rabbit", number: 3}, 
-    {name: "owl", number: 4}, {name: "snail", number: 5}
+  const avatarIcons = [{name: "deer", number: 1}, {name: "rabbit", number: 2}, 
+    {name: "owl", number: 3}, {name: "snail", number: 4}
   ]
 
   const dispatch = useDispatch();

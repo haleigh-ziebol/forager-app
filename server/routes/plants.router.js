@@ -11,7 +11,7 @@ router.get('/scientific', (req, res) => {
     res.send(result.rows);
   })
   .catch(error => {
-    console.log(`Error fetching feedback`, error);
+    console.log(`Error fetching scientific names`, error);
     res.sendStatus(500);
   });
 }); //end GET
@@ -27,7 +27,7 @@ router.get('/common', (req, res) => {
     res.send(result.rows);
   })
   .catch(error => {
-    console.log(`Error fetching feedback`, error);
+    console.log(`Error fetching common names`, error);
     res.sendStatus(500);
   });
 }); //end GET
@@ -41,7 +41,7 @@ router.get('/regions', (req, res) => {
     res.send(result.rows);
   })
   .catch(error => {
-    console.log(`Error fetching feedback`, error);
+    console.log(`Error fetching regions`, error);
     res.sendStatus(500);
   });
 }); //end GET

@@ -1,6 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Debounce from './AutoComplete.jsx'
+// import Debounce from './AutoComplete.jsx'
 
 //child components
 import SearchMap from '../SearchMap/SearchMap';

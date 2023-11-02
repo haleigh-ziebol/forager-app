@@ -22,8 +22,8 @@ function ProfilePage() {
             height={"100px"}
             src={`Site_SVG/profile-icon/${user.icon}.svg`}
           />
-          <h2>Welcome, {user.username}!</h2>
-          <p>Region: {userRegion.length > 0 && userRegion[0].name}</p>
+          <p>{user.username}</p>
+          <p><i>Region:</i> {userRegion.length > 0 && userRegion[0].name}</p>
           <Badges/>
       </div>
       <Observations />

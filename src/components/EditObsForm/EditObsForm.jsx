@@ -165,8 +165,13 @@ const EditObsForm = () => {
                 <br/>
                 <textarea rows="5" cols="35" name="text" value={updatedObservation.notes} onChange={(event) => setUpdatedObservation({...updatedObservation, notes: event.target.value})} placeholder="notes"></textarea>
                 <br />
-                <label htmlFor="photos">Photos:</label>
-                <input type='text' id="photos" value={updatedObservation.photo} onChange={(event) => setUpdatedObservation({...updatedObservation, photo: event.target.value})} placeholder="photo url" />
+                {/* <label htmlFor="photos">Photo:</label>
+                <img 
+                    alt={`photo_obs_id${observation.id}`}
+                    width={"120px"}
+                    height={"200px"}
+                    src={observation.photo}
+                /> */}
                 <br/>
                 <br/>
                 <button type='submit'> Update Observation </button>
