@@ -9,6 +9,8 @@ function Badges() {
   const regionBadgeSpecies = useSelector(store => store.search.userRegionBadgeResults)
   const berryBadgeSpecies = useSelector(store => store.search.berriesBadgeResults)
   const treeBadgeSpecies = useSelector(store => store.search.treeBadgeResults)
+  const observationList = useSelector(store => store.observation.userObservationList);
+
 
   const dispatch = useDispatch();
 
@@ -22,7 +24,7 @@ function Badges() {
     //trees
     dispatch({type: 'BADGE_BERRIES', payload: { user_id: user.id}})
 
-  }, []);
+  }, [observationList]);
 
 
   return (
