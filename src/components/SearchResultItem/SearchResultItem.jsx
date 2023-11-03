@@ -18,6 +18,7 @@ function SearchResultItem({ species }) {
         <TableCell component="th" scope="row">
           <i>{species.scientific_name}</i>
           <img 
+            className='img-button'
             alt="info"
             width={"20px"}
             height={"20px"}

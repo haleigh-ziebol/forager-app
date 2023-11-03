@@ -96,7 +96,7 @@ function Observations() {
 
   return (
     <div className="observation-container">
-      {mapView && <div className="map">
+      {mapView && <div className="obsmap">
         {!isLoaded ? (
           <h1>Loading...</h1>
         ) : ( 
@@ -132,22 +132,22 @@ function Observations() {
         )}
       </div>}
       <div className="observation-info">
-      <div className ="observations-header">
-        <div>
+      <div className ="observation-header">
+        <div className="box-item1">
           <h1>My Finds:</h1>
           {observationList.length > 0 && 
           <div>
             { mapView && <Button onClick={() => setMapView(false)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>List View</Button>}
             { !mapView && <Button onClick={() => setMapView(true)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Map View</Button> }
           </div>}
-          {observationList.length == 0 && 
+        </div>
+      <div className ="observations-body">
+      {observationList.length == 0 && 
             <div>
               <p>None for now!</p>
               <button onClick={()=> history.push('/addObservation')}>Add A Find</button>
             </div>
           }
-        </div>
-      <div className ="observations-body">
         {!mapView && 
           <Box component="div" sx={{ overflow: 'auto' }} className="observation-container-list">
             { ( observationList.length > 0) && 
@@ -159,7 +159,7 @@ function Observations() {
         }
         {mapView && 
           <div className="observation-container-map">
-            <List sx={{ maxHeight: "420px", overflow:"auto", bgcolor: 'background.paper'}}>
+            <List sx={{ maxHeight: "400px", overflow:"auto", bgcolor: 'background.paper'}}>
             { ( observationList.length > 0) && 
               observationList.map((observation, i) => {
                 return <ObsItemMap className="" i={i} observation={observation} />

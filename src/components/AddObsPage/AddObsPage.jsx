@@ -9,7 +9,7 @@ import AddObsForm from '../AddObsForm/AddObsForm';
 
 function AddObsPage() {
   return (
-    <div className="container">
+    <div>
       <AddObsForm />
     </div>
   );

@@ -25,8 +25,8 @@ function* addNewObservation(action) {
     yield put({ type: 'FETCH_USER_OBSERVATIONS', payload: observation });
     action.callback(true);
   } catch (error) {
-      console.log('error posting observation', error);
-      action.callback(false);
+    console.log('error posting observation', error);
+    action.callback(false);
   }    
 }
 

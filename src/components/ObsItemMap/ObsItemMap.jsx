@@ -40,6 +40,7 @@ function ObsItemMap( { observation, i } ) {
         <p>Observation # {i+1}</p>
         <div className="box-grid">
         <img 
+            className='img-button'
             alt="marker"
             width="20px"
             height="20px"
@@ -48,15 +49,17 @@ function ObsItemMap( { observation, i } ) {
           />
           {(displayToggle == true) ? 
           <img 
+            className='img-button'
             alt="plus"
-              width={"20px"}
-              height={"20px"}
-              src={`Site_SVG/plus.svg`}
-              onClick={() => setDisplayToggle(false)}
-            />
+            width={"20px"}
+            height={"20px"}
+            src={`Site_SVG/plus.svg`}
+            onClick={() => setDisplayToggle(false)}
+          />
           : 
           <div>
             <img 
+              className='img-button'
               alt="minus"
               width={"20px"}
               height={"20px"}
@@ -64,13 +67,15 @@ function ObsItemMap( { observation, i } ) {
               onClick={() => setDisplayToggle(true)}
             />
             <img 
+              className='img-button'
               alt="edit"
-                width={"20px"}
-                height={"20px"}
-                src={`Site_SVG/edit.svg`}
-                onClick={handleEdit}
-              />
+              width={"20px"}
+              height={"20px"}
+              src={`Site_SVG/edit.svg`}
+              onClick={handleEdit}
+            />
             <img 
+              className='img-button'
               alt="delete"
               width={"20px"}
               height={"20px"}
@@ -85,6 +90,7 @@ function ObsItemMap( { observation, i } ) {
         <div>
           <p>Scientific Name: <i>{observation.scientific_name}</i></p>
           <img 
+            className='img-button'
             alt="info"
             width={"20px"}
             height={"20px"}

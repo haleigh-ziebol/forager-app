@@ -28,7 +28,7 @@ function SearchMap() {
   };
 
       return (
-        <div className="map">
+        <div className="searchmap">
           {!isLoaded ? (
             <h1>Loading...</h1>
           ) : (

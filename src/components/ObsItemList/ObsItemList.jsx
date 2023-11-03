@@ -39,8 +39,9 @@ function ObsItemList( { observation, i } ) {
     <Card key={observation.id} sx={{ minWidth: 225, p:'2rem' }}>
       <p>Observation {i+1}</p>       
       {(displayToggle == true) ? 
-      <img 
-        alt="plus"
+        <img 
+          className='img-button'
+          alt="plus"
           width={"25px"}
           height={"25px"}
           src={`Site_SVG/plus.svg`}
@@ -49,6 +50,7 @@ function ObsItemList( { observation, i } ) {
       : 
       <div>
         <img 
+          className='img-button'
           alt="minus"
           width={"25px"}
           height={"25px"}
@@ -56,13 +58,15 @@ function ObsItemList( { observation, i } ) {
           onClick={() => setDisplayToggle(true)}
         />
         <img 
+          className='img-button'
            alt="edit"
-            width={"25px"}
-            height={"25px"}
-            src={`Site_SVG/edit.svg`}
-            onClick={handleEdit}
+          width={"25px"}
+          height={"25px"}
+          src={`Site_SVG/edit.svg`}
+          onClick={handleEdit}
           />
         <img 
+          className='img-button'
           alt="delete"
           width={"25px"}
           height={"25px"}
@@ -73,7 +77,8 @@ function ObsItemList( { observation, i } ) {
       }
       <p>Date: {alterDate(observation.date_observed)}</p>
       <p><i>{observation.scientific_name}</i></p>
-      <img 
+      <img
+        className='img-button' 
         alt="info"
         width={"25px"}
         height={"25px"}
