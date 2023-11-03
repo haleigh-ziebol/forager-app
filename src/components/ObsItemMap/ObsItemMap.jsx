@@ -35,9 +35,9 @@ function ObsItemMap( { observation, i } ) {
   }
 
   return (
-    <ListItem alignItems="flex-start" key={observation.id}>
+    <ListItem alignItems="flex-start" key={observation.id} className='outlined' sx={{bgcolor: 'background.paper', m:'0px 0px 10px 0px'}}>
       <div className="box-item2">
-        <p>Observation # {i+1}</p>
+        <p><b>Observation #{i+1}</b></p>
         <div className="box-grid">
         <img 
             className='img-button'
@@ -87,8 +87,9 @@ function ObsItemMap( { observation, i } ) {
         </div>
       </div>
       <div className="box-item2">
-        <div>
-          <p>Scientific Name: <i>{observation.scientific_name}</i></p>
+        <p>Date: <b>{alterDate(observation.date_observed)}</b></p>
+        <div className='box-item3'>
+          <p>Scientific Name: <b><i>{observation.scientific_name}</i></b></p>
           <img 
             className='img-button'
             alt="info"
@@ -98,17 +99,21 @@ function ObsItemMap( { observation, i } ) {
             onClick={() => history.push(`/info/${observation.species_id}`)}
           />
         </div>
-      <p>Date: {alterDate(observation.date_observed)}</p>
+        <div className='wrap'>
+          <p>Common Name: <b>{observation.common_name.split(",")[0]}</b></p>
+        </div>
       </div>
-      <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
-      { (observation.photo !== "") &&
-        <img 
-          alt={`photo_obs_id${observation.id}`}
-          width={"40px"}
-          height={"80px"}
-          src={observation.photo}
-        />
-      }
+      <div className='box-item4'>
+        <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
+        {/* { (observation.photo !== "") &&
+          <img 
+            alt={`photo_obs_id${observation.id}`}
+            width={"40px"}
+            height={"80px"}
+            src={observation.photo}
+          />
+        } */}
+      </div>
     </ListItem>
   );
 }

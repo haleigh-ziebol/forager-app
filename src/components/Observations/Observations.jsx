@@ -159,10 +159,10 @@ function Observations() {
         }
         {mapView && 
           <div className="observation-container-map">
-            <List sx={{ maxHeight: "400px", overflow:"auto", bgcolor: 'background.paper'}}>
+            <List sx={{ maxHeight: "400px", overflow:"auto"}}>
             { ( observationList.length > 0) && 
               observationList.map((observation, i) => {
-                return <ObsItemMap className="" i={i} observation={observation} />
+                return <ObsItemMap  i={i} observation={observation} />
               })
             }
             </List>
