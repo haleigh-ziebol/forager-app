@@ -13,6 +13,7 @@ function SearchResultsPage() {
   const speciesResults = useSelector(store => store.search.searchResults[0].data);
   const searchTerms = useSelector(store => store.search.searchResults[0].searchTerms);
   const regionList = useSelector((store) => store.plants.regionList);
+  const user = useSelector((store) => store.user);
 
   const [filterObservations, setFilterObservations] = useState(false);
 
@@ -103,7 +104,7 @@ function SearchResultsPage() {
         <TableBody>
 
         {speciesResults?.map((species) => {
-              if (filterObservations && species.user_id !== null) {
+              if (filterObservations && species.user_id == user.id) {
                 return <div></div>
               }
               else {
@@ -113,17 +114,6 @@ function SearchResultsPage() {
         </TableBody>
       </Table>
     </TableContainer>
-        {/* <table>
-          <thead>
-          <tr>
-            <th>Scientific Name</th>
-            <th>Common Name(s)</th>
-            <th>Growth Type</th>
-          </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table> */}
       </div>
     }
 
