@@ -93,7 +93,7 @@ function SearchResultsPage() {
       <div>
 
 <TableContainer>
-      <Table sx={{ maxWidth: 1400}} aria-label="simple table">
+      <Table sx={{ maxWidth: 1400, m:'0px 0px 0px 20px'}} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Scientific Name </TableCell>
