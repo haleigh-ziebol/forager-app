@@ -45,9 +45,9 @@ function SpeciesInfoPage() {
 
 
     return(
-       <div className="background center">
+       <div className="background">
+        <Card sx={{ maxWidth: 3/4 }} className = "center">
         <h1>Species Info</h1>
-        <Card sx={{ maxWidth: 3/4 }}>
           <h2>Common Name: {speciesInfo.database.common_name}</h2>
           <h2>Scientific Name: <i>{speciesInfo.database.scientific_name}</i></h2>
           <h2>Growth Type: {speciesInfo.database.growth_type}</h2>

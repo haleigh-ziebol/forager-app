@@ -33,7 +33,7 @@ function SearchEdiblesPage() {
 
   return (
     <div className="container center">
-      <h1>Search Edibles</h1>
+      <h2>Search Edibles</h2>
       <form onSubmit={submitSearch}>
         <fieldset>
         <legend>Search Terms:</legend>

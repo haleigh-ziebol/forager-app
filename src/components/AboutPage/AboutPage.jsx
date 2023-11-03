@@ -12,11 +12,12 @@ function AboutPage() {
           On this app users input the location and species along with photos and notes for their foraging spot. 
           This data is stored on a map where they can view, edit and delete finds. 
           When they input a new species, it counts toward foraging badges that a user can earn.
+          Users search for species by region/name/growth type in the database and learn more about them!
         </p>
         <h3>Technologies Used:</h3>
         <ul>
-          {techArray.map((tech) => {
-            return <li>{tech}</li>
+          {techArray.map((tech, i) => {
+            return <li key={i}>{tech}</li>
           })}
         </ul>
         <h3>Data:</h3>

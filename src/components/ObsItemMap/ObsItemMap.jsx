@@ -35,50 +35,65 @@ function ObsItemMap( { observation, i } ) {
   }
 
   return (
-    <ListItem key={observation.id}>
-      <p>Observation # {i+1}</p>       
-      {(displayToggle == true) ? 
-      <img 
-        alt="plus"
-          width={"20px"}
-          height={"20px"}
-          src={`Site_SVG/plus.svg`}
-          onClick={() => setDisplayToggle(false)}
-        />
-      : 
-      <div>
+    <ListItem alignItems="flex-start" key={observation.id}>
+      <div className="box-item2">
+        <p>Observation # {i+1}</p>
+        <div className="box-grid">
         <img 
-          alt="minus"
-          width={"20px"}
-          height={"20px"}
-          src={`Site_SVG/minus.svg`}
-          onClick={() => setDisplayToggle(true)}
-        />
-        <img 
-           alt="edit"
+            alt="marker"
+            width="20px"
+            height="20px"
+            src={`Site_SVG/marker.svg`}
+            onClick={() => dispatch({type:'OBSERVATION_TO_HIGHLIGHT', payload: { id: observation.id, location: observation.location}})}
+          />
+          {(displayToggle == true) ? 
+          <img 
+            alt="plus"
+              width={"20px"}
+              height={"20px"}
+              src={`Site_SVG/plus.svg`}
+              onClick={() => setDisplayToggle(false)}
+            />
+          : 
+          <div>
+            <img 
+              alt="minus"
+              width={"20px"}
+              height={"20px"}
+              src={`Site_SVG/minus.svg`}
+              onClick={() => setDisplayToggle(true)}
+            />
+            <img 
+              alt="edit"
+                width={"20px"}
+                height={"20px"}
+                src={`Site_SVG/edit.svg`}
+                onClick={handleEdit}
+              />
+            <img 
+              alt="delete"
+              width={"20px"}
+              height={"20px"}
+              src={`Site_SVG/delete.svg`}
+              onClick={handleDelete}
+            />
+          </div>
+          }
+        </div>
+      </div>
+      <div className="box-item2">
+        <div>
+          <p>Scientific Name: <i>{observation.scientific_name}</i></p>
+          <img 
+            alt="info"
             width={"20px"}
             height={"20px"}
-            src={`Site_SVG/edit.svg`}
-            onClick={handleEdit}
+            src={`Site_SVG/info.svg`}
+            onClick={() => history.push(`/info/${observation.species_id}`)}
           />
-        <img 
-          alt="delete"
-          width={"20px"}
-          height={"20px"}
-          src={`Site_SVG/delete.svg`}
-          onClick={handleDelete}
-        />
-      </div>
-      }
+        </div>
       <p>Date: {alterDate(observation.date_observed)}</p>
-      <p><i>{observation.scientific_name}</i></p>
-      <img 
-        alt="info"
-        width={"20px"}
-        height={"20px"}
-        src={`Site_SVG/info.svg`}
-        onClick={() => history.push(`/info/${observation.species_id}`)}
-      />
+      </div>
       <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
       { (observation.photo !== "") &&
         <img 
@@ -88,14 +103,6 @@ function ObsItemMap( { observation, i } ) {
           src={observation.photo}
         />
       }
-     
-       <img 
-          alt="marker"
-          width="20px"
-          height="20px"
-          src={`Site_SVG/marker.svg`}
-          onClick={() => dispatch({type:'OBSERVATION_TO_HIGHLIGHT', payload: { id: observation.id, location: observation.location}})}
-        />
     </ListItem>
   );
 }

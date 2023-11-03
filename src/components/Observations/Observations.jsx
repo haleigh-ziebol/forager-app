@@ -10,6 +10,10 @@ import ObsItemMap from '../ObsItemMap/ObsItemMap';
 
 //MUI components
 import List from '@mui/material/List';
+import { Box } from '@mui/material';
+
+//styling
+import './Observations.css';
 
 function Observations() {
 
@@ -131,34 +135,38 @@ function Observations() {
       <div className ="observations-header">
         <div>
           <h1>My Finds:</h1>
-        </div>
-      <div className ="observations-body">
           {observationList.length > 0 && 
           <div>
             { mapView && <button onClick={() => setMapView(false)}>List View</button>}
             { !mapView && <button onClick={() => setMapView(true)}>Map View</button> }
           </div>}
-        {observationList.length == 0 && 
-          <div>
-            <p>None for now!</p>
-            <button onClick={()=> history.push('/addObservation')}>Add A Find</button>
-          </div>
+          {observationList.length == 0 && 
+            <div>
+              <p>None for now!</p>
+              <button onClick={()=> history.push('/addObservation')}>Add A Find</button>
+            </div>
+          }
+        </div>
+      <div className ="observations-body">
+        {!mapView && 
+          <Box component="div" sx={{ overflow: 'auto' }} className="observation-container-list">
+            { ( observationList.length > 0) && 
+              observationList.map((observation, i) => {
+                return <ObsItemList className="observation-blocks" observation={observation} i={i} />
+              })
+            }
+          </Box>
         }
-        {!mapView && <div className="observation-container-list">
-          { ( observationList.length > 0) && 
-            observationList.map((observation, i) => {
-              return <ObsItemList className="observation-blocks" observation={observation} i={i} />
-            })
-          }
-        </div>}
         {mapView && 
-          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-          { ( observationList.length > 0) && 
-            observationList.map((observation, i) => {
-              return <ObsItemMap className="" i={i} observation={observation} />
-            })
-          }
-          </List>
+          <div className="observation-container-map">
+            <List sx={{ maxHeight: "420px", overflow:"auto", bgcolor: 'background.paper'}}>
+            { ( observationList.length > 0) && 
+              observationList.map((observation, i) => {
+                return <ObsItemMap className="" i={i} observation={observation} />
+              })
+            }
+            </List>
+          </div>
         }
       </div>
       </div>

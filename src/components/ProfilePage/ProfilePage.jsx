@@ -16,15 +16,17 @@ function ProfilePage() {
   return (
     <div className="profile-container background">
       <div className="profile-info">
+        <div className="box-item2 center">
           <img 
-           alt={user.icon}
+            alt={user.icon}
             width={"100px"}
             height={"100px"}
             src={`Site_SVG/profile-icon/${user.icon}.svg`}
           />
-          <p>{user.username}</p>
-          <p><i>Region:</i> {userRegion.length > 0 && userRegion[0].name}</p>
-          <Badges/>
+          <p><i>Username:  </i>{user.username}</p>
+          <p><i>Region: </i> {userRegion.length > 0 && userRegion[0].name}</p>
+        </div>
+        <Badges/>
       </div>
       <Observations />
     </div>

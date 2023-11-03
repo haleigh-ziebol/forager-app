@@ -1,5 +1,4 @@
 .profile-container {
-  flex-grow: 2;
   display: flex; 
   flex-direction: row;
   justify-content: space-between;
@@ -8,34 +7,6 @@
 .profile-info {
   background-color: #E6F0E8;
   flex-direction: column;
-  justify-content: space-around;
-}
-
-.observation-container {
-  flex-grow: 3;
-  display: flex;
-  flex-direction: row;
-}
-
-.map {
-  flex-grow: 1; 
-}
-
-.observation-info {
-  flex-grow: 1;
-}
-
-.observation-container-list {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.observation-container-map {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-  
+  justify-content: center;
+  align-self: flex-start;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;}

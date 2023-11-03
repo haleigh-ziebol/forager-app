@@ -1,3 +1,34 @@
+.observation-container {
+  flex-grow: 3;
+  display: flex;
+  flex-direction: row;
+}
+
+.map {
+  flex-grow: 1; 
+}
+
+.observation-info {
+  flex-grow: 1;
+}
+
+.observation-container-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.observation-container-map {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  min-height: 0px;
+}
+  
+
+
 /* --------------------------------------------------------------------------------
 Grid
 -------------------------------------------------------------------------------- */

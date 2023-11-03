@@ -86,9 +86,9 @@ function RegisterForm() {
       </div>
       <div>
         <p>Choose Your Avatar:</p>
-            <div className="avatar-box" onChange={(event) => setUserIcon(event.target.value)}>
+            <div className="box-grid" onChange={(event) => setUserIcon(event.target.value)}>
           {avatarIcons.map((avatar) => {
-                return (<div key={avatar.number} className="avatar-item">
+                return (<div key={avatar.number} className="box-item2">
                 <input 
                 type="radio"
                 id={`image-${avatar.number}`}

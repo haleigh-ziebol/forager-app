@@ -1,5 +1,7 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 // import Debounce from './AutoComplete.jsx'
 
 //child components
@@ -18,7 +20,8 @@ function getDate() {
 
 const AddObsForm = () => {
     const dispatch = useDispatch();
-    
+    const history = useHistory();
+
     const [newObservation, setNewObservation] = useState({ user_id: null, species: '', location:[] , photo: '', notes: '', date_observed: getDate(), time_stamp: getDate()});
     const [nameSearchType, setNameSearchType] = useState('common');
     const [success, setSuccess] = useState(false)
@@ -133,7 +136,7 @@ const AddObsForm = () => {
                     }, 4000); //alerts on a timer
                 }}
                 >
-                    <Alert severity="success">Observation Added!</Alert>
+                    <Alert severity="success">Your find has been added to your map! <button onClick={()=> history.push('/user')}>Look here!</button></Alert>
                 </Fade>
             }
             { failed &&
@@ -146,14 +149,14 @@ const AddObsForm = () => {
                     }, 4000);
                 }}
                 >
-                    <Alert severity="error">Error with adding observation! Make sure all inputs set</Alert>
+                    <Alert severity="error">Error with adding observation! Make sure all inputs are set.</Alert>
                 </Fade>
             }
 
-            <h3>Add A Find</h3>
+            <h2>Add A Find</h2>
             <form onSubmit={addNewObservation}>
-                <label htmlFor="name_type">Species:</label>
                 <fieldset id="name_type">
+                    <legend>Species:</legend>
                     <div>
                     <input 
                         type="radio"

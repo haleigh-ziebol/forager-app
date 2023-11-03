@@ -26,8 +26,8 @@ function Badges() {
 
 
   return (
-    <div className="badge-container">
-      <p>Badges:</p>
+    <div className="box-grid center">
+      <div className="box-item2">
         <img 
           id="1-thing"
           className={regionBadgeSpecies[0].count <1 ? "unearned" : ""}
@@ -38,43 +38,43 @@ function Badges() {
           title={regionBadgeSpecies[0].count <1 ? "Earn the badge by logging a find!" : "Way to go! You logged a find!"}
         /> 
         <label htmlFor='1-thing'>Official Forager</label>
-
-        <div>
-          <img 
-            className={regionBadgeSpecies[0].count <10 ? "unearned" : ""}
-            alt={user.icon}
-            width={"75px"}
-            height={"75px"}
-            src={`Site_SVG/badges/red.svg`}
-            title={regionBadgeSpecies[0].count <20 ? "Next goal: find 10 species!" : "WOWZA! 10 species observed in your region"}
-          />
-          <label htmlFor='20-things'>10 Species</label>
-        </div>
-        <div>
-          <img 
-            id="berries"
-            className={berryBadgeSpecies[0].count <5 ? "unearned" : ""}
-            alt={user.icon}
-            width={"75px"}
-            height={"75px"}
-            src={`Site_SVG/badges/berry.svg`}
-            title={berryBadgeSpecies[0].count <5 ? `Log 5 berries! You've found ${berryBadgeSpecies[0].count} berry species.` : "Berry Berry Berry"}
-          />
-          <label htmlFor='berries'>Berry Finder</label>
-        </div>
-        <div>
-          <img 
-            id="trees"
-            className={treeBadgeSpecies[0].count <10 ? "unearned" : ""}
-            alt={user.icon}
-            width={"75px"}
-            height={"75px"}
-            src={`Site_SVG/badges/tree.svg`}
-            title={treeBadgeSpecies[0].count <10 ? `Find 10 trees! You've found ${treeBadgeSpecies[0].count} tree species.` : "Tree Forager Status, hell yeah!"}
-          />
-          <label htmlFor='trees'>Tree Finder</label>
-        </div>
-   </div>
+      </div>
+      <div className="box-item2">
+        <img 
+          className={regionBadgeSpecies[0].count <10 ? "unearned" : ""}
+          alt={user.icon}
+          width={"75px"}
+          height={"75px"}
+          src={`Site_SVG/badges/red.svg`}
+          title={regionBadgeSpecies[0].count <20 ? "Next goal: find 10 species!" : "WOWZA! 10 species observed in your region"}
+        />
+        <label htmlFor='10-things'>10 Species</label>
+      </div>
+      <div className="box-item2">
+        <img 
+          id="berries"
+          className={berryBadgeSpecies[0].count <5 ? "unearned" : ""}
+          alt={user.icon}
+          width={"75px"}
+          height={"75px"}
+          src={`Site_SVG/badges/berry.svg`}
+          title={berryBadgeSpecies[0].count <5 ? `Log 5 berries! You've found ${berryBadgeSpecies[0].count} berry species.` : "Berry Berry Berry"}
+        />
+        <label htmlFor='berries'>Berry Finder</label>
+      </div>
+      <div className="box-item2">
+        <img 
+          id="trees"
+          className={treeBadgeSpecies[0].count <10 ? "unearned" : ""}
+          alt={user.icon}
+          width={"75px"}
+          height={"75px"}
+          src={`Site_SVG/badges/tree.svg`}
+          title={treeBadgeSpecies[0].count <10 ? `Find 10 trees! You've found ${treeBadgeSpecies[0].count} tree species.` : "Tree Forager Status, hell yeah!"}
+        />
+        <label htmlFor='trees'>Tree Finder</label>
+      </div>
+    </div>
   );
 }
 
