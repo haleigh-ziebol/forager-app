@@ -1,11 +1,14 @@
 import React from 'react';
 
+//MUI components
+import { Card } from '@mui/material';
+
 const techArray = ['React.js', 'Saga.js', 'Redux.js', 'Express.js', 'Node.js', 'Axios', 'Postgres', 'SQL', 'HTML5', 'CSS', 'GitHub', 'Wikipedia API', 'Google Maps API', 'Amazon Web Services (AWS)']
 
 function AboutPage() {
   return (
     <div className="container center">
-      <div>
+      <Card sx={{ maxWidth: 3/4, p:'2rem'}}>
         <h3>Purpose:</h3>
         <p>
           Foragers have special spots they visit every year and are always looking for new wild edibles! 
@@ -26,7 +29,7 @@ function AboutPage() {
       
         <br/>
         <p>©Haleigh Ziebol 2023</p>
-      </div>
+      </Card>
     </div>
   );
 }

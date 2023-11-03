@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import SearchResultItem from '../SearchResultItem/SearchResultItem';
 
 //MUI components
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button } from '@mui/material';
 
 
 function SearchResultsPage() {
@@ -81,7 +81,7 @@ function SearchResultsPage() {
         onChange={() => setFilterObservations(!filterObservations)}
     />
     <br/>
-    <button onClick={() => history.push('/search')}>Try a Different Search</button>
+    <Button onClick={() => history.push('/search')}variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Try a Different Search</Button>
      {/* <p>{`Your search for ${species} species in the ${region} region returned ${speciesResults.length} results.`}</p> */}
     { speciesResults == "" && 
       <div>
@@ -93,7 +93,7 @@ function SearchResultsPage() {
       <div>
 
 <TableContainer>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ maxWidth: 1400}} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Scientific Name </TableCell>

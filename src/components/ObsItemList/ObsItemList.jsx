@@ -36,7 +36,7 @@ function ObsItemList( { observation, i } ) {
   }
 
   return (
-    <Card key={observation.id} sx={{ minWidth: 225 }}>
+    <Card key={observation.id} sx={{ minWidth: 225, p:'2rem' }}>
       <p>Observation {i+1}</p>       
       {(displayToggle == true) ? 
       <img 

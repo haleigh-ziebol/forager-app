@@ -7,6 +7,7 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  color: #484E6B;
 }
 
 
@@ -32,11 +33,11 @@ body {
 }
 
 .highlight-observation {
-  background-color: green;
+  background-color:  #E6F0E8;
 }
 
 .species-found {
-  background-color: green;
+  background-color:  #E6F0E8;
 }
 
 .modal {

@@ -10,6 +10,7 @@ import SearchMap from '../SearchMap/SearchMap';
 //MUI components
 import Alert from '@mui/material/Alert';
 import Fade from "@mui/material/Fade";
+import { Button } from '@mui/material';
 
 //function to fetch current date
 function getDate() {
@@ -237,7 +238,7 @@ const AddObsForm = () => {
                 <br/>
 
                 <br/>
-                <button type='submit'> add new find! </button>
+                <Button type='submit' variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}> add new find! </Button>
             </form>
         </div>
     );

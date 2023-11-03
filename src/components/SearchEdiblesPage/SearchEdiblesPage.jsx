@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+//MUI components
+import { Button } from '@mui/material';
+
 function SearchEdiblesPage() {
 
   const [searchType, setSearchType] = useState({speciesType: false, regionType: false, growthType: false})
@@ -107,7 +110,7 @@ function SearchEdiblesPage() {
             }
           </div>
         </fieldset>
-        <button type="submit">Search!</button>
+        <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Search!</Button>
       </form>
 
     </div>

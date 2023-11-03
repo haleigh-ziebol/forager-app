@@ -10,7 +10,7 @@ import ObsItemMap from '../ObsItemMap/ObsItemMap';
 
 //MUI components
 import List from '@mui/material/List';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 //styling
 import './Observations.css';
@@ -137,8 +137,8 @@ function Observations() {
           <h1>My Finds:</h1>
           {observationList.length > 0 && 
           <div>
-            { mapView && <button onClick={() => setMapView(false)}>List View</button>}
-            { !mapView && <button onClick={() => setMapView(true)}>Map View</button> }
+            { mapView && <Button onClick={() => setMapView(false)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>List View</Button>}
+            { !mapView && <Button onClick={() => setMapView(true)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Map View</Button> }
           </div>}
           {observationList.length == 0 && 
             <div>

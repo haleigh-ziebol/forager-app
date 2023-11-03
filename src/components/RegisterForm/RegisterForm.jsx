@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+//MUI components
+import { Button } from '@mui/material';
 
 function RegisterForm() {
 
@@ -107,7 +108,7 @@ function RegisterForm() {
           </div>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Register</Button>
       </div>
     </form>
   );

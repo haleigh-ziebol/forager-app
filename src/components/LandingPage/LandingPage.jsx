@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+//MUI components
+import { Button } from '@mui/material';
+
 function LandingPage() {
   const history = useHistory();
 
@@ -19,7 +22,7 @@ function LandingPage() {
         <div className="landing-text">
           <h1>keep track of your finds</h1>
           <h1>earn foraging badges</h1>
-          <button onClick={()=> history.push('/about')}>About</button>
+          <Button onClick={()=> history.push('/about')}variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>About</Button>
         </div>
     </div>
   );
