@@ -36,7 +36,7 @@ function ObsItemList( { observation, i } ) {
   }
 
   return (
-    <Card key={observation.id} sx={{ minWidth: 225, p:'2rem' }}>
+    <Card key={observation.id} sx={{ minWidth: 300, p:'2rem', m:'10px' }}>
       <p>Observation {i+1}</p>       
       {(displayToggle == true) ? 
         <img 
@@ -86,6 +86,7 @@ function ObsItemList( { observation, i } ) {
         onClick={() => history.push(`/info/${observation.species_id}`)}
       />
       <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
+      <p>Photo: {observation.photo == "" &&  "N/A"}</p>
       { (observation.photo !== "") &&
         <img 
           alt={`photo_obs_id${observation.id}`}

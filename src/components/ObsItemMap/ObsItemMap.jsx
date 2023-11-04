@@ -35,8 +35,8 @@ function ObsItemMap( { observation, i } ) {
   }
 
   return (
-    <ListItem alignItems="flex-start" key={observation.id} className='outlined' sx={{bgcolor: '#FFF4F4', m:'0px 0px 5px 0px', color:'#484E6B'}}>
-      <div className="box-item2">
+    <ListItem alignItems="flex-start" key={observation.id} className='outlined box-item1' sx={{bgcolor: '#FFF4F4', m:'0px 0px 5px 0px', color:'#484E6B'}}>
+      <div className='box-item2'>
         <p><b>Observation #{i+1}</b></p>
         <div className="box-grid">
         <img 

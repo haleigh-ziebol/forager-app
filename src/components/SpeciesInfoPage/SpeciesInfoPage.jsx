@@ -55,10 +55,12 @@ function SpeciesInfoPage() {
             alt={speciesInfo.database.scientific_name}
             />
             <br/>
-            <p>Basic Info:</p>
+            <p><b>Basic Info:</b></p>
             <p style={{whiteSpace: "pre-wrap"}}>{parsedWikiText}</p> {/*pre-wrap deals with \n from wikitext parser */}
-            <p>Source: <a href={`https://en.wikipedia.org/wiki/${speciesInfo.link}`} >Wikipedia </a> </p>
-            <p> More Info: <a href={`https://plants.sc.egov.usda.gov/home/plantProfile?symbol=${speciesInfo.database.USDA_CODE}`} >USDA</a></p>
+            <div className='box-item5'>
+              <p><b>Source: </b><a href={`https://en.wikipedia.org/wiki/${speciesInfo.link}`} >Wikipedia </a> </p>
+              <p><b>More Info: </b><a href={`https://plants.sc.egov.usda.gov/home/plantProfile?symbol=${speciesInfo.database.USDA_CODE}`} >USDA</a></p>
+            </div>
           </Card>
       </div>
     )

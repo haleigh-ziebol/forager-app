@@ -152,21 +152,19 @@ function Observations() {
           <Box component="div" sx={{ overflow: 'auto' }} className="observation-container-list">
             { ( observationList.length > 0) && 
               observationList.map((observation, i) => {
-                return <ObsItemList className="observation-blocks" observation={observation} i={i} />
+                return <ObsItemList observation={observation} i={i} />
               })
             }
           </Box>
         }
         {mapView && 
-          <div className="observation-container-map">
-            <List sx={{ maxHeight: "400px", overflow:"auto"}}>
-            { ( observationList.length > 0) && 
-              observationList.map((observation, i) => {
-                return <ObsItemMap  i={i} observation={observation} />
-              })
-            }
-            </List>
-          </div>
+          <List className="observation-container-map" sx={{ maxHeight: "400px", overflow:"auto"}}>
+          { ( observationList.length > 0) && 
+            observationList.map((observation, i) => {
+              return <ObsItemMap  i={i} observation={observation} />
+            })
+          }
+          </List>
         }
       </div>
       </div>
