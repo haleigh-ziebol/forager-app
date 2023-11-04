@@ -86,8 +86,8 @@ function RegisterForm() {
           </select>
       </div>
       <div>
-        <p>Choose Your Avatar:</p>
-            <div className="box-grid" onChange={(event) => setUserIcon(event.target.value)}>
+            <fieldset className="box-grid" onChange={(event) => setUserIcon(event.target.value)}>
+              <legend>Choose Your Avatar: </legend>
           {avatarIcons.map((avatar) => {
                 return (<div key={avatar.number} className="box-item2">
                 <input 
@@ -105,7 +105,7 @@ function RegisterForm() {
                 </label>
               </div>)
           })}
-          </div>
+          </fieldset>
       </div>
       <div>
         <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Register</Button>

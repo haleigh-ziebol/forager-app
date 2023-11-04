@@ -42,6 +42,7 @@ function SearchEdiblesPage() {
         <legend>Search Terms:</legend>
           <div>
             <input 
+              className="checkbox"
               type="checkbox"
               name="species"
               id="species"

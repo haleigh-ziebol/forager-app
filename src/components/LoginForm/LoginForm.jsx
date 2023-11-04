@@ -28,10 +28,8 @@ function LoginForm() {
   }; // end login
 
   return (
-    <div style={{ 
-      backgroundImage: `url(${process.env.PUBLIC_URL + '/Site_SVG/modal_background.svg'})` 
-    }}>
-      <form className="formPanel" onSubmit={login}>
+    <div className="center formPanel">
+      <form onSubmit={login}>
         <h2>Login</h2>
         {errors.loginMessage && (
           <h3 className="alert" role="alert">
@@ -54,6 +52,7 @@ function LoginForm() {
           <label htmlFor="password">
             Password:
             <input
+              className='input-box'
               type="password"
               name="password"
               required
@@ -62,11 +61,11 @@ function LoginForm() {
             />
           </label>
         </div>
-        <div>
+        <div className='center'>
           <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}> Log in</Button>
         </div>
       </form>
-    </div>
+     </div>
   );
 }
 

@@ -3,6 +3,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
+//MUI components
+import { Button } from '@mui/material';
+
 function RegisterPage() {
   const history = useHistory();
 
@@ -11,15 +14,12 @@ function RegisterPage() {
       <RegisterForm />
 
       <center>
-        <button
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/login');
-          }}
+      <Button
+          variant="filled" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}
+          onClick={() => { history.push('/login');}}
         >
-          Login
-        </button>
+          Log in
+        </Button>
       </center>
     </div>
   );

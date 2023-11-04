@@ -10,6 +10,9 @@ body {
   color: #484E6B;
 }
 
+ul {
+  columns: 100px 3;
+}
 
 .unearned {
   opacity: 0.2;
@@ -41,8 +44,8 @@ body {
 }
 
 .modal {
-  width: 50vw;
-  height: 50vh;
+  width: 98vw;
+  height: 75vh;
   background-color: #E6CFC1;
 }
 
@@ -92,41 +95,15 @@ Container
   background-color: #EEFFF1;
 }
 
-/* --------------------------------------------------------------------------------
-Button
--------------------------------------------------------------------------------- */
-.btn:hover {
-  background-color: #008183;
-  text-decoration: none;
-}
-
-/* This line makes the "Register" and "Login" buttons look like links */
-.btn_asLink {
-  padding: 0;
-  border-width: 0;
-  border-bottom: 1px solid #444;
-  border-radius: 0;
-  background: none;
-  font: inherit;
-  color: #444;
-}
-
-.btn_asLink:hover {
-  background-color: transparent;
-  border-color: #008183;
-  color: #008183;
-}
-
 
 /* --------------------------------------------------------------------------------
 Form Treatment
 -------------------------------------------------------------------------------- */
 
 .formPanel {
-  box-sizing: border-box;
-  max-width: 100%;
-  padding: 25px;
-  margin: 0 auto 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   background-color: #EEFFF1;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
@@ -135,4 +112,14 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+input[type="text"], input[type="password"], input[type="radio"], input[type="date"], select, textarea{ 
+  background-color: #E6CFC1;
+  color: #484E6B; 
+}
+
+.checkbox {
+  background-color: #E6CFC1;
+  color: #484E6B; 
 }
