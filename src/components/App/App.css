@@ -74,6 +74,11 @@ ul {
   align-items: center;
 }
 
+.box-item5 {
+  display: flex;
+  justify-content:space-between;
+  align-items: baseline;
+}
 
 .outlined {
   border-radius: 25px;

@@ -41,7 +41,8 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <div className="formPanel center">
+    <form onSubmit={registerUser}>
       <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -107,10 +108,12 @@ function RegisterForm() {
           })}
           </fieldset>
       </div>
-      <div>
+      <br/>
+      <div className='center'>
         <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Register</Button>
       </div>
     </form>
+    </div>
   );
 }
 

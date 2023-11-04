@@ -11,13 +11,14 @@ function RegisterPage() {
 
   return (
     <div className='modal center'>
+      <div className="center">
       <RegisterForm />
-
+      </div>
       <center>
-      <Button
-        variant="filled" style={{backgroundColor: "#E6CFC1", color: "#484E6B", margin:"10px"}}
-        onClick={() => { history.push('/login');}}
-      >
+        <Button
+          variant="filled" style={{backgroundColor: "#E6CFC1", color: "#484E6B", margin:"10px"}}
+          onClick={() => { history.push('/login');}}
+        >
           Log in
         </Button>
       </center>

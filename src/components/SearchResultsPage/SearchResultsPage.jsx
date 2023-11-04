@@ -67,22 +67,23 @@ function SearchResultsPage() {
 
   return (
     <div className="container">
+      <div className='box-item5'>
      <h2>Search Results:</h2>
+     <Button onClick={() => history.push('/search')}variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B", margin: "0 50px 0"}}>Try a Different Search</Button>
+     </div>
      {species == "ANY" ? 
      <p>{speciesResults.length} results for species from {region} region, with {species} name and {growthType} growth type.</p>
     : <p>{speciesResults.length} results for species from {region} region, with a name including "{species}" and {growthType} growth type.</p> }
-     <label htmlFor="filter-observations"> Filter Out Species I've Observed </label>
-     <input 
-        type="checkbox"
-        name="filter-observations"
-        id="filter-observations"
-        value="filter-observations"
-        checked={filterObservations}
-        onChange={() => setFilterObservations(!filterObservations)}
+    
+    <label htmlFor="filter-observations"> Filter Out Species I've Observed </label>
+    <input 
+      type="checkbox"
+      name="filter-observations"
+      id="filter-observations"
+      value="filter-observations"
+      checked={filterObservations}
+      onChange={() => setFilterObservations(!filterObservations)}
     />
-    <br/>
-    <Button onClick={() => history.push('/search')}variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Try a Different Search</Button>
-     {/* <p>{`Your search for ${species} species in the ${region} region returned ${speciesResults.length} results.`}</p> */}
     { speciesResults == "" && 
       <div>
       <p>No Results Found!</p>
