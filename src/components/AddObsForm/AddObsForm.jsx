@@ -10,7 +10,7 @@ import SearchMap from '../SearchMap/SearchMap';
 //MUI components
 import Alert from '@mui/material/Alert';
 import Fade from "@mui/material/Fade";
-import { Button } from '@mui/material';
+import { Button, Card } from '@mui/material';
 
 //function to fetch current date
 function getDate() {
@@ -126,6 +126,7 @@ const AddObsForm = () => {
 
     return (
         <div className='center'>
+         <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1'>
         {/* <Debounce/> */}
             { success &&
                 <Fade
@@ -240,6 +241,7 @@ const AddObsForm = () => {
                 <br/>
                 <Button type='submit' variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}> add new find! </Button>
             </form>
+            </Card>
         </div>
     );
 }

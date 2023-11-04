@@ -10,14 +10,14 @@ function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className='modal center'>
       <RegisterForm />
 
       <center>
       <Button
-          variant="filled" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}
-          onClick={() => { history.push('/login');}}
-        >
+        variant="filled" style={{backgroundColor: "#E6CFC1", color: "#484E6B", margin:"10px"}}
+        onClick={() => { history.push('/login');}}
+      >
           Log in
         </Button>
       </center>

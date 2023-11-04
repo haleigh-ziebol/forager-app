@@ -45,21 +45,21 @@ function SpeciesInfoPage() {
 
 
     return(
-       <div className="background">
-        <Card sx={{ maxWidth: 3/4 }} className = "center">
-        <h1>Species Info</h1>
-          <h2>Common Name: {speciesInfo.database.common_name}</h2>
-          <h2>Scientific Name: <i>{speciesInfo.database.scientific_name}</i></h2>
-          <h2>Growth Type: {speciesInfo.database.growth_type}</h2>
-          <img src={speciesInfo.image}
-          alt={speciesInfo.database.scientific_name}
-          />
-          <br/>
-          <p>Basic Info:</p>
-          <p style={{whiteSpace: "pre-wrap"}}>{parsedWikiText}</p> {/*pre-wrap deals with \n from wikitext parser */}
-          <p>Source: <a href={`https://en.wikipedia.org/wiki/${speciesInfo.link}`} >Wikipedia </a> </p>
-          <p> More Info: <a href={`https://plants.sc.egov.usda.gov/home/plantProfile?symbol=${speciesInfo.database.USDA_CODE}`} >USDA</a></p>
-        </Card>
+       <div className="container center">
+        <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1'>
+          <h1>Species Info</h1>
+            <h2>Common Name: {speciesInfo.database.common_name}</h2>
+            <h2>Scientific Name: <i>{speciesInfo.database.scientific_name}</i></h2>
+            <h2>Growth Type: {speciesInfo.database.growth_type}</h2>
+            <img src={speciesInfo.image}
+            alt={speciesInfo.database.scientific_name}
+            />
+            <br/>
+            <p>Basic Info:</p>
+            <p style={{whiteSpace: "pre-wrap"}}>{parsedWikiText}</p> {/*pre-wrap deals with \n from wikitext parser */}
+            <p>Source: <a href={`https://en.wikipedia.org/wiki/${speciesInfo.link}`} >Wikipedia </a> </p>
+            <p> More Info: <a href={`https://plants.sc.egov.usda.gov/home/plantProfile?symbol=${speciesInfo.database.USDA_CODE}`} >USDA</a></p>
+          </Card>
       </div>
     )
 }

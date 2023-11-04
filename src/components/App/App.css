@@ -31,10 +31,6 @@ ul {
 
 }
 
-.landing-text {
-  display: flex;
-}
-
 .highlight-observation {
   background-color:  #E6F0E8;
 }
@@ -72,6 +68,13 @@ ul {
   align-items: center;
 }
 
+.box-item4 {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+
 .outlined {
   border-radius: 25px;
   border: 2px solid #454A64;
@@ -94,6 +97,7 @@ Container
 .background {
   background-color: #EEFFF1;
 }
+
 
 
 /* --------------------------------------------------------------------------------

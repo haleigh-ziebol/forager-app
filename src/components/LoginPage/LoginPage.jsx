@@ -14,7 +14,7 @@ function LoginPage() {
 
       <center>
         <Button
-          variant="filled" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}
+          variant="filled" style={{backgroundColor: "#E6CFC1", color: "#484E6B", margin:"20px"}}
           onClick={() => { history.push('/registration');}}
         >
           Register

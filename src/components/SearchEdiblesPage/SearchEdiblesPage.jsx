@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //MUI components
-import { Button } from '@mui/material';
+import { Button, Card } from '@mui/material';
 
 function SearchEdiblesPage() {
 
@@ -36,84 +36,87 @@ function SearchEdiblesPage() {
 
   return (
     <div className="container center">
-      <h2>Search Edibles</h2>
-      <form onSubmit={submitSearch}>
-        <fieldset>
-        <legend>Search Terms:</legend>
-          <div>
-            <input 
-              className="checkbox"
-              type="checkbox"
-              name="species"
-              id="species"
-              value="species"
-              checked={searchType.speciesType}
-              onChange={() => setSearchType({...searchType, speciesType: !searchType.speciesType})}
-            />
-            <label htmlFor="species"> Species
-            </label>
-            {searchType.speciesType && 
+      <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1'>
+        <h2>Search Edibles</h2>
+        <form onSubmit={submitSearch}>
+          <fieldset>
+          <legend>Search Terms:</legend>
             <div>
-              <input type="text" onChange={(event)=>setSearchTerms({...searchTerms, species: event.target.value})} 
-              value={searchTerms.species} placeholder="search term"/>
+              <input 
+                className="checkbox"
+                type="checkbox"
+                name="species"
+                id="species"
+                value="species"
+                checked={searchType.speciesType}
+                onChange={() => setSearchType({...searchType, speciesType: !searchType.speciesType})}
+              />
+              <label htmlFor="species"> Species
+              </label>
+              {searchType.speciesType && 
+              <div>
+                <input type="text" onChange={(event)=>setSearchTerms({...searchTerms, species: event.target.value})} 
+                value={searchTerms.species} placeholder="search term"/>
+              </div>
+              }
             </div>
-            }
-          </div>
-          
-          <div>
-            <input 
-              type="checkbox"
-              name="region"
-              id="region"
-              value="region"
-              checked={searchType.regionType}
-              onChange={() => setSearchType({...searchType, regionType: !searchType.regionType})}
-            />
-            <label htmlFor="region"> Region
-            </label>
-            <br/>
-            {searchType.regionType && 
-              <select
-                id="regions"
-                value={searchTerms.region}
-                onChange={(event)=>setSearchTerms({...searchTerms, region: event.target.value})} 
-                required
-              >
-                  {regionList.map((region) => {
-                      return <option key={region.id} value={region.id}>{region.name}</option>;
-                  })}
-              </select>
-            }
-          </div>
-          <div>
-            <input 
-              type="checkbox"
-              name="growth_type"
-              id="growth_type"
-              value="growth_type"
-              checked={searchType.growthType}
-              onChange={() => setSearchType({...searchType, growthType: !searchType.growthType})}
-            />
-            <label htmlFor="growth_type"> Plant Type
-            </label>
-            <br/>
-            {searchType.growthType && 
-              <select
+            
+            <div>
+              <input 
+                type="checkbox"
+                name="region"
+                id="region"
+                value="region"
+                checked={searchType.regionType}
+                onChange={() => setSearchType({...searchType, regionType: !searchType.regionType})}
+              />
+              <label htmlFor="region"> Region
+              </label>
+              <br/>
+              {searchType.regionType && 
+                <select
+                  id="regions"
+                  value={searchTerms.region}
+                  onChange={(event)=>setSearchTerms({...searchTerms, region: event.target.value})} 
+                  required
+                >
+                    {regionList.map((region) => {
+                        return <option key={region.id} value={region.id}>{region.name}</option>;
+                    })}
+                </select>
+              }
+            </div>
+            <div>
+              <input 
+                type="checkbox"
+                name="growth_type"
                 id="growth_type"
-                value={searchTerms.growth_type}
-                onChange={(event)=>setSearchTerms({...searchTerms, growth_type: event.target.value})} 
-                required
-              >
-                {growthTypes.map((growth, i) => {
-                    return <option key={i} value={growth}>{growth}</option>;
-                })}
-              </select>
-            }
-          </div>
-        </fieldset>
-        <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Search!</Button>
-      </form>
-
+                value="growth_type"
+                checked={searchType.growthType}
+                onChange={() => setSearchType({...searchType, growthType: !searchType.growthType})}
+              />
+              <label htmlFor="growth_type"> Plant Type
+              </label>
+              <br/>
+              {searchType.growthType && 
+                <select
+                  id="growth_type"
+                  value={searchTerms.growth_type}
+                  onChange={(event)=>setSearchTerms({...searchTerms, growth_type: event.target.value})} 
+                  required
+                >
+                  {growthTypes.map((growth, i) => {
+                      return <option key={i} value={growth}>{growth}</option>;
+                  })}
+                </select>
+              }
+            </div>
+          </fieldset>
+          <br/>
+          <br/>
+          <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Search!</Button>
+        </form>
+      </Card>
     </div>
   );
 }
