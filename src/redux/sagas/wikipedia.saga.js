@@ -16,7 +16,11 @@ function* searchWikipediaImage(action) {
 function* searchWikipediaText(action) {
   try {
         const wikipediaResponse = yield axios.get(`/api/wikipedia/text/${action.payload}`); // gets wikipedia data for observation
+        console.log("wiki:", wikipediaResponse)
         let object = yield Object.values(wikipediaResponse.data)[0]
+        // let object2 = yield Object.values(wikipediaResponse.data)[1]
+        console.log(object)
+        // console.log(object2)
         if (object.includes("#REDIRECT")) {
           let hi = yield object.replace("#REDIRECT [[", "")
           const string = yield hi.split("]")[0].split(" ").join("_")
