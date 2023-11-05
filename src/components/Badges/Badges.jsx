@@ -39,7 +39,7 @@ function Badges() {
           src={`Site_SVG/badges/purple.svg`}
           title={regionBadgeSpecies[0].count <1 ? "Earn the badge by logging a find!" : "Way to go! You logged a find!"}
         /> 
-        <label htmlFor='1-thing'>Official Forager</label>
+        <p htmlFor='1-thing'>Official Forager</p>
       </div>
       <div className="box-item2">
         <img 
@@ -50,7 +50,7 @@ function Badges() {
           src={`Site_SVG/badges/red.svg`}
           title={regionBadgeSpecies[0].count <20 ? "Next goal: find 10 species!" : "WOWZA! 10 species observed in your region"}
         />
-        <label htmlFor='10-things'>10 Species</label>
+        <p htmlFor='10-things'>10 Species</p>
       </div>
       <div className="box-item2">
         <img 
@@ -62,7 +62,7 @@ function Badges() {
           src={`Site_SVG/badges/berry.svg`}
           title={berryBadgeSpecies[0].count <5 ? `Log 5 berries! You've found ${berryBadgeSpecies[0].count} berry species.` : "Berry Berry Berry"}
         />
-        <label htmlFor='berries'>Berry Finder</label>
+        <p htmlFor='berries'>Berry Finder</p>
       </div>
       <div className="box-item2">
         <img 
@@ -74,7 +74,7 @@ function Badges() {
           src={`Site_SVG/badges/tree.svg`}
           title={treeBadgeSpecies[0].count <10 ? `Find 10 trees! You've found ${treeBadgeSpecies[0].count} tree species.` : "Tree Forager Status, hell yeah!"}
         />
-        <label htmlFor='trees'>Tree Finder</label>
+        <p htmlFor='trees'>Tree Finder</p>
       </div>
     </div>
   );

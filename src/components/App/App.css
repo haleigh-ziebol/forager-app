@@ -10,6 +10,18 @@ body {
   color: #484E6B;
 }
 
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 1.875em;
+}
+
+p {
+  font-size: 0.85em;
+}
+
 ul {
   columns: 100px 3;
 }
@@ -59,7 +71,7 @@ ul {
 .box-item2 {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 10px;
 }
 
 .box-item3 {

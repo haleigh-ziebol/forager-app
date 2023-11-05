@@ -158,7 +158,7 @@ function Observations() {
           </Box>
         }
         {mapView && 
-          <List className="observation-container-map" sx={{ maxHeight: "400px", overflow:"auto"}}>
+          <List className="observation-container-map" sx={{ maxHeight: "380px", overflow:"auto", maxWidth:"550px"}}>
           { ( observationList.length > 0) && 
             observationList.map((observation, i) => {
               return <ObsItemMap  i={i} observation={observation} />

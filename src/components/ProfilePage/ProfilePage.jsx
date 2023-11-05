@@ -17,16 +17,18 @@ function ProfilePage() {
     <div className="profile-container background">
       <div className="profile-info">
         <div className="box-item2 center">
-          <div className=''>
+          <div>
           <img 
             alt={user.icon}
-            width={"100px"}
-            height={"100px"}
+            width={"90px"}
+            height={"90px"}
             src={`Site_SVG/profile-icon/${user.icon}.svg`}
           />
           </div>
-          <p><i>Username:  </i>{user.username}</p>
-          <p><i>Region: </i> {userRegion.length > 0 && userRegion[0].name}</p>
+          <div>
+            <span sx={{display:"inline-block"}}><p>Username: <b>{user.username}</b></p></span>
+          <span sx={{display:"inline-block"}}><p>Region: <b>{userRegion.length > 0 && userRegion[0].name}</b></p></span>
+          </div>
         </div>
         <Badges/>
       </div>
@@ -35,5 +37,4 @@ function ProfilePage() {
   );
 }
 
-// this allows us to use <App /> in index.js
 export default ProfilePage;
