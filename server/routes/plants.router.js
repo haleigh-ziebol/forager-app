@@ -4,7 +4,7 @@ const router = express.Router();
 
 //GET all species scientific names
 router.get('/scientific', (req, res) => {
-  let queryText = 'SELECT "scientific_name", "id" from "species";';
+  let queryText = 'SELECT "scientific_name", "id" FROM "species" ORDER BY "scientific_name";';
   console.log('Fetching all species scientific names')
   pool.query(queryText)
   .then(result => {
@@ -20,7 +20,8 @@ router.get('/scientific', (req, res) => {
 router.get('/common', (req, res) => {
   let queryText = `SELECT CONCAT(TRIM(UNNEST(STRING_TO_ARRAY("common_name", ','))))
   as "common_name", "id" 
-  FROM species;`;
+  FROM species
+  ORDER BY "common_name";`;
   console.log('Fetching all species common names')
   pool.query(queryText)
   .then(result => {
