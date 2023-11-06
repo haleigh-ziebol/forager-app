@@ -43,8 +43,8 @@ function ObsItemList( { observation, i } ) {
           <img 
             className='img-button'
             alt="plus"
-            width={"25px"}
-            height={"25px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/plus.svg`}
             onClick={() => setDisplayToggle(false)}
           />
@@ -83,8 +83,8 @@ function ObsItemList( { observation, i } ) {
         <img
           className='img-button' 
           alt="info"
-          width={"25px"}
-          height={"25px"}
+          width={"17px"}
+          height={"17px"}
           src={`Site_SVG/info.svg`}
           onClick={() => history.push(`/info/${observation.species_id}`)}
         />

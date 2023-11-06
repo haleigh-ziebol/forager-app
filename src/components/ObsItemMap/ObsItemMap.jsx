@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+//child components
+import GrowthIcons from '../GrowthIcons/GrowthIcons';
+
 //MUI components
 import ListItem from '@mui/material/ListItem';
 
@@ -38,6 +41,7 @@ function ObsItemMap( { observation, i } ) {
     <ListItem alignItems="flex-start" key={observation.id} className='outlined box-item1' sx={{bgcolor: '#FFF4F4', m:'0px 0px 5px 0px', color:'#484E6B'}}>
       <div className='box-item2'>
         <p><b>Observation #{i+1}</b></p>
+        <p>Date: <b>{alterDate(observation.date_observed)}</b></p>
         <div className="box-grid">
         <img 
             className='img-button'
@@ -51,8 +55,8 @@ function ObsItemMap( { observation, i } ) {
           <img 
             className='img-button'
             alt="plus"
-            width={"20px"}
-            height={"20px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/plus.svg`}
             onClick={() => setDisplayToggle(false)}
           />
@@ -87,24 +91,24 @@ function ObsItemMap( { observation, i } ) {
         </div>
       </div>
       <div className="box-item2">
-        <p>Date: <b>{alterDate(observation.date_observed)}</b></p>
         <div className='box-item3'>
           <p>Scientific Name: <b><i>{observation.scientific_name}</i></b></p>
           <img 
             className='img-button'
             alt="info"
-            width={"20px"}
-            height={"20px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/info.svg`}
             onClick={() => history.push(`/info/${observation.species_id}`)}
           />
         </div>
-        <div className='wrap'>
+        <div>
           <p>Common Name: <b>{observation.common_name.split(",")[0]}</b></p>
         </div>
       </div>
-      <div className='box-item4'>
+      <div className='box-item6'>
         <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
+        <GrowthIcons growth_type={observation.growth_type} />
         {/* { (observation.photo !== "") &&
           <img 
             alt={`photo_obs_id${observation.id}`}

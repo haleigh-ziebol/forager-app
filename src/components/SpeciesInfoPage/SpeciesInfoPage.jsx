@@ -46,11 +46,11 @@ function SpeciesInfoPage() {
 
     return(
        <div className="container center">
-        <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1'>
-          <h1>Species Info</h1>
-            <h2>Common Name: {speciesInfo.database.common_name}</h2>
-            <h2>Scientific Name: <i>{speciesInfo.database.scientific_name}</i></h2>
-            <h2>Growth Type: {speciesInfo.database.growth_type}</h2>
+        <Card sx={{ p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B', display:"block"}} className='background1'>
+          <h2>Species Info</h2> <hr/>
+            <span style={{whiteSpace: "nowrap", overflow:"hidden", display:"inline"}}><h4>Common Name:</h4><h3>{speciesInfo.database.common_name}</h3></span>
+            <h4>Scientific Name:</h4> <h3><i>{speciesInfo.database.scientific_name}</i></h3>
+            <h4>Growth Type:</h4><h3>{speciesInfo.database.growth_type}</h3>
             <img src={speciesInfo.image}
             alt={speciesInfo.database.scientific_name}
             />

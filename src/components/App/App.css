@@ -15,7 +15,17 @@ h1 {
 }
 
 h2 {
-  font-size: 1.75em;
+  font-size: 1.7em;
+}
+
+h3 {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
 p {
@@ -90,6 +100,14 @@ ul {
   display: flex;
   justify-content:space-between;
   align-items: baseline;
+}
+
+.box-item6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
+  align-items:center;
 }
 
 .oneline {
