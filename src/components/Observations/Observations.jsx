@@ -9,16 +9,34 @@ import ObsItemMap from '../ObsItemMap/ObsItemMap';
 
 
 //MUI components
-import List from '@mui/material/List';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Modal, Card, List } from '@mui/material';
+
 
 //styling
 import './Observations.css';
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 450,
+  height: 600,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+};
+
+//format date for selector
+function alterDate (string) {
+  return string.substr(0,10)
+}
 
 function Observations() {
 
   const [ selected, setSelected ] = useState({});
-  const [mapView, setMapView] = useState(true)
+  const [mapView, setMapView] = useState(true);
+  const [observationModal, setObservationModal] = useState(false);
+  const [observationForModal, setObservationForModal] =useState({});
 
   const user = useSelector((store) => store.user);
   const observationList = useSelector(store => store.observation.userObservationList);
@@ -94,8 +112,51 @@ function Observations() {
     }
   }, [highlightObs]);
 
+  //sets observation modal
+  const modalSelect = (observation) => {
+    setObservationModal(true);
+    setObservationForModal(observation)
+  }
+
   return (
     <div className="observation-container">
+      <Modal
+        open={observationModal}
+        style={style}
+      >
+        <div className='pic-modal'>
+          <button onClick={() => setObservationModal(false)}>x</button>
+          <Card key={observationForModal.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}}>
+      <div className="box-item5">
+        {/* <p><b>Observation #{i+1}</b></p>        */}
+      </div>
+        <p><b>Date:</b> {alterDate(observationForModal.id.date_observed)}</p>
+        <div className="box-item5">
+        <p><b>Scientific Name: </b><i>{observationForModal.id.scientific_name}</i></p>
+        <img
+          className='img-button' 
+          alt="info"
+          width={"17px"}
+          height={"17px"}
+          src={`Site_SVG/info.svg`}
+          onClick={() => history.push(`/info/${observationForModal.id.species_id}`)}
+        />
+      </div>
+      <p><b>Common Name(s): </b>{observationForModal.id.common_name}</p>
+      <p><b>Growth Type: </b>{observationForModal.id.growth_type}</p>
+      <p><b>Notes:</b> {observationForModal.id.notes !== "" ? observationForModal.id.notes : 'N/A'}</p>
+      <p><b>Photo:</b> {observationForModal.id.photo == "" &&  "N/A"}</p>
+      { (observationForModal.id.photo !== "") &&
+        <img 
+          alt={`photo_obs_id${observationForModal.id.id}`}
+          width={"150px"}
+          height={"200px"}
+          src={observationForModal.id.photo}
+        />
+      }
+    </Card>
+        </div>
+      </Modal>
       {mapView && <div className="obsmap">
         {!isLoaded ? (
           <h1>Loading...</h1>
@@ -110,7 +171,8 @@ function Observations() {
                 return <MarkerF 
                   position={{lat: parseFloat(observation.location[0]), lng: parseFloat(observation.location[1])}} 
                   key={observation.id} 
-                  onClick={() => onSelect(observation, i+1)}
+                  // onClick={() => onSelect(observation, i+1)}
+                  onClick={() => modalSelect(observation)}
                   animation={observation.id==highlightObs.id ? google.maps.Animation.BOUNCE : null}
                 />
               })
@@ -134,7 +196,7 @@ function Observations() {
       <div className="observation-info">
       <div className ="observation-header">
         <div className="box-item1">
-          <div className="oneline"><h1>My Finds: <h3>[<i>{observationList.length}</i>]</h3></h1></div>
+          <div className='oneline'><h2>My Finds:</h2> <h3 style={{marginLeft:'15px'}}>[<i>{observationList.length}</i>]</h3></div>
           {observationList.length > 0 && 
           <div>
             { mapView && <Button onClick={() => setMapView(false)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>List View</Button>}

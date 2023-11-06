@@ -16,7 +16,7 @@ function ProfilePage() {
   return (
     <div className="profile-container background">
       <div className="profile-info">
-        <div className="box-item2 center">
+        <div className="box-item7">
           <div>
           <img 
             alt={user.icon}
@@ -26,8 +26,8 @@ function ProfilePage() {
           />
           </div>
           <div>
-            <span sx={{display:"inline-block"}}><p>Username: <b>{user.username}</b></p></span>
-          <span sx={{display:"inline-block"}}><p>Region: <b>{userRegion.length > 0 && userRegion[0].name}</b></p></span>
+            <p>Username: <b>{user.username}</b></p>
+            <p>Region: <b>{userRegion.length > 0 && userRegion[0].name}</b></p>
           </div>
         </div>
         <Badges/>
