@@ -90,6 +90,7 @@ function ObsItemList( { observation, i } ) {
         />
       </div>
       <p><b>Common Name(s): </b>{observation.common_name}</p>
+      <p><b>Growth Type: </b>{observation.growth_type}</p>
       <p><b>Notes:</b> {observation.notes !== "" ? observation.notes : 'N/A'}</p>
       <p><b>Photo:</b> {observation.photo == "" &&  "N/A"}</p>
       { (observation.photo !== "") &&
