@@ -7,16 +7,30 @@ import GrowthIcons from '../GrowthIcons/GrowthIcons';
 
 //MUI components
 import ListItem from '@mui/material/ListItem';
+import { Modal, Box } from '@mui/material';
 
 //format date for selector
 function alterDate (string) {
   return string.substr(0,10)
 }
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 450,
+  height: 600,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+};
+
 function ObsItemMap( { observation, i } ) {
 
   //controls option buttons for observations
   let [displayToggle, setDisplayToggle] = useState(true);
+  let [picModal, setPicModal] = useState(false);
 
   const user = useSelector((store) => store.user);
 
@@ -108,15 +122,42 @@ function ObsItemMap( { observation, i } ) {
       </div>
       <div className='box-item6'>
         <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
+        <div className="box-item3">
         <GrowthIcons growth_type={observation.growth_type} />
-        {/* { (observation.photo !== "") &&
+        { observation.photo == "" ?
+          <img 
+            className='no-pic'
+            alt="no picture"
+            width={"30px"}
+            height={"30px"}
+            src={`Site_SVG/click-icon/no-pic.svg`}
+          />
+        :
+          <img 
+            className='img-button'
+            alt="picture"
+            width={"30px"}
+            height={"30px"}
+            src={`Site_SVG/click-icon/pic.svg`}
+            onClick={()=>setPicModal(true)}
+          />
+        }
+      </div>
+
+        <Modal
+          open={picModal}
+          style={style}
+        >
+          <div>
+            <button onClick={() => setPicModal(false)}>x</button>
           <img 
             alt={`photo_obs_id${observation.id}`}
-            width={"40px"}
-            height={"80px"}
+            width={"450px"}
+            height={"600px"}
             src={observation.photo}
           />
-        } */}
+          </div>
+        </Modal>
       </div>
     </ListItem>
   );
