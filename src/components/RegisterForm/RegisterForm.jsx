@@ -93,6 +93,7 @@ function RegisterForm() {
                 return (<div key={avatar.number} className="box-item2">
                 <input 
                 type="radio"
+                name={"avatar"}
                 id={`image-${avatar.number}`}
                 defaultValue={avatar.name}
                 />

@@ -134,7 +134,7 @@ function Observations() {
       <div className="observation-info">
       <div className ="observation-header">
         <div className="box-item1">
-          <h1>My Finds:</h1>
+          <div className="oneline"><h1>My Finds: <h3>[<i>{observationList.length}</i>]</h3></h1></div>
           {observationList.length > 0 && 
           <div>
             { mapView && <Button onClick={() => setMapView(false)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>List View</Button>}

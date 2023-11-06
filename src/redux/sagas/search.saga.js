@@ -37,7 +37,7 @@ function* badgeTrees( action ) {
   try {
     const badgeResponse = yield axios.get(`/api/search/badge/tree/?id=${action.payload.user_id}`);
     yield console.log(badgeResponse)
-      yield put({ type: 'SET_BADGE_TREES', payload: badgeResponse.data });
+      yield put({ type: 'SET_BADGE_TREE', payload: badgeResponse.data });
   } catch (error) {
       console.log(error);
   }

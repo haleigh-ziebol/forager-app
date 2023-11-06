@@ -36,61 +36,66 @@ function ObsItemList( { observation, i } ) {
   }
 
   return (
-    <Card key={observation.id} sx={{ minWidth: 300, p:'2rem', m:'10px' }}>
-      <p>Observation {i+1}</p>       
-      {(displayToggle == true) ? 
-        <img 
-          className='img-button'
-          alt="plus"
-          width={"25px"}
-          height={"25px"}
-          src={`Site_SVG/plus.svg`}
-          onClick={() => setDisplayToggle(false)}
-        />
-      : 
-      <div>
-        <img 
-          className='img-button'
-          alt="minus"
-          width={"25px"}
-          height={"25px"}
-          src={`Site_SVG/minus.svg`}
-          onClick={() => setDisplayToggle(true)}
-        />
-        <img 
-          className='img-button'
-           alt="edit"
-          width={"25px"}
-          height={"25px"}
-          src={`Site_SVG/edit.svg`}
-          onClick={handleEdit}
+    <Card key={observation.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}}>
+      <div className="box-item5">
+        <p><b>Observation #{i+1}</b></p>       
+        {(displayToggle == true) ? 
+          <img 
+            className='img-button'
+            alt="plus"
+            width={"25px"}
+            height={"25px"}
+            src={`Site_SVG/plus.svg`}
+            onClick={() => setDisplayToggle(false)}
           />
-        <img 
-          className='img-button'
-          alt="delete"
+        : 
+        <div>
+          <img 
+            className='img-button'
+            alt="minus"
+            width={"25px"}
+            height={"25px"}
+            src={`Site_SVG/minus.svg`}
+            onClick={() => setDisplayToggle(true)}
+          />
+          <img 
+            className='img-button'
+            alt="edit"
+            width={"25px"}
+            height={"25px"}
+            src={`Site_SVG/edit.svg`}
+            onClick={handleEdit}
+            />
+          <img 
+            className='img-button'
+            alt="delete"
+            width={"25px"}
+            height={"25px"}
+            src={`Site_SVG/delete.svg`}
+            onClick={handleDelete}
+          />
+        </div>
+        }
+      </div>
+        <p><b>Date:</b> {alterDate(observation.date_observed)}</p>
+        <div className="box-item5">
+        <p><b>Scientific Name: </b><i>{observation.scientific_name}</i></p>
+        <img
+          className='img-button' 
+          alt="info"
           width={"25px"}
           height={"25px"}
-          src={`Site_SVG/delete.svg`}
-          onClick={handleDelete}
+          src={`Site_SVG/info.svg`}
+          onClick={() => history.push(`/info/${observation.species_id}`)}
         />
       </div>
-      }
-      <p>Date: {alterDate(observation.date_observed)}</p>
-      <p><i>{observation.scientific_name}</i></p>
-      <img
-        className='img-button' 
-        alt="info"
-        width={"25px"}
-        height={"25px"}
-        src={`Site_SVG/info.svg`}
-        onClick={() => history.push(`/info/${observation.species_id}`)}
-      />
-      <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
-      <p>Photo: {observation.photo == "" &&  "N/A"}</p>
+      <p><b>Common Name(s): </b>{observation.common_name}</p>
+      <p><b>Notes:</b> {observation.notes !== "" ? observation.notes : 'N/A'}</p>
+      <p><b>Photo:</b> {observation.photo == "" &&  "N/A"}</p>
       { (observation.photo !== "") &&
         <img 
           alt={`photo_obs_id${observation.id}`}
-          width={"120px"}
+          width={"150px"}
           height={"200px"}
           src={observation.photo}
         />
