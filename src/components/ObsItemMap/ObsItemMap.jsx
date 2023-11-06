@@ -148,7 +148,7 @@ function ObsItemMap( { observation, i } ) {
           open={picModal}
           style={style}
         >
-          <div>
+          <div className='pic-modal'>
             <button onClick={() => setPicModal(false)}>x</button>
           <img 
             alt={`photo_obs_id${observation.id}`}

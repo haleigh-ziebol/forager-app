@@ -167,3 +167,9 @@ input[type="text"], input[type="password"], input[type="radio"], input[type="dat
   background-color: #E6CFC1;
   color: #484E6B; 
 }
+
+.pic-modal button {
+  position: absolute;
+  top: 10px; /*your button position*/
+  right: 10px; /*your button position*/
+}
