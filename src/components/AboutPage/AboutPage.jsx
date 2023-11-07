@@ -7,7 +7,7 @@ const techArray = ['React.js', 'Saga.js', 'Redux.js', 'Express.js', 'Node.js', '
 
 function AboutPage() {
   return (
-    <div className="container center">
+    <div className="container center" style={{lineHeight:"150%"}}>
       <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1 boxshadow'>
         <div className="box-item3">
         <img src="https://www.svgrepo.com/show/190938/apple-vegan.svg"
@@ -17,7 +17,7 @@ function AboutPage() {
         </div>
         <p>
           Foragers have special spots they visit every year and are always looking for new wild edibles! 
-          On this app users input the location and species along with a photo and notes for their foraging spot. 
+          On this app users input information <span>&#8212;</span>including the location and species along with a photo and notes<span>&#8212;</span> about their foraging spot. 
           This data is stored on a map where they can view, edit and delete finds. 
           When they input a new species, it counts toward foraging badges that a user can earn.
           Users can also search for species by region/name/growth type in the database and learn more about them!
