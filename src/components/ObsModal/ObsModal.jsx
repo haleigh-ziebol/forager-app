@@ -11,7 +11,7 @@ function alterDate (string) {
   return string.substr(0,10)
 }
 
-function ObsItemList( { observation, i } ) {
+function ObsModal( { observation, i, setObservationModal} ) {
 
   //controls option buttons for observations
   let [displayToggle, setDisplayToggle] = useState(true);
@@ -37,7 +37,10 @@ function ObsItemList( { observation, i } ) {
 
   return (
     <Card key={observation.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}}>
-      <div className="box-item5">
+      <div className='box-item8'>
+        <button onClick={() => setObservationModal(false)} >X</button>
+      </div>
+      <div className="oneline2">
         <p><b>Observation #{i+1}</b></p>       
         {(displayToggle == true) ? 
           <img 
@@ -47,6 +50,7 @@ function ObsItemList( { observation, i } ) {
             height={"17px"}
             src={`Site_SVG/plus.svg`}
             onClick={() => setDisplayToggle(false)}
+            style={{marginLeft:"20px"}}
           />
         : 
         <div>
@@ -105,4 +109,4 @@ function ObsItemList( { observation, i } ) {
   );
 }
 
-export default ObsItemList;
+export default ObsModal;

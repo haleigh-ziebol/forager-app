@@ -7,7 +7,7 @@ import GrowthIcons from '../GrowthIcons/GrowthIcons';
 
 //MUI components
 import ListItem from '@mui/material/ListItem';
-import { Modal} from '@mui/material';
+import { Modal, Box } from '@mui/material';
 
 //format date for selector
 function alterDate (string) {
@@ -21,9 +21,9 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 450,
   height: 600,
-  bgcolor: '#484E6B',
+  bgcolor: 'background.paper',
   border: '2px solid #000',
-  boxShadow: 10,
+  boxShadow: 24,
 };
 
 function ObsItemMap( { observation, i } ) {

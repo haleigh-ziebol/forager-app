@@ -99,7 +99,7 @@ ul {
 .box-item5 {
   display: flex;
   justify-content:space-between;
-  align-items: baseline;
+  align-items: center;
 }
 
 .box-item6 {
@@ -115,6 +115,11 @@ ul {
   flex-direction: column;
   align-items: center;
   padding: 10px;
+}
+
+.box-item8 {
+  display: flex;
+  justify-content: right;
 }
 
 .oneline {
@@ -185,4 +190,26 @@ input[type="text"], input[type="password"], input[type="radio"], input[type="dat
   position: absolute;
   top: 10px; /*your button position*/
   right: 10px; /*your button position*/
+}
+
+.obs-modal {
+  position: absolute;
+  top: 300px;
+  right: 300px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+};
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(100px);
+  z-index: 999;
 }
