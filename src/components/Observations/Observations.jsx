@@ -9,7 +9,8 @@ import ObsItemMap from '../ObsItemMap/ObsItemMap';
 
 
 //MUI components
-import { Box, Button, Modal, Card, List } from '@mui/material';
+import List from '@mui/material/List';
+import { Box, Button, Modal } from '@mui/material';
 
 
 //styling
@@ -25,11 +26,6 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
 };
-
-//format date for selector
-function alterDate (string) {
-  return string.substr(0,10)
-}
 
 function Observations() {
 
@@ -126,35 +122,8 @@ function Observations() {
       >
         <div className='pic-modal'>
           <button onClick={() => setObservationModal(false)}>x</button>
-          <Card key={observationForModal.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}}>
-      <div className="box-item5">
-        {/* <p><b>Observation #{i+1}</b></p>        */}
-      </div>
-        <p><b>Date:</b> {alterDate(observationForModal.id.date_observed)}</p>
-        <div className="box-item5">
-        <p><b>Scientific Name: </b><i>{observationForModal.id.scientific_name}</i></p>
-        <img
-          className='img-button' 
-          alt="info"
-          width={"17px"}
-          height={"17px"}
-          src={`Site_SVG/info.svg`}
-          onClick={() => history.push(`/info/${observationForModal.id.species_id}`)}
-        />
-      </div>
-      <p><b>Common Name(s): </b>{observationForModal.id.common_name}</p>
-      <p><b>Growth Type: </b>{observationForModal.id.growth_type}</p>
-      <p><b>Notes:</b> {observationForModal.id.notes !== "" ? observationForModal.id.notes : 'N/A'}</p>
-      <p><b>Photo:</b> {observationForModal.id.photo == "" &&  "N/A"}</p>
-      { (observationForModal.id.photo !== "") &&
-        <img 
-          alt={`photo_obs_id${observationForModal.id.id}`}
-          width={"150px"}
-          height={"200px"}
-          src={observationForModal.id.photo}
-        />
-      }
-    </Card>
+          <p>hello</p>
+          <p>{observationForModal.id}</p>
         </div>
       </Modal>
       {mapView && <div className="obsmap">
