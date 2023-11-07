@@ -16,7 +16,7 @@ function SearchResultItem({ species }) {
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
       >
         <TableCell component="th" scope="row">
-          <div className='box-item4'>
+          <div className='oneline2'>
           <i>{species.scientific_name}</i>
           <img 
             className='img-button'
@@ -25,6 +25,7 @@ function SearchResultItem({ species }) {
             height={"20px"}
             src={`Site_SVG/info.svg`}
             onClick={() => history.push(`/info/${species.id}`)}
+            style={{marginLeft:"20px"}}
           />
           </div>
         </TableCell>

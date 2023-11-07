@@ -6,26 +6,15 @@ import { useHistory } from 'react-router-dom';
 //child components
 import ObsItemList from '../ObsItemList/ObsItemList';
 import ObsItemMap from '../ObsItemMap/ObsItemMap';
-
+import ObsModal from '../ObsModal/ObsModal';
 
 //MUI components
 import List from '@mui/material/List';
-import { Box, Button, Modal } from '@mui/material';
+import { Box, Button, Modal} from '@mui/material';
 
 
 //styling
 import './Observations.css';
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 450,
-  height: 600,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-};
 
 function Observations() {
 
@@ -33,6 +22,7 @@ function Observations() {
   const [mapView, setMapView] = useState(true);
   const [observationModal, setObservationModal] = useState(false);
   const [observationForModal, setObservationForModal] =useState({});
+  const [obsI, setObsI] = useState(0);
 
   const user = useSelector((store) => store.user);
   const observationList = useSelector(store => store.observation.userObservationList);
@@ -109,23 +99,15 @@ function Observations() {
   }, [highlightObs]);
 
   //sets observation modal
-  const modalSelect = (observation) => {
+  const modalSelect = (observation, i) => {
     setObservationModal(true);
+    setObsI(i)
     setObservationForModal(observation)
   }
 
   return (
     <div className="observation-container">
-      <Modal
-        open={observationModal}
-        style={style}
-      >
-        <div className='pic-modal'>
-          <button onClick={() => setObservationModal(false)}>x</button>
-          <p>hello</p>
-          <p>{observationForModal.id}</p>
-        </div>
-      </Modal>
+      {observationModal && <ObsModal className="overlay obs-modal" observation={observationForModal} i={obsI} setObservationModal={setObservationModal} />}
       {mapView && <div className="obsmap">
         {!isLoaded ? (
           <h1>Loading...</h1>
@@ -140,8 +122,7 @@ function Observations() {
                 return <MarkerF 
                   position={{lat: parseFloat(observation.location[0]), lng: parseFloat(observation.location[1])}} 
                   key={observation.id} 
-                  // onClick={() => onSelect(observation, i+1)}
-                  onClick={() => modalSelect(observation)}
+                  onClick={() => modalSelect(observation, i)}
                   animation={observation.id==highlightObs.id ? google.maps.Animation.BOUNCE : null}
                 />
               })
@@ -162,44 +143,44 @@ function Observations() {
           </div>
         )}
       </div>}
-      <div className="observation-info">
-      <div className ="observation-header">
-        <div className="box-item1">
-          <div className='oneline'><h2>My Finds:</h2> <h3 style={{marginLeft:'15px'}}>[<i>{observationList.length}</i>]</h3></div>
-          {observationList.length > 0 && 
-          <div>
-            { mapView && <Button onClick={() => setMapView(false)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>List View</Button>}
-            { !mapView && <Button onClick={() => setMapView(true)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Map View</Button> }
-          </div>}
-        </div>
-      <div className ="observations-body">
-      {observationList.length == 0 && 
+      { !observationModal && <div className="observation-info">
+        <div className ="observation-header">
+          <div className="box-item1">
+            <div className='oneline'><h2>My Finds:</h2> <h3 style={{marginLeft:'15px'}}>[<i>{observationList.length}</i>]</h3></div>
+            {observationList.length > 0 && 
             <div>
-              <p>None for now!</p>
-              <button onClick={()=> history.push('/addObservation')}>Add A Find</button>
-            </div>
+              { mapView && <Button onClick={() => setMapView(false)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>List View</Button>}
+              { !mapView && <Button onClick={() => setMapView(true)} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>Map View</Button> }
+            </div>}
+          </div>
+        <div className ="observations-body">
+        {observationList.length == 0 && 
+              <div>
+                <p>None for now!</p>
+                <button onClick={()=> history.push('/addObservation')}>Add A Find</button>
+              </div>
+            }
+          {!mapView && 
+            <Box component="div" sx={{ overflow: 'auto' }} className="observation-container-list">
+              { ( observationList.length > 0) && 
+                observationList.map((observation, i) => {
+                  return <ObsItemList observation={observation} i={i} />
+                })
+              }
+            </Box>
           }
-        {!mapView && 
-          <Box component="div" sx={{ overflow: 'auto' }} className="observation-container-list">
+          {mapView && 
+            <List className="observation-container-map" sx={{ maxHeight: "380px", overflow:"auto", maxWidth:"550px"}}>
             { ( observationList.length > 0) && 
               observationList.map((observation, i) => {
-                return <ObsItemList observation={observation} i={i} />
+                return <ObsItemMap  i={i} observation={observation} />
               })
             }
-          </Box>
-        }
-        {mapView && 
-          <List className="observation-container-map" sx={{ maxHeight: "380px", overflow:"auto", maxWidth:"550px"}}>
-          { ( observationList.length > 0) && 
-            observationList.map((observation, i) => {
-              return <ObsItemMap  i={i} observation={observation} />
-            })
+            </List>
           }
-          </List>
-        }
+        </div>
       </div>
-      </div>
-    </div>
+    </div>}
     </div>
   );
 
