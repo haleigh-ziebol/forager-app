@@ -4,6 +4,10 @@ body,
   height: 100%;
 }
 
+/* --------------------------------------------------------------------------------
+Text
+-------------------------------------------------------------------------------- */
+
 body {
   font-family: Geneva, Verdana, Tahoma, sans-serif;
   margin: 0px;
@@ -36,8 +40,19 @@ ul {
   columns: 100px 3;
 }
 
-.unearned {
-  opacity: 0.2;
+/* --------------------------------------------------------------------------------
+special class
+-------------------------------------------------------------------------------- */
+
+.img-button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.backgroundApp {
+  background-color: #EEFFF1;
+  width:100vw;
+  height: auto;
 }
 
 .center {
@@ -50,7 +65,6 @@ ul {
   background-color: #E6F0E8;
   display: flex;
   align-items: center;
-
 }
 
 .highlight-observation {
@@ -58,7 +72,11 @@ ul {
 }
 
 .species-found {
-  background-color:  #E6F0E8;
+  background-color:  #E6CFC1;
+}
+
+.unearned {
+  opacity: 0.2;
 }
 
 .modal {
@@ -67,6 +85,10 @@ ul {
   background-color: #E6CFC1;
 }
 
+
+/* --------------------------------------------------------------------------------
+Juggling Divs in (flex)boxes
+-------------------------------------------------------------------------------- */
 .box-grid {
   display: inline-grid;
   grid-template-columns: auto auto;
@@ -133,16 +155,20 @@ ul {
   align-items: center;
 }
 
+
+/* --------------------------------------------------------------------------------
+format box display
+-------------------------------------------------------------------------------- */
+
 .outlined {
   border-radius: 25px;
   border: 2px solid #454A64;
 }
 
-
-.img-button:hover {
-  opacity: 0.7;
-  cursor: pointer;
+.boxshadow {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
+
 
 /* --------------------------------------------------------------------------------
 Container
@@ -157,9 +183,8 @@ Container
 }
 
 
-
 /* --------------------------------------------------------------------------------
-Form Treatment
+Form & Modal Treatment
 -------------------------------------------------------------------------------- */
 
 .formPanel {

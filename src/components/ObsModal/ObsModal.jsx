@@ -8,7 +8,8 @@ import Card from '@mui/material/Card';
 
 //format date for selector
 function alterDate (string) {
-  return string.substr(0,10)
+  const clip = string.substr(0,10).replaceAll("-", "");
+  return clip.replace(/(\d{4})(\d{2})(\d{2})/,"$2/$3/$1")
 }
 
 function ObsModal( { observation, i, setObservationModal} ) {
@@ -36,7 +37,7 @@ function ObsModal( { observation, i, setObservationModal} ) {
   }
 
   return (
-    <Card key={observation.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}}>
+    <Card key={observation.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}} className="boxshadow">
       <div className='box-item8'>
         <button onClick={() => setObservationModal(false)} >X</button>
       </div>

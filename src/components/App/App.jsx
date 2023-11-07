@@ -37,7 +37,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className='backgroundApp'>
       <Router>
       <div>
         <Header />

@@ -126,7 +126,7 @@ const AddObsForm = () => {
 
     return (
         <div className='center container'>
-         <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1'>
+         <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1 boxshadow'>
         {/* <Debounce/> */}
             { success &&
                 <Fade

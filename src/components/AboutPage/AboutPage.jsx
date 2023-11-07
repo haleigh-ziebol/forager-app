@@ -8,7 +8,7 @@ const techArray = ['React.js', 'Saga.js', 'Redux.js', 'Express.js', 'Node.js', '
 function AboutPage() {
   return (
     <div className="container center">
-      <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1'>
+      <Card sx={{ maxWidth: 4/5, p:'2rem', bgcolor:'#FFF4F4', color:'#484E6B'}} className='background1 boxshadow'>
         <div className="box-item3">
         <img src="https://www.svgrepo.com/show/190938/apple-vegan.svg"
           height="30px"

@@ -11,7 +11,8 @@ import { Modal, Box } from '@mui/material';
 
 //format date for selector
 function alterDate (string) {
-  return string.substr(0,10)
+  const clip = string.substr(0,10).replaceAll("-", "");
+  return clip.replace(/(\d{4})(\d{2})(\d{2})/,"$2/$3/$1")
 }
 
 const style = {
