@@ -20,8 +20,8 @@ function LandingPage() {
           src={`Site_SVG/home.svg`}
         />
         <div style={{margin:"50px"}}>
-          <h1>keep track of your finds</h1>
-          <h1>earn foraging badges</h1>
+          <h5>keep track of your finds</h5>
+          <h5>earn foraging badges</h5>
           <br/>
           <br/>
           <Button onClick={()=> history.push('/about')}variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>About</Button>

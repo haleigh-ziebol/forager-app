@@ -7,7 +7,7 @@ import GrowthIcons from '../GrowthIcons/GrowthIcons';
 
 //MUI components
 import ListItem from '@mui/material/ListItem';
-import { Modal, Box } from '@mui/material';
+import { Modal } from '@mui/material';
 
 //format date for selector
 function alterDate (string) {

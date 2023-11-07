@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
 //reducer for new observation coordinates
-const newObservationCoords = (state = [], action) => {
+const newObservationCoords = (state = [{lat: "", lng: ""}], action) => {
   switch (action.type) {
     case 'NEW_COORDINATES':
       return [action.payload];
     case 'RESET_COORDINATES':
-      return [];
+      return [{lat: "", lng: ""}];
     default:
       return state;
   }

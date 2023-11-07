@@ -18,7 +18,7 @@ import './Observations.css';
 
 function Observations() {
 
-  const [ selected, setSelected ] = useState({});
+  // const [ selected, setSelected ] = useState({});
   const [mapView, setMapView] = useState(true);
   const [observationModal, setObservationModal] = useState(false);
   const [observationForModal, setObservationForModal] =useState({});
@@ -83,10 +83,10 @@ function Observations() {
     width: "50wh",
   };
 
-  //for infoWindow
-  const onSelect = (observation, index) => {
-    setSelected({observation: observation, index: index});
-  }
+  // //for infoWindow
+  // const onSelect = (observation, index) => {
+  //   setSelected({observation: observation, index: index});
+  // }
 
   //resets highlighted obs after timeout 
   useEffect(() => {
@@ -127,7 +127,7 @@ function Observations() {
                 />
               })
             } 
-            {
+            {/* {
                 (selected.observation) && 
                 (
                   <InfoWindowF
@@ -138,7 +138,7 @@ function Observations() {
                   <p>{selected.index}</p>
                 </InfoWindowF>
                 )
-            }
+            } */}
           </GoogleMap>
           </div>
         )}
