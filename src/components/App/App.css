@@ -1,7 +1,9 @@
 html,
 body,
 #react-root {
-  height: 100%;
+  min-height: 100vh;
+  background-color: #EEFFF1;
+  /* width:100vw; */
 }
 
 /* --------------------------------------------------------------------------------
@@ -41,6 +43,11 @@ p {
   font-size: 0.85em;
 }
 
+p2 {
+  font-size: 1em;
+  text-decoration: underline;
+}
+
 ul {
   columns: 100px 3;
 }
@@ -56,8 +63,6 @@ special class
 
 .backgroundApp {
   background-color: #EEFFF1;
-  width:100vw;
-  height: auto;
 }
 
 .center {
@@ -125,7 +130,7 @@ Juggling Divs in (flex)boxes
 
 .box-item5 {
   display: flex;
-  justify-content:space-between;
+  justify-content:space-around;
   align-items: center;
 }
 
@@ -148,10 +153,22 @@ Juggling Divs in (flex)boxes
   display: flex;
   justify-content: right;
 }
+.box-item9 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.box-item10 {
+  display: flex;
+  justify-content:flex-start;
+  flex-direction: column;
+  align-items: center;
+}
 
 .oneline {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .oneline2 {

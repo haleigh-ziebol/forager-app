@@ -67,11 +67,11 @@ function SearchResultsPage() {
 
   return (
     <div className="container">
-      <div className='box-item5'>
+      <div className='box-item4'>
         <h2>Search Results:</h2>
         <Button onClick={() => history.push('/search')}variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B", margin: "0 50px 0"}}>Try a Different Search</Button>
      </div>
-     <div className='box-item5'>
+     <div className='box-item4'>
       {species == "ANY" ? 
         <p>{speciesResults.length} results for species from {region} region, with {species} name and {growthType} growth type.</p>
         : <p>{speciesResults.length} results for species from {region} region, with a name including "{species}" and {growthType} growth type.</p> 

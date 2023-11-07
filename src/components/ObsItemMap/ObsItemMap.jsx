@@ -53,104 +53,105 @@ function ObsItemMap( { observation, i } ) {
   }
 
   return (
-    <ListItem alignItems="flex-start" key={observation.id} className='outlined box-item1' sx={{bgcolor: '#FFF4F4', m:'0px 0px 5px 0px', color:'#484E6B'}}>
-      <div className='box-item2'>
-        <p><b>Observation #{i+1}</b></p>
-        <p>Date: <b>{alterDate(observation.date_observed)}</b></p>
-        <div className="box-grid">
-        <img 
-            className='img-button'
-            alt="marker"
-            width="20px"
-            height="20px"
-            src={`Site_SVG/marker.svg`}
-            onClick={() => dispatch({type:'OBSERVATION_TO_HIGHLIGHT', payload: { id: observation.id, location: observation.location}})}
-          />
-          {(displayToggle == true) ? 
-          <img 
-            className='img-button'
-            alt="plus"
-            width={"17px"}
-            height={"17px"}
-            src={`Site_SVG/plus.svg`}
-            onClick={() => setDisplayToggle(false)}
-          />
-          : 
-          <div>
+    <ListItem alignItems="flex-start" key={observation.id} className='outlined box-item4' sx={{bgcolor: '#FFF4F4', m:'0px 0px 5px 0px', color:'#484E6B'}}>
+        <div className="box-item10" style={{marginTop:"15px", marginRight:"10px", marginLeft:"10px"}}>
+          <div className='oneline2'>
             <img 
               className='img-button'
-              alt="minus"
-              width={"20px"}
-              height={"20px"}
-              src={`Site_SVG/minus.svg`}
-              onClick={() => setDisplayToggle(true)}
+              alt="marker"
+              width="30px"
+              height="30px"
+              src={`Site_SVG/marker.svg`}
+              onClick={() => dispatch({type:'OBSERVATION_TO_HIGHLIGHT', payload: { id: observation.id, location: observation.location}})}
             />
-            <img 
-              className='img-button'
-              alt="edit"
-              width={"20px"}
-              height={"20px"}
-              src={`Site_SVG/edit.svg`}
-              onClick={handleEdit}
-            />
-            <img 
-              className='img-button'
-              alt="delete"
-              width={"20px"}
-              height={"20px"}
-              src={`Site_SVG/delete.svg`}
-              onClick={handleDelete}
-            />
+            <p2><b>Observation #{i+1}</b></p2>
           </div>
-          }
-        </div>
-      </div>
-      <div className="box-item2">
-        <div className='box-item3'>
-          <p>Scientific Name: <b><i>{observation.scientific_name}</i></b></p>
-          <img 
-            className='img-button'
-            alt="info"
-            width={"17px"}
-            height={"17px"}
-            src={`Site_SVG/info.svg`}
-            onClick={() => history.push(`/info/${observation.species_id}`)}
-          />
-        </div>
-        <div>
-          <p>Common Name: <b>{observation.common_name.split(",")[0]}</b></p>
-        </div>
-      </div>
-      <div className='box-item6'>
-        <p>Notes: {observation.notes !== "" ? observation.notes : 'N/A'}</p>
-        <div className="box-item3">
-        <GrowthIcons growth_type={observation.growth_type} />
-        { observation.photo == "" ?
-          <img 
-            className='no-pic'
-            alt="no picture"
-            width={"30px"}
-            height={"30px"}
-            src={`Site_SVG/click-icon/no-pic.svg`}
-          />
-        :
-          <img 
-            className='img-button'
-            alt="picture"
-            width={"30px"}
-            height={"30px"}
-            src={`Site_SVG/click-icon/pic.svg`}
-            onClick={()=>setPicModal(true)}
-          />
-        }
-      </div>
-
+          <p style={{marginTop:"20px"}}>Date: <b>{alterDate(observation.date_observed)}</b></p>
+          <div className='box-item4' style={{marginTop:"15px"}}>
+              <GrowthIcons growth_type={observation.growth_type}/>
+              <img
+                style={{marginRight:"7px"}}
+                className='img-button'
+                title="species info"
+                alt="info"
+                width={"30px"}
+                height={"30px"}
+                src={`Site_SVG/click-icon/info-bold.svg`}
+                onClick={() => history.push(`/info/${observation.species_id}`)}
+              />
+              <div className="oneline">
+              { observation.photo == "" ?
+                <img 
+                  className='no-pic'
+                  title="no photo available"
+                  alt="no picture"
+                  width={"30px"}
+                  height={"30px"}
+                  src={`Site_SVG/click-icon/no-pic.svg`}
+                />
+              :
+                <img 
+                  className='img-button'
+                  title="view photo"
+                  alt="picture"
+                  width={"25px"}
+                  height={"25px"}
+                  src={`Site_SVG/click-icon/photo.svg`}
+                  onClick={()=>setPicModal(true)}
+                />
+              }
+              <div className="box-item4" style={{marginLeft:"10px"}}>
+                {(displayToggle == true) ? 
+                <img 
+                  className='img-button'
+                  alt="plus"
+                  width={"25px"}
+                  height={"25px"}
+                  src={`Site_SVG/plus.svg`}
+                  onClick={() => setDisplayToggle(false)}
+                />
+                : 
+                <div>
+                  <img 
+                    className='img-button'
+                    alt="minus"
+                    width={"17px"}
+                    height={"17px"}
+                    src={`Site_SVG/minus.svg`}
+                    onClick={() => setDisplayToggle(true)}
+                  />
+                  <img 
+                    className='img-button'
+                    alt="edit"
+                    width={"17px"}
+                    height={"17px"}
+                    src={`Site_SVG/edit.svg`}
+                    onClick={handleEdit}
+                  />
+                  <img 
+                    className='img-button'
+                    alt="delete"
+                    width={"17px"}
+                    height={"17px"}
+                    src={`Site_SVG/delete.svg`}
+                    onClick={handleDelete}
+                  />
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+          </div>
+          <div className='box-item10' style={{marginTop:"50px", maxWidth:"300px", marginRight:"10px"}}>
+            <p>Scientific Name: <b><i>{observation.scientific_name}</i></b></p>
+            <p>Common Name: <b>{observation.common_name.split(",")[0]}</b></p>
+          </div>
         <Modal
           open={picModal}
           style={style}
         >
           <div className='pic-modal'>
-            <button onClick={() => setPicModal(false)}>x</button>
+            <button style={{backgroundColor: "#484E6B", color:"#EEFFF1" }} onClick={() => setPicModal(false)}>x</button>
           <img 
             alt={`photo_obs_id${observation.id}`}
             width={"450px"}
@@ -159,7 +160,6 @@ function ObsItemMap( { observation, i } ) {
           />
           </div>
         </Modal>
-      </div>
     </ListItem>
   );
 }

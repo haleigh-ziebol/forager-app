@@ -57,7 +57,7 @@ function SpeciesInfoPage() {
             <br/>
             <p><b>Basic Info:</b></p>
             <p style={{whiteSpace: "pre-wrap", lineHeight:"150%"}}>{parsedWikiText}</p> {/*pre-wrap deals with \n from wikitext parser */}
-            <div className='box-item5'>
+            <div className='box-item4'>
               <p><b>Source: </b><a href={`https://en.wikipedia.org/wiki/${speciesInfo.link}`} >Wikipedia </a> </p>
               <p><b>More Info: </b><a href={`https://plants.sc.egov.usda.gov/home/plantProfile?symbol=${speciesInfo.database.USDA_CODE}`} >USDA</a></p>
             </div>
