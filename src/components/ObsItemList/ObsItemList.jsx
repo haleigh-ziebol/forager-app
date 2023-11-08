@@ -39,7 +39,7 @@ function ObsItemList( { observation, i } ) {
   return (
     <Card key={observation.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}} className="boxshadow">
       <div className="box-item4">
-        <p><b>Observation #{i+1}</b></p>       
+        <p><b>Find #{i+1}</b></p>       
         {(displayToggle == true) ? 
           <img 
             className='img-button'

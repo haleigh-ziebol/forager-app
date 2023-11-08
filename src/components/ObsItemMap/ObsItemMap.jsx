@@ -55,7 +55,7 @@ function ObsItemMap( { observation, i } ) {
   return (
     <ListItem alignItems="flex-start" key={observation.id} className='outlined box-item4' sx={{bgcolor: '#FFF4F4', m:'0px 0px 5px 0px', color:'#484E6B'}}>
         <div className="box-item10" style={{marginTop:"15px", marginRight:"10px", marginLeft:"10px"}}>
-          <div className='oneline2'>
+          <div className='oneline2'style={{marginRight:"10px"}}>
             <img 
               className='img-button'
               alt="marker"
@@ -64,7 +64,7 @@ function ObsItemMap( { observation, i } ) {
               src={`Site_SVG/marker.svg`}
               onClick={() => dispatch({type:'OBSERVATION_TO_HIGHLIGHT', payload: { id: observation.id, location: observation.location}})}
             />
-            <p2><b>Observation #{i+1}</b></p2>
+            <p2><b>Find #{i+1}</b></p2>
           </div>
           <p style={{marginTop:"20px"}}>Date: <b>{alterDate(observation.date_observed)}</b></p>
           <div className='box-item4' style={{marginTop:"15px"}}>
@@ -142,7 +142,7 @@ function ObsItemMap( { observation, i } ) {
             </div>
           </div>
           </div>
-          <div className='box-item10' style={{marginTop:"50px", maxWidth:"300px", marginRight:"10px"}}>
+          <div className='box-item10' style={{marginTop:"50px", maxWidth:"300px", marginRight:"10px", marginLeft:"10px"}}>
             <p>Scientific Name: <b><i>{observation.scientific_name}</i></b></p>
             <p>Common Name: <b>{observation.common_name.split(",")[0]}</b></p>
           </div>
