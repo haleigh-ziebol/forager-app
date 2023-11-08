@@ -29,8 +29,15 @@ function LoginForm() {
 
   return (
     <div className="center formPanel">
-      <form onSubmit={login}>
-        <h2>Login</h2>
+      <form onSubmit={login} style={{marginLeft:"10px"}}>
+      <center>
+        <div style={{display:"flex", alignItems:"center"}}>
+          <img src="https://www.svgrepo.com/show/190937/acorn.svg"
+            height="30px"
+            />
+          <h2>Login</h2>
+        </div>
+      </center>
         {errors.loginMessage && (
           <h3 className="alert" role="alert">
             {errors.loginMessage}
@@ -62,9 +69,10 @@ function LoginForm() {
           </label>
         </div>
         <br/>
-        <div className='center'>
+        <center>
           <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}> Log in</Button>
-        </div>
+        </center>
+        <br/>
       </form>
      </div>
   );

@@ -38,7 +38,7 @@ function ObsItemList( { observation, i } ) {
 
   return (
     <Card key={observation.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}} className="boxshadow">
-      <div className="box-item5">
+      <div className="box-item4">
         <p><b>Observation #{i+1}</b></p>       
         {(displayToggle == true) ? 
           <img 
@@ -94,7 +94,7 @@ function ObsItemList( { observation, i } ) {
       <p><b>Growth Type: </b>{observation.growth_type}</p>
       <p><b>Notes:</b> {observation.notes !== "" ? observation.notes : 'N/A'}</p>
       <p><b>Photo:</b> {observation.photo == "" &&  "N/A"}</p>
-      { (observation.photo !== "") &&
+      <center>{ (observation.photo !== "") &&
         <img 
           alt={`photo_obs_id${observation.id}`}
           width={"150px"}
@@ -102,6 +102,7 @@ function ObsItemList( { observation, i } ) {
           src={observation.photo}
         />
       }
+      </center>
     </Card>
   );
 }
