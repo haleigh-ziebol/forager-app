@@ -50,7 +50,7 @@ function Badges() {
           width={"75px"}
           height={"75px"}
           src={`Site_SVG/badges/red.svg`}
-          title={regionBadgeSpecies[0].count <20 ? "Next goal: find 10 species!" : "WOWZA! 10 species observed in your region"}
+          title={regionBadgeSpecies[0].count <10 ? `Next goal: find 10 species! You've found ${regionBadgeSpecies[0].count}` : "WOWZA! 10 species found!"}
         />
         <p htmlFor='10-things'>10 Species</p>
       </div>
