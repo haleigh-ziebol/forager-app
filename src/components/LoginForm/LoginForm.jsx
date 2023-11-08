@@ -61,6 +61,7 @@ function LoginForm() {
             />
           </label>
         </div>
+        <br/>
         <div className='center'>
           <Button type="submit" variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}> Log in</Button>
         </div>

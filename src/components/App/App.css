@@ -71,6 +71,11 @@ special class
   padding: 10px;
 }
 
+.center2 {
+  width: 50%;
+  padding: 10px;
+}
+
 .home {
   background-color: #E6F0E8;
   display: flex;
@@ -213,7 +218,7 @@ Form & Modal Treatment
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  background-color: #EEFFF1;
+  background-color:#FFF4F4;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }

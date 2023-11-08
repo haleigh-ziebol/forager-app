@@ -24,7 +24,7 @@ function LandingPage() {
           <h5>earn foraging badges</h5>
           <br/>
           <br/>
-          <Button onClick={()=> history.push('/about')}variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>About</Button>
+          <Button onClick={()=> history.push('/about')} variant="outlined" style={{backgroundColor: "#E6CFC1", color: "#484E6B"}}>About</Button>
         </div>
     </div>
   );

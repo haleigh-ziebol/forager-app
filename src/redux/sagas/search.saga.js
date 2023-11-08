@@ -15,7 +15,7 @@ function* searchSpecies( action ) {
 
 function* badgeUserRegion( action ) {
   try {
-    const badgeResponse = yield axios.get(`/api/search/badge/regional/?region=${action.payload.region}&id=${action.payload.user_id}`);
+    const badgeResponse = yield axios.get(`/api/search/badge/species/?id=${action.payload.user_id}`);
     yield console.log(badgeResponse)
       yield put({ type: 'SET_BADGE_USER_REGION', payload: badgeResponse.data });
   } catch (error) {

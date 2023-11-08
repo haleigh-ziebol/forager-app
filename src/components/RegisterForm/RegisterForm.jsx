@@ -41,7 +41,7 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <div className="formPanel center">
+    <div className="formPanel center" style={{minWidth:"400px"}}>
     <form onSubmit={registerUser}>
       <h2>Register User</h2>
       {errors.registrationMessage && (
@@ -86,6 +86,7 @@ function RegisterForm() {
             })}
           </select>
       </div>
+      <br/>
       <div>
             <fieldset className="box-grid" onChange={(event) => setUserIcon(event.target.value)}>
               <legend>Choose Your Avatar: </legend>

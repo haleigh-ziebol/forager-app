@@ -124,24 +124,16 @@ router.get('/badge/tree', (req, res) => {
   }
 }); //end GET
 
-
-//GET search for species observed by user that count towards regional badge
-router.get('/badge/regional', (req, res) => {
-  const region = req.query.region;
+//GET search for species observed by user that count towards basic badge
+router.get('/badge/species', (req, res) => {
   const user_id = req.query.id;
   console.log('Fetching species info by region')
     if(req.isAuthenticated()) {
     let queryText = `SELECT COUNT(DISTINCT s."USDA_CODE") FROM species s
-                  JOIN observations o
-                  ON s.id = o.species_id
-                  JOIN species_state x
-                  ON s.id = x.species_id
-                  JOIN states y
-                  ON x.state_id = y.id
-                  JOIN regions r
-                  ON y.region_id = r.id
-                  WHERE (r.id = $1 AND o.user_id = $2);`;
-    pool.query(queryText, [region, user_id])
+                    JOIN observations o
+                    ON s.id = o.species_id
+                    WHERE o.user_id = $1;`;
+    pool.query(queryText, [user_id])
     .then(result => {
       res.send(result.rows);
     })
@@ -153,5 +145,35 @@ router.get('/badge/regional', (req, res) => {
     res.sendStatus(401);
   }
 }); //end GET
+
+
+// //GET search for species observed by user that count towards regional badge
+// router.get('/badge/regional', (req, res) => {
+//   const region = req.query.region;
+//   const user_id = req.query.id;
+//   console.log('Fetching species info by region')
+//     if(req.isAuthenticated()) {
+//     let queryText = `SELECT COUNT(DISTINCT s."USDA_CODE") FROM species s
+//                   JOIN observations o
+//                   ON s.id = o.species_id
+//                   JOIN species_state x
+//                   ON s.id = x.species_id
+//                   JOIN states y
+//                   ON x.state_id = y.id
+//                   JOIN regions r
+//                   ON y.region_id = r.id
+//                   WHERE (r.id = $1 AND o.user_id = $2);`;
+//     pool.query(queryText, [region, user_id])
+//     .then(result => {
+//       res.send(result.rows);
+//     })
+//     .catch(error => {
+//       console.log(`Error fetching species`, error);
+//       res.sendStatus(500);
+//     });
+//   } else {
+//     res.sendStatus(401);
+//   }
+// }); //end GET
 
 module.exports = router;
