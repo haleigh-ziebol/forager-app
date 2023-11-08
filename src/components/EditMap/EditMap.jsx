@@ -2,15 +2,16 @@ import { useEffect, useState, useCallback } from 'react';
 import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
 
-function SearchMap() {
+function EditMap() {
   const dispatch = useDispatch();
   const userRegion = useSelector(store => store.userdata.userRegion);
   const coordinates = useSelector(store => store.observation.newObservationCoords)
-  
+  const observationToEdit = useSelector(store => store.observation.observationToEdit);
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
   });
-
+  
   const mapStyle = {        
     height: "50vh",
     width: "75%"};
@@ -23,30 +24,31 @@ function SearchMap() {
   const [map, setMap] = useState(null);
   const onLoad = useCallback((map) => setMap(map), []);
 
-  //sets based on whether user has set coordinates
+  //sets center based on whether user has set coordinates different from observservation to edit
   const setCoordCenter = () => {
-    if (coordinates[0].lat !== "") {
+    if (coordinates[0].lat !== "" && coordinates[0].lat !== parseFloat(observationToEdit.location[0])) {
       map.setCenter({lat: parseFloat(coordinates[0].lat), lng: parseFloat(coordinates[0].lng)})
+      console.log('helloo set center to coords')
     } 
-    else if (userRegion.id !== "") {
-      map.setZoom(5);
-      map.setCenter({lat: parseFloat(userRegion[0].center[0]), lng: parseFloat(userRegion[0].center[1])})
-    }
     else {
-      map.setCenter({lat: 40.5, lng: -98.2});
-      map.setZoom(5);
+      map.setCenter({lat: parseFloat(observationToEdit.location[0]), lng: parseFloat(observationToEdit.location[1])});
+      map.setZoom(6);
     }
   }
 
+  //sets center of map on changes from vars
   useEffect(() => {
     if (map) {
       setCoordCenter();
     }
-  }, [map, coordinates, userRegion.id]);
+  }, [map, coordinates, observationToEdit]);
   //end code modified from Joe Daniels
 
+
+  //sets coordinates of observationToEdit in map onLoad
   useEffect(() => {
-    dispatch({ type: 'RESET_COORDINATES'})
+    dispatch({ type: 'NEW_COORDINATES', payload: {lat: parseFloat(observationToEdit.location[0]), lng: parseFloat(observationToEdit.location[1])} })
+    console.log("set obsevation coords")
   }, []);
 
       return (
@@ -71,4 +73,4 @@ function SearchMap() {
 
 }
 
-export default SearchMap;
+export default EditMap;

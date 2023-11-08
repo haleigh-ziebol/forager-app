@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //child components
-import SearchMap from '../SearchMap/SearchMap';
+import EditMap from '../EditMap/EditMap';
 
 //MUI components
 import { Card } from '@mui/material';
@@ -38,7 +38,6 @@ const EditObsForm = () => {
         console.log('fetching plant names lists');
         dispatch({type:'FETCH_COMMON'})
         dispatch({type:'FETCH_SCIENTIFIC'})
-        dispatch({ type: 'NEW_COORDINATES', payload: {lat: parseFloat(observationToEdit.location[0]), lng: parseFloat(observationToEdit.location[1])} })
     }, []);
 
 
@@ -47,7 +46,7 @@ const EditObsForm = () => {
         setNameSearchType(event.target.value);
     }
 
-     //sets coordinates in updated observation
+    //sets coordinates in updated observation
     useEffect(() => {
         if (coordinates == null ) {
             return console.log("no coords")
@@ -158,7 +157,7 @@ const EditObsForm = () => {
 
                     <br/>
                     <label htmlFor="loc">Location:</label>
-                    <SearchMap  id="loc" />
+                    <EditMap  id="loc" />
                     <br/>
                     <br/>
                     <label htmlFor="date">Date Observed:</label>
