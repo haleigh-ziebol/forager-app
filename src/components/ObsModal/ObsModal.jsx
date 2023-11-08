@@ -42,7 +42,7 @@ function ObsModal( { observation, i, setObservationModal} ) {
         <button style={{backgroundColor: "#484E6B", color:"#EEFFF1" }} onClick={() => setObservationModal(false)} >X</button>
       </div>
       <div className="oneline2">
-        <p><b>Observation #{i+1}</b></p>       
+        <p><b>Find #{i+1}</b></p>       
         {(displayToggle == true) ? 
           <img 
             className='img-button'
@@ -58,24 +58,24 @@ function ObsModal( { observation, i, setObservationModal} ) {
           <img 
             className='img-button'
             alt="minus"
-            width={"25px"}
-            height={"25px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/minus.svg`}
             onClick={() => setDisplayToggle(true)}
           />
           <img 
             className='img-button'
             alt="edit"
-            width={"25px"}
-            height={"25px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/edit.svg`}
             onClick={handleEdit}
             />
           <img 
             className='img-button'
             alt="delete"
-            width={"25px"}
-            height={"25px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/delete.svg`}
             onClick={handleDelete}
           />
