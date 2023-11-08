@@ -24,10 +24,11 @@ router.get('/user/:userID', (req, res) => {
   console.log('Fetching all user observations')
     if(req.isAuthenticated()) {
     let queryText = `SELECT observations.*, s.scientific_name, s.common_name, s.growth_type
-                     FROM "observations"
-                      JOIN species s
-                      ON s.id = species_id
-                      WHERE "user_id" =$1`;
+                    FROM "observations" 
+                    JOIN species s
+                    ON s.id = species_id
+                    WHERE "user_id" = $1
+                    ORDER by observations.date_observed;`;
     pool.query(queryText, [userID])
     .then(result => {
       res.send(result.rows);
