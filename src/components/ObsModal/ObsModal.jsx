@@ -39,7 +39,7 @@ function ObsModal( { observation, i, setObservationModal} ) {
   return (
     <Card key={observation.id} sx={{ width: 300, p:'2rem', m:'10px', bgcolor: '#FFF4F4', color:'#484E6B'}} className="boxshadow">
       <div className='box-item8'>
-        <button style={{backgroundColor: "#484E6B", color:"#EEFFF1" }} onClick={() => setPicModal(false)} onClick={() => setObservationModal(false)} >X</button>
+        <button style={{backgroundColor: "#484E6B", color:"#EEFFF1" }} onClick={() => setObservationModal(false)} >X</button>
       </div>
       <div className="oneline2">
         <p><b>Observation #{i+1}</b></p>       

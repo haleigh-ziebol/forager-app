@@ -28,7 +28,9 @@ function Badges() {
 
 
   return (
-    <div className="box-grid center">
+    <div className="box-item2">
+    <center><p><b>Badges:</b></p></center>
+    <div className="box-grid" style={{marginTop:'0px'}}>
       <div className="box-item2">
         <img 
           id="1-thing"
@@ -76,6 +78,7 @@ function Badges() {
         />
         <p htmlFor='trees'>Tree Finder</p>
       </div>
+    </div>
     </div>
   );
 }

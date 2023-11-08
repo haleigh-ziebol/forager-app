@@ -16,7 +16,7 @@ function ProfilePage() {
   return (
     <div className="profile-container background">
       <div className="profile-info">
-        <div className="box-item7">
+        <div className="box-item7" style={{marginTop:'10px'}}>
           <div>
           <img 
             alt={user.icon}
