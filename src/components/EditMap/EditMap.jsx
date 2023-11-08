@@ -32,7 +32,7 @@ function EditMap() {
     } 
     else {
       map.setCenter({lat: parseFloat(observationToEdit.location[0]), lng: parseFloat(observationToEdit.location[1])});
-      map.setZoom(6);
+      map.setZoom(9);
     }
   }
 
