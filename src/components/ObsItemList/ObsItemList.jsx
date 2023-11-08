@@ -54,24 +54,24 @@ function ObsItemList( { observation, i } ) {
           <img 
             className='img-button'
             alt="minus"
-            width={"25px"}
-            height={"25px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/minus.svg`}
             onClick={() => setDisplayToggle(true)}
           />
           <img 
             className='img-button'
             alt="edit"
-            width={"25px"}
-            height={"25px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/edit.svg`}
             onClick={handleEdit}
             />
           <img 
             className='img-button'
             alt="delete"
-            width={"25px"}
-            height={"25px"}
+            width={"17px"}
+            height={"17px"}
             src={`Site_SVG/delete.svg`}
             onClick={handleDelete}
           />
