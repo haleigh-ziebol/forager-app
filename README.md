@@ -20,7 +20,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/halziebol11/forager-app">
-    <img src="Site_SVG/Logo.svg" alt="Logo" width="240" height="80">
+    <img src="./public/Site_SVG/Logo.svg" alt="Logo" width="240" height="80">
   </a>
 
 <h3 align="center">Forager</h3>
