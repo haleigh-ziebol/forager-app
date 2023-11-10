@@ -11,15 +11,6 @@
   <p align="center">
     Foragers have special spots they visit every year and are always looking for new wild edibles! On this app users input information —including the location and species along with a photo and notes— about their foraging spot. This data is stored on a map where they can view, edit and delete finds. When they input a new species, it counts toward foraging badges that a user can earn. Users can also search for species by region/name/growth type in the database and learn more about them!
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
-  </p>
 </div>
 
 
@@ -65,14 +56,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -178,7 +162,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
+* [](Thanks to Prime Digital Academy, especially Chris Black and Alex Bliss who equipped and helped me to make this application a reality. Thank you to my classmates for help debugging and implementing code!)
 * []()
 * []()
 
