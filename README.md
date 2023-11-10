@@ -68,6 +68,7 @@ A list of technologies used to create Forager.
 * Google Maps API
 * Wikipedia API
 * wtf_wikipedia
+* Octoparse (data scraper)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -103,7 +104,8 @@ This is an example of how to list things you need to use the software and how to
     AWS_SECRET_ACCESS_KEY='ENTER YOUR AWS SECRET ACCESS KEY HERE'
     AWS_REGION='ENTER AWS REGION'
    ```
-5. Set up a database called `forager-app` and create the 7 tables as instructed in the database.sql file.
+5. Set up a database called `forager-app` and create the 7 tables as instructed in the database.sql file. Table data can be found [here] (https://tinyurl.com/forager-table-data).
+
 6. Start the server by running the following command in your terminal
    ```sh
    npm run server
@@ -121,7 +123,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+*Drafting, updated shortly
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -131,10 +133,10 @@ Use this space to show useful examples of how a project can be used. Additional 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
+<!-- - [ ] Feature 1
 - [ ] Feature 2
 - [ ] Feature 3
-    - [ ] Nested Feature
+    - [ ] Nested Feature -->
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -179,6 +181,9 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 ## Acknowledgments
 
 * Thanks to Prime Digital Academy, especially Chris Black and Alex Bliss who equipped and helped me to make this application a reality. Thank you to my classmates for help debugging and implementing code!
+
+* Plant species data scraped from the USDA <a href="https://plants.sc.egov.usda.gov/home">PLANTS Database</a> and the Lady Bird Johnson Wildflower Center of UTexas's <a href="https://www.wildflower.org/plants-main">Native Plants of North America Database</a> using <a href="https://www.octoparse.com/">Octoparse</a>.
+      
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -1,3 +1,6 @@
+/* data for tables is here: 'https://tinyurl.com/forager-table-data' */
+
+
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -18,7 +21,7 @@ CREATE TABLE "observations" (
 	"time_stamp" DATE
 )
 
-/* set up for species table is in linked CSV*/
+/* data to import for species table is in linked folder*/
 CREATE TABLE "species" (
 	"id" SERIAL PRIMARY KEY,
 	"USDA_CODE" VARCHAR(20),
@@ -33,25 +36,26 @@ CREATE TABLE "regions" (
 	"center" VARCHAR[]
 )
 
-/* set up for states table is in linked CSV*/
+INSERT INTO "regions" ("name", "center")
+VALUES ('Midwest', ARRAY['42.280644', '-93.223132']), ('Northeast', ARRAY['42.588240', '-74.253321']), ('Southeast', ARRAY['33.239689', '-85.263921']), ('Southwest', ARRAY['34.078167', '-103.435275']), ('West', ARRAY['42.371375', '-116.601928'])
+
+
+/* data to import for states table is in linked folder*/
 CREATE TABLE "states" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR(20),
 	"region_id" INT REFERENCES "regions"
 )
 
-INSERT INTO "regions" ("name", "center")
-VALUES ('Midwest', ARRAY['42.280644', '-93.223132']), ('Northeast', ARRAY['42.588240', '-74.253321']), ('Southeast', ARRAY['33.239689', '-85.263921']), ('Southwest', ARRAY['34.078167', '-103.435275']), ('West', ARRAY['42.371375', '-116.601928'])
 
-
-/* set up for species_state table is in linked CSV*/
+/* data to import for species_state table is in linked folder*/
 CREATE TABLE "species_state" (
 	"id" SERIAL PRIMARY KEY,
 	"species_id" INT REFERENCES "species",
 	"state_id" INT REFERENCES "states"
 )
 
-/* set up for state_abbrevs table is in linked CSV*/
+/* data to import for state_abbrevs table is in linked folder*/
 CREATE TABLE "state_abbrevs"(
 "abbrev_id" INT REFERENCES "states",
 "state_name" VARCHAR(20),
