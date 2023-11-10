@@ -48,7 +48,7 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+A list of technologies used to create Forager.
 
 ### Built With
 
@@ -91,9 +91,12 @@ The npm run client command will open up a new browser tab for you! <br />
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Create a .env file and enter in your API keys and secret variables
+   ```
+    REACT_APP_GOOGLE_MAPS_KEY='ENTER YOUR GOOGLE MAPS API'
+    AWS_ACCESS_KEY_ID='ENTER YOUR AWS ACCESS KEY ID HERE'
+    AWS_SECRET_ACCESS_KEY='ENTER YOUR AWS SECRET ACCESS KEY HERE'
+    AWS_REGION='ENTER AWS REGION'
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
