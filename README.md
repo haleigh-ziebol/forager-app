@@ -53,14 +53,23 @@ A list of technologies used to create Forager.
 ### Built With
 
 * Node.js
+* Express.js
+* Axios
 * PostgreSQL
 * pgadmin
+* React.js
+* React-Redux
+* Redux-Saga
+* passport
+* PostgreSQL
+* HTML5
+* CSS
+* AWS
 * Google Maps API
 * Wikipedia API
 * wtf_wikipedia
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ## Getting Started
@@ -76,31 +85,37 @@ This is an example of how to list things you need to use the software and how to
   ```
 
 ### Installation
-Create a database named `forager-app`. <br />
-The queries in the database.sql file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. <br />
-Open up your editor of choice and run an npm install. <br />
-Run npm run server in your terminal. <br />
-Run npm run client in your terminal. <br />
-The npm run client command will open up a new browser tab for you! <br />
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+
+1. Clone the repo
    ```sh
    git clone https://github.com/github_username/repo_name.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Create a .env file and enter in your API keys and secret variables
+3. Get a Google Maps API Key at [Google Maps Platform](https://developers.google.com/maps/documentation/javascript/get-api-key)
+4. Set up an AWS account at [Amazon Web Services](https://docs.aws.amazon.com/index.html) and create an S3 Bucket for the project.
+4. Create a .env file and enter in your secret keys and variables.
    ```
     REACT_APP_GOOGLE_MAPS_KEY='ENTER YOUR GOOGLE MAPS API'
     AWS_ACCESS_KEY_ID='ENTER YOUR AWS ACCESS KEY ID HERE'
     AWS_SECRET_ACCESS_KEY='ENTER YOUR AWS SECRET ACCESS KEY HERE'
     AWS_REGION='ENTER AWS REGION'
    ```
+5. Set up a database called `forager-app` and create the 7 tables as instructed in the database.sql file.
+6. Start the server by running the following command in your terminal
+   ```sh
+   npm run server
+   ```
+7. Start the client by running the following command in your terminal
+   ```sh
+   npm run client
+   ```
+8. The last command will open up a new tab in your browser.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
