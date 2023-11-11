@@ -125,7 +125,7 @@ To get a local copy up and running follow these simple example steps.
 ## Usage
 
 ### Log Foraging Finds to Earn Badges
-Fill out the form in the "Add Find" tab. Select the species common or scientific name, its location on the map and the date you found it. Notes and a photo are options. Photos are stored in an AWS cloud. Badges on profile section will automatically update.
+Fill out the form in the "Add Find" tab. Select the species common or scientific name, its location on the map and the date you found it. Notes and a photo are options. Photos are stored in an S3 bucket via AWS. Badges on profile section will automatically update.
 
 ![Add Find](./public/Documentation/Add%20Find.png)
 
