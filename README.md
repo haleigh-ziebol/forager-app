@@ -129,25 +129,30 @@ To get a local copy up and running follow these simple example steps.
 ### View Your Finds
 
 Map View:
+A summarized view of logged finds. Clicking the red icon by the observation number causes its pin on the map to bounce.
 ![Map View](./public/Documentation/Map%20View.png)
 
 
 Info Window:
+This window is opened by clicking on a pin on the map.
 ![Info Window](./public/Documentation/Info%20Window.png)
 
 
 List View:
+A card layout of all a users finds.
 ![List View](./public/Documentation/List%20View.png)
 
 
 ### Search for Wild Edibles By Name/Region/Growth Type
+The 'Search Edibles' feature allows a user to search for wild edibles by name and/or region and/or growth type.
+
 ![Search Page](./public/Documentation/Search.png)
 
 ![Search Results Page](./public/Documentation/Search%20Results%20Page.png)
 
 
 ### Learn More About Your Foraging Finds
-Species information populated from Wikipedia API. Links to the full wikipedia page and USDA database are included.
+Species information populated from Wikipedia API. Links to the full wikipedia page and USDA database are included. This species info page can be accessed using the (i) buttons.
 
 ![Species Info Page](./public/Documentation/Species%20Info%20Page.png)
 
