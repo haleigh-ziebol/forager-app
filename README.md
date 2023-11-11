@@ -125,6 +125,10 @@ To get a local copy up and running follow these simple example steps.
 ## Usage
 
 ### Log Foraging Finds to Earn Badges
+Fill out the form in the "Add Find" tab. Select the species common or scientific name, its location on the map and the date you found it. Notes and a photo are options. Photos are stored in an AWS cloud. Badges on profile section will automatically update.
+
+![Add Find](./public/Documentation/Add%20Find.png)
+
 
 ### View Your Finds
 
@@ -200,7 +204,7 @@ Distributed under the MIT License.
 <!-- CONTACT -->
 ## Contact
 
-Haleigh - halziebol11@gmail.com
+Haleigh: halziebol11@gmail.com
 
 Project Link: [https://github.com/github_username/repo_name](https://github.com/halziebol11/forager-app)
 
