@@ -79,11 +79,12 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+1. Install the latest version of npm
 * npm
   ```sh
   npm install npm@latest -g
   ```
+2. Install Node.js
 
 ### Installation
 
@@ -123,7 +124,19 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-*Drafting, updated shortly
+### Log Foraging Finds to Earn Badges
+
+### View Your Finds
+![List View](./public/Documentation/List%20View.png)
+
+### Search for Wild Edibles By Name/Region/Growth Type
+![Search Page](./public/Documentation/Search.png)
+
+![Search Results Page](./public/Documentation/Search%20Results%20Page.png)
+
+
+### Learn More About Your Foraging Finds
+![Species Info Page](./public/Documentation/Species%20Info%20Page.png)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
