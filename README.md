@@ -127,7 +127,18 @@ To get a local copy up and running follow these simple example steps.
 ### Log Foraging Finds to Earn Badges
 
 ### View Your Finds
+
+Map View:
+![Map View](./public/Documentation/Map%20View.png)
+
+
+Info Window:
+![Info Window](./public/Documentation/Info%20Window.png)
+
+
+List View:
 ![List View](./public/Documentation/List%20View.png)
+
 
 ### Search for Wild Edibles By Name/Region/Growth Type
 ![Search Page](./public/Documentation/Search.png)
@@ -136,6 +147,8 @@ To get a local copy up and running follow these simple example steps.
 
 
 ### Learn More About Your Foraging Finds
+Species information populated from Wikipedia API. Links to the full wikipedia page and USDA database are included.
+
 ![Species Info Page](./public/Documentation/Species%20Info%20Page.png)
 
 
