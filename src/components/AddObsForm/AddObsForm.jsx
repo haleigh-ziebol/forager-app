@@ -2,10 +2,9 @@ import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-// import Debounce from './AutoComplete.jsx'
-
 //child components
 import SearchMap from '../SearchMap/SearchMap';
+import LocationInput from './PlacesInput';
 
 //MUI components
 import Alert from '@mui/material/Alert';
@@ -154,7 +153,7 @@ const AddObsForm = () => {
                     <Alert severity="error">Error with adding observation! Make sure all inputs are set.</Alert>
                 </Fade>
             }
-
+            <LocationInput />
             <h2>Add A Find</h2>
             <form onSubmit={addNewObservation}>
                 <fieldset id="name_type">
