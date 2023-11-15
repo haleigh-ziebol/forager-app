@@ -1,14 +1,14 @@
 import React, { useRef, useEffect, forwardRef } from 'react'
 import useGoogleMapsApi from './UseGooglePlaces'
 
-const LocationInput = forwardRef((props, ref) => {
+const LocationInput = forwardRef((ref) => {
   const inputRef = useRef()
   const autocompleteRef = useRef()
   const googleMapsApi = useGoogleMapsApi()
 
   useEffect(() => {
     if (googleMapsApi) {
-      autocompleteRef.current = new googleMapsApi.places.Autocomplete(inputRef.current, { types: ['(cities)'] })
+      autocompleteRef.current = new googleMapsApi.places.Autocomplete(inputRef.current, { componentRestrictions: { country: "us" }, types: ['(cities)', 'address'] })
       autocompleteRef.current.addListener('place_changed', () => {
         const place = autocompleteRef.current.getPlace()
         console.log(place)

@@ -2,16 +2,18 @@ import { useEffect, useState, useCallback } from 'react'
 import loadScript from 'load-script'
 import each from 'lodash/each'
 
+
+//useCallback caches a function definition between re-renders
 var googleMapsApi
 var loading = false
 var callbacks = []
 
 const useGooglePlaces = () => {
-  const [, setApi] = useState()
+  const [api , setApi] = useState()
 
   const callback = useCallback(() => {
     setApi(window.google.maps)
-  }, [])
+  }, []) //will be re-rendered based on changed dependencies
 
   useEffect(() => {
     if (loading) {
