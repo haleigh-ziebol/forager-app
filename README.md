@@ -100,10 +100,10 @@ To get a local copy up and running follow these simple example steps.
 4. Set up an AWS account at [Amazon Web Services](https://docs.aws.amazon.com/index.html) and create an S3 Bucket for the project.
 4. Create a .env file and enter in your secret keys and variables.
    ```
-    REACT_APP_GOOGLE_MAPS_KEY='ENTER YOUR GOOGLE MAPS API'
-    AWS_ACCESS_KEY_ID='ENTER YOUR AWS ACCESS KEY ID HERE'
-    AWS_SECRET_ACCESS_KEY='ENTER YOUR AWS SECRET ACCESS KEY HERE'
-    AWS_REGION='ENTER AWS REGION'
+    REACT_APP_GOOGLE_MAPS_KEY=ENTER YOUR GOOGLE MAPS API
+    AWS_ACCESS_KEY_ID=ENTER YOUR AWS ACCESS KEY ID HERE
+    AWS_SECRET_ACCESS_KEY=ENTER YOUR AWS SECRET ACCESS KEY HERE
+    AWS_REGION=ENTER AWS REGION
    ```
 5. Set up a database called `forager-app` and create the 7 tables as instructed in the database.sql file. Table data can be found [here] (https://tinyurl.com/forager-table-data).
 
